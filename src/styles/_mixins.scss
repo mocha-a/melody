@@ -1,0 +1,31 @@
+// import
+@import './variables';
+
+// font
+@font-face {
+    font-family: "ganpan";
+    font-weight: normal;
+    src: url("../font/KCC-Ganpan") format("truetype");
+}
+@font-face {
+    font-family: "suiteLight";
+    font-weight: normal;
+    src: url("../font/SUITE-Light.otf") format("truetype");
+}
+@font-face {
+    font-family: "suiteRegular";
+    font-weight: normal;
+    src: url("../font/SUITE-Regular.otf") format("truetype");
+}
+@font-face {
+    font-family: "suiteSemi";
+    font-weight: normal;
+    src: url("../font/SUITE-SemiBold.otf") format("truetype");
+}
+@font-face {
+    font-family: "suiteBold";
+    font-weight: normal;
+    src: url("../font/SUITE-Bold.otf") format("truetype");
+}
+
+// button
