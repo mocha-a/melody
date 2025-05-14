@@ -1,0 +1,18 @@
+// import
+@import './variables';
+@import './mixins';
+
+
+body {
+    background-color: white;
+}
+
+.all_container {
+    overflow-y: auto;
+    position: relative;
+    width: 390px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: $whiteColor;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
