@@ -1,16 +1,16 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
-import ListPage from '../pages/ListPage'
-
+import { Routes, Route } from 'react-router-dom';
+import MainPage from "../pages/MainPage";
+import ListPage from '../pages/ListPage';
 
 function AppRouter() {
     return (
         <div>
             <Routes>
                 <Route path='/ListPage' element={<ListPage/>}/> 
+                <Route path="/main" element={<MainPage />} />
             </Routes>
         </div>
     )
 }
 
-export default AppRouter
+export default AppRouter;

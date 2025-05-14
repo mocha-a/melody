@@ -1,8 +1,10 @@
-import React from 'react'
+import Facebook from '../components/icon/Facebook'
 
 function mainPage() {
   return (
-    <div>mainPage</div>
+    <div>
+      <Facebook />
+    </div>
   )
 }
 
