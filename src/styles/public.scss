@@ -5,6 +5,7 @@
 
 body {
     background-color: white;
+    font-family: $suiteRegular;
 }
 
 .all_container {
@@ -15,4 +16,10 @@ body {
     margin: 0 auto;
     background-color: $whiteColor;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    .container {
+        width: calc(100% - 60px);
+        margin: 0 auto;
+    }
 }

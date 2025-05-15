@@ -1,7 +1,7 @@
 
-function Facebook() {
+function Facebook({ className }) {
     return (
-        <div>
+        <div className={className}>
             <img src="/img/public_facebook_01.svg" alt="" />
         </div>
     )

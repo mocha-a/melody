@@ -6,7 +6,9 @@ function App() {
   return (
       <BrowserRouter>
         <div className="all_container">
-          <AppRouter />
+          <div className='container'>
+            <AppRouter />
+          </div>
         </div>
       </BrowserRouter>
   );

@@ -1,0 +1,10 @@
+
+function KittyNote_2({ className }) {
+  return (
+    <div className={className}>
+        <img src="/img/public_kittyNote_02.svg" alt="" />
+    </div>
+  )
+}
+
+export default KittyNote_2
