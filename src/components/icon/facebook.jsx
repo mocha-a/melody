@@ -1,9 +1,10 @@
-import React from 'react'
 
-function facebook() {
+function Facebook({ className }) {
     return (
-        <div>facebook</div>
+        <div className={`icon ${className}`}>
+            <img src="/img/public_facebook_01.svg" alt="" />
+        </div>
     )
 }
 
-export default facebook
+export default Facebook

@@ -1,14 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routes/Router';
-
+import './styles/public.scss';
 
 function App() {
   return (
-    <div className="App">
       <BrowserRouter>
+        <div className="all_container">
           <AppRouter />
+        </div>
       </BrowserRouter>
-    </div>
   );
 }
 
