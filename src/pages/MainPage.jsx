@@ -5,8 +5,6 @@ function MainPage() {
   return (
     <div className="mainPage_container">
       <Loading/>
-
-
     </div>
   )
 } 

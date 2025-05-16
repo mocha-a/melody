@@ -7,7 +7,7 @@ import GrayNote1 from '../icon/GrayNote1';
 import GrayNote2 from '../icon/GrayNote2';
 import MyPageIcon from '../icon/MyPageIcon';
 import SearchIcon from '../icon/SearchIcon';
-import DashedLine from '../public/DashedLine';
+import DashedLine from './DashedLine';
 import '../../styles/public.scss';
 
 function Header() {
@@ -51,11 +51,18 @@ function Header() {
 
                 {/* 아이콘 변경, 메뉴 열기 */}
                 <div className="menu_icons">
-                    <CartIcon className="cart_icon" onClick={cart} />
+                    <div className="cart_icon" onClick={cart} >
+                        <CartIcon />
+                    </div>
                     {menuOpen ? (
-                        <MenuCancel className="cancel_icon" onClick={() => setMenuOpen(false)} />
+                        <div className="menu_icon_wrap" onClick={() => setMenuOpen(false)}>
+                            <MenuCancel className="cancel_icon" onClick={() => setMenuOpen(false)} />
+                        </div>
                     ) : (
-                        <MenuIcon className="menu_icon" onClick={() => setMenuOpen(true)} />
+                        <div className="menu_icon_wrap" onClick={() => setMenuOpen(true)}>
+                            <MenuIcon className="menu_icon" />
+                        </div>
+
                     )}
                 </div>
             </div>

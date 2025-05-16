@@ -17,6 +17,7 @@ body {
 .all_container {
     overflow-y: auto;
     position: relative;
+    padding-top: 60px;
     width: 390px;
     min-height: 100vh;
     margin: 0 auto;
@@ -80,7 +81,6 @@ input, textarea{
         padding: 9px 0;
         .logo {
             cursor: pointer;
-            width: 100%;
             img {
                 width: 110px;
                 height: 42px;

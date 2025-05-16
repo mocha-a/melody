@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { sanrioStore } from '../api';
+import { sanrioStore } from '../api/sanrio';
 import QuantitySelector from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import BottomArrow from '../components/icon/BottomArrow';
