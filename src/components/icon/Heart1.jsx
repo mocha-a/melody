@@ -1,5 +1,5 @@
 
-function Heart_1({ className }) {
+function Heart1({ className }) {
     return (
         <div className={className}>
             <img src="/img/public_heart_01.svg" alt="" />
@@ -7,4 +7,4 @@ function Heart_1({ className }) {
     )
 }
 
-export default Heart_1
+export default Heart1

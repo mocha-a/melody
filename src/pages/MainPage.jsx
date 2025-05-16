@@ -1,19 +1,14 @@
-import CheckBox from '../components/public/CheckBox';
-import Loading from '../components/Join/Loading';
-import CountingBtn from '../components/public/CountingBtn';
-import InputBox from '../components/public/InputBox';
-import PayInputBox from '../components/public/PayInputBox';
+import '../styles/main.scss';
+import Loading from '../components/Join/Loading'
 
-function mainPage() {
+function MainPage() {
   return (
-    <div>
-      <CheckBox/>
-      <InputBox label='로그인'/>
-      <CountingBtn/>
+    <div className="mainPage_container">
       <Loading/>
-      <PayInputBox placeholder='주소'/>
+
+
     </div>
   )
-}
+} 
 
-export default mainPage
+export default MainPage

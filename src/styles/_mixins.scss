@@ -1,6 +1,12 @@
 // import
 @import './variables';
 
+// width
+@mixin publicWidth {
+    width: $publicWidth;
+    margin: 0 auto;
+}
+
 // font
 @font-face {
     font-family: "ganpan";
@@ -73,3 +79,43 @@
     .price_bold{ font-family: $suiteBold;}
 }
 
+// font_style
+
+@mixin ganpan_font_style_1 {
+    font-family: $ganpan;
+    font-size: 20px;
+    color: $blackColor;
+    font-weight: normal;
+}
+@mixin ganpan_font_style_2 {
+    font-family: $ganpan;
+    font-size: 18px;
+    color: $grayColor;
+    font-weight: normal;
+}
+
+@mixin suite_black_20 {
+    font-family: $suiteRegular;
+    font-size: 20px;
+    color: $blackColor;
+}
+@mixin suite_black_18 {
+    font-family: $suiteRegular;
+    font-size: 18px;
+    color: $blackColor;
+}
+@mixin suite_black_16 {
+    font-family: $suiteRegular;
+    font-size: 20px;
+    color: $blackColor;
+}
+@mixin suite_black_14 {
+    font-family: $suiteRegular;
+    font-size: 14px;
+    color: $blackColor;
+}
+@mixin suite_black_12 {
+    font-family: $suiteRegular;
+    font-size: 12px;
+    color: $blackColor;
+}

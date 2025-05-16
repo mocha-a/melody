@@ -1,5 +1,5 @@
 
-function CinnaNote_1({ className }) {
+function CinnaNote1({ className }) {
   return (
     <div className={className}>
         <img src="/img/public_cinnaNote_01.svg" alt="" />
@@ -7,4 +7,4 @@ function CinnaNote_1({ className }) {
   )
 }
 
-export default CinnaNote_1
+export default CinnaNote1

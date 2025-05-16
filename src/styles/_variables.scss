@@ -1,5 +1,11 @@
 
 // ======================
+// ========width=========
+// ======================
+
+$publicWidth: calc(100% - 60px);
+
+// ======================
 // ========color=========
 // ======================
 
@@ -11,21 +17,21 @@ $lineColor: #C3C3C3;
 
 // * point color 
 $pink: #F5A2D8;
-$lightPink: #FFD5F0;
-$beigePink: #FFF2FA;
+$lightPink: #fcd6ef;
+$beigePink: #FFEBF8;
 
 // * character color
 $kitty: #E95F64;
 $lightKitty: #FBE7E8;
 
 $melody: #EE75A3;
-$lightMelody: #FEF4FB;
+$lightMelody: #ffe6f8;
 
 $cinna: #23AEDF;
-$lightCinna: #EDF6FE;
+$lightCinna: #e1f1ff;
 
 $pompom: #F6AA37;
-$lightPompom: #FFFBE4;
+$lightPompom: #fff8d7;
 
 // ======================
 // =========font=========
