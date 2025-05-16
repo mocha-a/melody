@@ -1,7 +1,7 @@
 
-function CartIcon({ className, onClick }) {
+function CartIcon({ className }) {
   return (
-    <div className={className} onClick={onClick}>
+    <div className={`icon ${className}`}>
         <img src="/img/public_cart_01.svg" alt="" />
     </div>
   )

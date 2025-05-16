@@ -7,7 +7,7 @@ import LoginPage from "../pages/join/LoginPage";
 
 function AppRouter() {
     return (
-<div>
+        <div>
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/cart" element={<CartPage />} />

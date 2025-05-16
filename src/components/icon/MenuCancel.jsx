@@ -1,7 +1,7 @@
 
-function MenuCancel({ className, onClick }) {
+function MenuCancel({ className }) {
   return (
-    <div className={className} onClick={onClick}>
+    <div className={`icon ${className}`}>
         <img src="/img/public_menuCancel_01.svg" alt="" />
     </div>
   )

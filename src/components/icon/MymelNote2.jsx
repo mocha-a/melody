@@ -1,7 +1,7 @@
 
 function MymelNote2({ className }) {
   return (
-    <div className={className}>
+    <div className={`icon ${className}`}>
         <img src="/img/public_mymelNote_02.svg" alt="" />
     </div>
   )

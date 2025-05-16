@@ -1,7 +1,7 @@
 
 function Prev({ className }) {
     return (
-        <div className={className}>
+        <div className={`icon ${className}`}>
             <img src="/img/public_prev_01.svg" alt="" />
         </div>
     )

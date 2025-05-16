@@ -1,4 +1,3 @@
-import React from 'react';
 import SolidLine from './SolidLine';
 
 function Total({ productPrice }) {
