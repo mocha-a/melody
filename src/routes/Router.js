@@ -9,12 +9,12 @@ function AppRouter() {
     return (
         <div>
             <Routes>
-                <Route path='/listPage' element={<ListPage/>}/> 
-                <Route path='/listPage/:main' element={<ListPage/>}/>
-                <Route path='/listPage/:main/:mid/' element={<ListPage/>}/>
-                <Route path='/listPage/:main/:mid/:sub' element={<ListPage/>}/>
-                <Route path='/productPage/:id' element={<ProductPage/>}/>
-                <Route path="/main" element={<MainPage />} />
+                <Route path="/" element={<MainPage />} />
+                <Route path='/list' element={<ListPage/>}/> 
+                <Route path='/list/category/:main' element={<ListPage/>}/>
+                <Route path='/list/category/:main/:mid/' element={<ListPage/>}/>
+                <Route path='/list/category/:main/:mid/:sub' element={<ListPage/>}/>
+                <Route path='/product/:id' element={<ProductPage/>}/>
             </Routes>
         </div>
     )

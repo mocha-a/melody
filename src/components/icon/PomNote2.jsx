@@ -1,5 +1,5 @@
 
-function PomNote_2({ className }) {
+function PomNote2({ className }) {
   return (
     <div className={`icon ${className}`}>
         <img src="/img/public_pomNote_02.svg" alt="" />
@@ -7,4 +7,4 @@ function PomNote_2({ className }) {
   )
 }
 
-export default PomNote_2
+export default PomNote2

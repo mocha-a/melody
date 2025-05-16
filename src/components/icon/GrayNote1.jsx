@@ -1,5 +1,5 @@
 
-function GrayNote_1({ className }) {
+function GrayNote1({ className }) {
   return (
     <div className={`icon ${className}`}>
         <img src="/img/public_grayNote_01.svg" alt="" />
@@ -7,4 +7,4 @@ function GrayNote_1({ className }) {
   )
 }
 
-export default GrayNote_1
+export default GrayNote1

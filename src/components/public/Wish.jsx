@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import Heart_1 from '../icon/Heart_1';
-import Heart_2 from '../icon/Heart_2';
+import Heart1 from '../icon/Heart1';
+import Heart2 from '../icon/Heart2';
 
-function Wish() {
+function Wish({ className }) {
     const [wish, setWish] = useState(true);
     return (
-        <div onClick={()=>{setWish((prev) => !prev)}}>
-            { wish? <Heart_1/> : <Heart_2/> }
+        <div className={className} onClick={()=>{setWish((prev) => !prev)}}>
+            { wish? <Heart1/> : <Heart2/> }
         </div>
     )
 }

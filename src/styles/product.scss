@@ -3,43 +3,89 @@
 @import './mixins';
 
 .product_container{
-    .product_item{
-        margin-bottom: 35px;
-    }
-    .product_img{
-        >p{
-            display: block;
-            width: 100%; height: 390px;
-            img{width: 100%; height: 100%;}
+    .product_detail{
+        margin-bottom: 86px;
+        .product_item{
+            margin-bottom: 35px;
+        }
+        .product_img{
+            >p{
+                display: block;
+                width: 100%; height: 390px;
+                img{width: 100%; height: 100%;}
+            }
+        }
+        .product_content{
+            @include publicWidth;
+            margin-top: 30px;
+            p{margin: 15px 0 10px;}
+            b, p{
+                font-size: $title;
+                font-weight: normal;
+                display: block;
+            }
+            .delivery_fee{
+                color: $grayColor;
+            }
+            .delivery_fee>span:nth-of-type(1)::after{
+                content: ' | ';
+            }
+        }
+        .product_line{ margin: 30px auto !important; }
+        .product_line, >h3{
+            @include publicWidth;
+        }
+            
+        >h3{
+            font-family: $suiteBold;
+            margin: 20px auto !important;
+        }
+        * {
+            max-width: 100% !important;
+            box-sizing: border-box;
         }
     }
-    .product_content{
-        @include publicWidth;
-        margin-top: 30px;
-        p{margin: 15px 0 10px;}
-        b, p{
-            font-size: $title;
-            font-weight: normal;
-            display: block;
-        }
-        .delivery_fee{
-            color: $grayColor;
-        }
-        .delivery_fee>span:nth-of-type(1)::after{
-            content: ' | ';
+    
+    .product_buynow{
+        width: 390px;
+        position: fixed;
+        bottom: 0px; left: 50%;
+        transform: translateX(-50%);
+        .Product_absolute{
+            position: relative;
+            background-color: $beigePink;
+            padding: 27px 0 39px;
+            .product_wish{
+                position: absolute;
+                top: 43%; left: 30px;
+                transform: translateY(-50%);
+                img{width: 20px;}
+            }
+            >p{
+                font-size: $regular;
+                text-align: center;
+            }
         }
     }
-    .product_line{ margin: 30px auto !important; }
-    .product_line, >h3{
-        @include publicWidth;
+
+    .product_popup{
+        .product_quantity{
+            display: flex;
+            >p{
+                font-size: $regular;
+            }
+        }
     }
-        
-    >h3{
-        font-family: $suiteBold;
-        margin: 20px auto !important;
-    }
-    * {
-        max-width: 100% !important;
-        box-sizing: border-box;
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 390px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 9;
     }
 }
+

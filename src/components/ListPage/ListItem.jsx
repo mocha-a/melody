@@ -15,7 +15,7 @@ function ListItem({ item }) {
     <div className='list_container'>
       <div className={'item_container'}>
         { item?.slice(0, moreView).map((item)=>
-          <Link to={`/ProductPage/${item.id}`} key={item.id}>
+          <Link to={`/Product/${item.id}`} key={item.id}>
             <CardItem item={item} moreView={moreView} name={"list"}/>
           </Link>
         )}

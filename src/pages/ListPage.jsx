@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { sanrioStore } from '../api';
 import MenuTitle from '../components/public/MenuTitle';
 import NaviBar from '../components/ListPage/NaviBar';
@@ -8,6 +9,9 @@ import "../styles/list.scss";
 
 function ListPage() {
     const { sanrio, kitty } = sanrioStore();
+
+    const location = useLocation();
+    const category = location.pathname.split("/").filter(Boolean);
 
     useEffect(()=>{
         kitty();

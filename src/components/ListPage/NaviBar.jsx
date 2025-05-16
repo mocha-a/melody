@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import KittyNote_1 from "../icon/KittyNote_1";
-import KittyNote_2 from "../icon/KittyNote_2";
-import MymelNote_1 from "../icon/MymelNote_1";
-import MymelNote_2 from "../icon/MymelNote_2";
-import PomNote_1 from "../icon/PomNote_1";
-import PomNote_2 from "../icon/PomNote_2";
-import CinnaNote_1 from "../icon/CinnaNote_1";
-import CinnaNote_2 from "../icon/CinnaNote_2";
+import KittyNote1 from "../icon/KittyNote1";
+import KittyNote2 from "../icon/KittyNote2";
+import MymelNote1 from "../icon/MymelNote1";
+import MymelNote2 from "../icon/MymelNote2";
+import PomNote1 from "../icon/PomNote1";
+import PomNote2 from "../icon/PomNote2";
+import CinnaNote1 from "../icon/CinnaNote1";
+import CinnaNote2 from "../icon/CinnaNote2";
 
 function NaviBar({ main, mid, sub }) {
     //도연님이 버거메뉴 만들어주면 파리미터 값으로 카테고리 잡기
@@ -14,13 +14,13 @@ function NaviBar({ main, mid, sub }) {
     function note8Icons(){
         switch(main){
             case "헬로키티":
-                return <KittyNote_1/>
+                return <KittyNote1/>
             case "마이멜로디":
-                return <MymelNote_1/>
+                return <MymelNote1/>
             case "폼폼푸린":
-                return <PomNote_1/>
+                return <PomNote1/>
             case "시나모롤":
-                return <CinnaNote_1/>
+                return <CinnaNote1/>
             default: break;
         }
     }
@@ -28,13 +28,13 @@ function NaviBar({ main, mid, sub }) {
     function note16Icons(){
         switch(main){
             case "헬로키티":
-                return <KittyNote_2/>
+                return <KittyNote2/>
             case "마이멜로디":
-                return <MymelNote_2/>
+                return <MymelNote2/>
             case "폼폼푸린":
-                return <PomNote_2/>
+                return <PomNote2/>
             case "시나모롤":
-                return <CinnaNote_2/>
+                return <CinnaNote2/>
             default: break;
         }
     }

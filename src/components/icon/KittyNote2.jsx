@@ -1,5 +1,5 @@
 
-function KittyNote_2({ className }) {
+function KittyNote2({ className }) {
   return (
     <div className={`icon ${className}`}>
         <img src="/img/public_kittyNote_02.svg" alt="" />
@@ -7,4 +7,4 @@ function KittyNote_2({ className }) {
   )
 }
 
-export default KittyNote_2
+export default KittyNote2
