@@ -9,7 +9,14 @@ export const instance = axios.create({
 export const sanrioStore = create((set) => ({
     sanrio: [],
 
-    //헬로키티
+    // 전체
+    all :async()=>{
+        const res = await instance.get("/p_list.php");
+        const data = res.data;
+
+        set({ sanrio: data });
+    },
+    // 헬로키티
     kitty :async()=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -18,7 +25,11 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: kitty });
     },
 
+<<<<<<< HEAD
     //마이멜로디
+=======
+    // 마이멜로디
+>>>>>>> 861ba42 (.)
     mymel :async()=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -27,7 +38,11 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: mymel });
     },
 
+<<<<<<< HEAD
     //시나모롤
+=======
+    // 시나모롤
+>>>>>>> 861ba42 (.)
     cinna :async()=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -36,8 +51,13 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: cinna });
     },
 
+<<<<<<< HEAD
     //폼폼푸린
     pom :async()=>{
+=======
+    // 폼폼푸린
+    pompom :async()=>{
+>>>>>>> 861ba42 (.)
         const res = await instance.get("/p_list.php");
         const data = res.data;
         const pom = data.filter(item => item.p_name.includes("폼폼푸린"));
@@ -45,7 +65,11 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: pom });
     },
     
+<<<<<<< HEAD
     //상세
+=======
+    // 상세
+>>>>>>> 861ba42 (.)
     idData :async(itemId)=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -60,6 +84,10 @@ export const categoryStore = create((set) => ({
     mid: [],
     sub: [],
 
+<<<<<<< HEAD
+=======
+    // 대 카테고리
+>>>>>>> 861ba42 (.)
     mainCategory: async () => {
       const res = await instance.get("/p_category.php");
       const data = res.data;
@@ -69,6 +97,10 @@ export const categoryStore = create((set) => ({
       set({ main: main });
     },
 
+<<<<<<< HEAD
+=======
+    // 중 카테고리
+>>>>>>> 861ba42 (.)
     midCategory: async ()=>{
         const res = await instance.get("/p_category.php");
         const data = res.data;
@@ -78,6 +110,10 @@ export const categoryStore = create((set) => ({
     set({ mid: mid });
     },
 
+<<<<<<< HEAD
+=======
+    // 소 카테고리
+>>>>>>> 861ba42 (.)
     subCategory: async ()=>{
         const res = await instance.get("/p_category.php");
         const data = res.data;

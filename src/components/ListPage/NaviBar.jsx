@@ -9,59 +9,17 @@ import CinnaNote1 from "../icon/CinnaNote1";
 import CinnaNote2 from "../icon/CinnaNote2";
 
 function NaviBar({ main, mid, sub }) {
-    function mainName(){
-        switch(main){
-            case "kitty":
-                return "헬로키티"
-            case "mymel":
-                return "마이멜로디"
-            case "pompom":
-                return "폼폼푸린"
-            case "cinna":
-                return "시나모롤"
-            default: break;
-        }
-    }
-
-    function midName(){
-        switch(mid){
-            case "kitchen":
-                return "주방용품"
-            case "homedeco":
-                return "홈데코"
-            case "pashion":
-                return "패션잡화"
-            default: break;
-        }
-    }
-
-    function subName(){
-        switch(sub){
-            case "lunchbox":
-                return "도시락"
-            case "tumblr":
-                return "텀블러"
-            case "cushion":
-                return "쿠션"
-            case "blanket":
-                return "이불"
-            case "wallet":
-                return "지갑"
-            case "keyring":
-                return "키링"
-            default: break;
-        }
-    }
-
+    const category = JSON.parse(localStorage.getItem('category'));
+    
     function note8Icons(){
         switch(main){
-            case "kitty":
+            case "헬로키티":
                 return <KittyNote1/>
-            case "mymel":
+            case "마이멜로디":
                 return <MymelNote1/>
-            case "pompom":
+            case "폼폼푸린":
                 return <PomNote1/>
-            case "cinna":
+            case "시나모롤":
                 return <CinnaNote1/>
             default: break;
         }
@@ -69,13 +27,13 @@ function NaviBar({ main, mid, sub }) {
 
     function note16Icons(){
         switch(main){
-            case "kitty":
+            case "헬로키티":
                 return <KittyNote2/>
-            case "mymel":
+            case "마이멜로디":
                 return <MymelNote2/>
-            case "pompom":
+            case "폼폼푸린":
                 return <PomNote2/>
-            case "cinna":
+            case "시나모롤":
                 return <CinnaNote2/>
             default: break;
         }
@@ -83,26 +41,34 @@ function NaviBar({ main, mid, sub }) {
 
     function banner(){
         switch(main){
-            case "kitty":
+            case "헬로키티":
                 return <img src="/img/list_kittybanner_01.svg" alt="" />
-            case "mymel":
+            case "마이멜로디":
                 return <img src="/img/list_mymelbanner_01.svg" alt="" />
-            case "pompom":
+            case "폼폼푸린":
                 return <img src="/img/list_pompombanner_01.svg" alt="" />
-            case "cinna":
+            case "시나모롤":
                 return <img src="/img/list_cinnabanner_01.svg" alt="" />
             default: break;
         }
     }
-
+    
     return (
         <div className="catgory_container">
             <div className="list_catgory">
-                <div className="main catgory"><NavLink to={`/List/category/${main}`}>{mainName()}</NavLink></div>
+                <div className="main catgory">
+                    <NavLink to={`/List/category/${category[0]}`}>{main}</NavLink>
+                </div>
                 { note8Icons() }
-                <div className="mid catgory"><NavLink to={`/List/category/${main}/${mid}`}>{midName()}</NavLink></div>
+
+                <div className="mid catgory">
+                    <NavLink to={`/List/category/${category[0]}/${category[1]}`}>{mid}</NavLink>
+                </div>
                 { note16Icons() }
-                <div className="sub catgory"><NavLink to={`/List/category/${main}/${mid}/${sub}`}>{subName()}</NavLink></div>
+
+                <div className="sub catgory">
+                    <NavLink to={`/List/category/${category[0]}/${category[1]}/${category[2]}`}>{sub}</NavLink>
+                </div>
             </div>
             <div className='catgory_banner'>{ banner() }</div>
         </div>

@@ -26,11 +26,44 @@ function Header() {
         setActiveCategory(null);
     }, [location.pathname]);
 
-
     // 햄버거 메뉴 소분류 pathname 연결
-    const goToCategory = (catId) => {
-        navigate(`/list/category/${catId}`);
-    };
+    function goToCategory(category) {
+        if (category === 'all') {
+            localStorage.setItem('category', JSON.stringify([category]));
+            navigate('/list/category/all');
+            return;
+        }
+
+        localStorage.setItem('category', JSON.stringify(category));
+        navigate(`/list/category/${category[0]}/${category[1]}/${category[2]}`);
+    }
+
+    const subcategories = [
+        {
+            label: '주방용품',
+            category: 'kitchen',
+            items: [
+            { name: '도시락', sub: 'lunchbox' },
+            { name: '텀블러', sub: 'tumblr' },
+            ],
+        },
+        {
+            label: '홈데코',
+            category: 'homedeco',
+            items: [
+            { name: '쿠션', sub: 'cushion' },
+            { name: '이불', sub: 'blanket' },
+            ],
+        },
+        {
+            label: '패션잡화',
+            category: 'pashion',
+            items: [
+            { name: '지갑', sub: 'wallet' },
+            { name: '키링', sub: 'keyring' },
+            ],
+        },
+    ];
 
     // 대분류 카테고리 열고 닫기
     const toggleCategory = (category) => {
@@ -106,6 +139,7 @@ function Header() {
                                     <>
                                         <DashedLine />
                                         <div className="subcategory_block pink">
+<<<<<<< HEAD
                                             <div className="subcategory_row">
                                                 <div className="sub_middle">주방용품</div>
                                                 <div className="sub_items">
@@ -127,6 +161,23 @@ function Header() {
                                                     <span onClick={() => goToCategory(`${catId}/pashion/keyring`)}>키링</span>
                                                 </div>
                                             </div>
+=======
+                                        {subcategories.map(({ label, category, items }) => (
+                                            <div className="subcategory_row" key={category}>
+                                            <div className="sub_middle">{label}</div>
+                                            <div className="sub_items">
+                                                {items.map(({ name, sub }) => (
+                                                <span
+                                                    key={sub}
+                                                    onClick={() => goToCategory([catId, category, sub])}
+                                                >
+                                                    {name}
+                                                </span>
+                                                ))}
+                                            </div>
+                                            </div>
+                                        ))}
+>>>>>>> 861ba42 (.)
                                         </div>
                                     </>
                                 )}
