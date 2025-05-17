@@ -25,11 +25,7 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: kitty });
     },
 
-<<<<<<< HEAD
-    //마이멜로디
-=======
     // 마이멜로디
->>>>>>> 861ba42 (.)
     mymel :async()=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -38,11 +34,7 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: mymel });
     },
 
-<<<<<<< HEAD
-    //시나모롤
-=======
     // 시나모롤
->>>>>>> 861ba42 (.)
     cinna :async()=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -51,13 +43,8 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: cinna });
     },
 
-<<<<<<< HEAD
-    //폼폼푸린
-    pom :async()=>{
-=======
     // 폼폼푸린
     pompom :async()=>{
->>>>>>> 861ba42 (.)
         const res = await instance.get("/p_list.php");
         const data = res.data;
         const pom = data.filter(item => item.p_name.includes("폼폼푸린"));
@@ -65,11 +52,7 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: pom });
     },
     
-<<<<<<< HEAD
-    //상세
-=======
     // 상세
->>>>>>> 861ba42 (.)
     idData :async(itemId)=>{
         const res = await instance.get("/p_list.php");
         const data = res.data;
@@ -79,48 +62,17 @@ export const sanrioStore = create((set) => ({
     }
 }));
 
-export const categoryStore = create((set) => ({
-    main: [],
-    mid: [],
-    sub: [],
+export const useCategory = create((set) => ({
+    category: JSON.parse(localStorage.getItem('category')),
 
-<<<<<<< HEAD
-=======
-    // 대 카테고리
->>>>>>> 861ba42 (.)
-    mainCategory: async () => {
-      const res = await instance.get("/p_category.php");
-      const data = res.data;
-
-      const main = data.filter(item => item.cat_level === "0");
-
-      set({ main: main });
-    },
-
-<<<<<<< HEAD
-=======
-    // 중 카테고리
->>>>>>> 861ba42 (.)
-    midCategory: async ()=>{
-        const res = await instance.get("/p_category.php");
-        const data = res.data;
-
-        const mid = data.filter(item => item.cat_level === "1");
-
-    set({ mid: mid });
-    },
-
-<<<<<<< HEAD
-=======
-    // 소 카테고리
->>>>>>> 861ba42 (.)
-    subCategory: async ()=>{
-        const res = await instance.get("/p_category.php");
-        const data = res.data;
-
-        const sub = data.filter(item => item.cat_level === "2");
-
-    set({ sub: sub });
+    setCategory: (newCategory) => {
+        if (newCategory === 'all') {
+            localStorage.setItem('category', JSON.stringify([newCategory]));
+            set({ category: newCategory });
+            return;
+        }
+        
+        localStorage.setItem('category', JSON.stringify(newCategory));
+        set({ category: newCategory });
     },
 }));
-
