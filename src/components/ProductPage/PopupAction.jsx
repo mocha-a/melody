@@ -9,9 +9,9 @@ function PopupAction({className, useState, children}) {
             {useState && (
             <>
             <motion.div
-            initial={{ opacity: 0, transform: 'translate(-50%, 100%)' }} // 아래에서 시작
+            initial={{ opacity: 1, transform: 'translate(-50%, 100%)' }} // 아래에서 시작
             animate={{ opacity: 1, transform: 'translate(-50%, 0%)' }} // 위로 올라오면서 나타남
-            exit={{ opacity: 0, transform: 'translate(-50%, 100%)' }} // 사라질 땐 다시 아래로
+            exit={{ opacity: 1, transform: 'translate(-50%, 100%)' }} // 사라질 땐 다시 아래로
             transition={{ duration: 0.3 }}
             className={className}
             >

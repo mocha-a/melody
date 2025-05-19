@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useCategory } from '../../api/sanrio';
 import CartIcon from '../icon/CartIcon';
 import MenuIcon from '../icon/MenuIcon';
 import MenuCancel from '../icon/MenuCancel';
@@ -13,6 +14,7 @@ import '../../styles/public.scss';
 function Header() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { setCategory } = useCategory();
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState(null);
 
@@ -26,11 +28,44 @@ function Header() {
         setActiveCategory(null);
     }, [location.pathname]);
 
-
     // 햄버거 메뉴 소분류 pathname 연결
-    const goToCategory = (catId) => {
-        navigate(`/list/category/${catId}`);
-    };
+    function goToCategory(category) {
+        if (category === 'all') {
+            setCategory([category])
+            navigate('/list/category/all');
+            return;
+        }
+
+        setCategory(category)
+        navigate(`/list/category/${category[0]}/${category[1]}/${category[2]}`);
+    }
+
+    const subcategories = [
+        {
+            label: '주방용품',
+            category: 'kitchen',
+            items: [
+            { name: '도시락', sub: 'lunchbox' },
+            { name: '텀블러', sub: 'tumblr' },
+            ],
+        },
+        {
+            label: '홈데코',
+            category: 'homedeco',
+            items: [
+            { name: '쿠션', sub: 'cushion' },
+            { name: '이불', sub: 'blanket' },
+            ],
+        },
+        {
+            label: '패션잡화',
+            category: 'pashion',
+            items: [
+            { name: '지갑', sub: 'wallet' },
+            { name: '키링', sub: 'keyring' },
+            ],
+        },
+    ];
 
     // 대분류 카테고리 열고 닫기
     const toggleCategory = (category) => {
@@ -106,27 +141,21 @@ function Header() {
                                     <>
                                         <DashedLine />
                                         <div className="subcategory_block pink">
-                                            <div className="subcategory_row">
-                                                <div className="sub_middle">주방용품</div>
-                                                <div className="sub_items">
-                                                    <span onClick={() => goToCategory(`${catId}/kitchen/lunchbox`)}>도시락</span>
-                                                    <span onClick={() => goToCategory(`${catId}/kitchen/tumblr`)}>텀블러</span>
-                                                </div>
+                                        {subcategories.map(({ label, category, items }) => (
+                                            <div className="subcategory_row" key={category}>
+                                            <div className="sub_middle">{label}</div>
+                                            <div className="sub_items">
+                                                {items.map(({ name, sub }) => (
+                                                <span
+                                                    key={sub}
+                                                    onClick={() => goToCategory([catId, category, sub])}
+                                                >
+                                                    {name}
+                                                </span>
+                                                ))}
                                             </div>
-                                            <div className="subcategory_row">
-                                                <div className="sub_middle">홈데코</div>
-                                                <div className="sub_items">
-                                                    <span onClick={() => goToCategory(`${catId}/homedeco/cushion`)}>쿠션</span>
-                                                    <span onClick={() => goToCategory(`${catId}/homedeco/blanket`)}>이불</span>
-                                                </div>
                                             </div>
-                                            <div className="subcategory_row">
-                                                <div className="sub_middle">패션잡화</div>
-                                                <div className="sub_items">
-                                                    <span onClick={() => goToCategory(`${catId}/pashion/wallet`)}>지갑</span>
-                                                    <span onClick={() => goToCategory(`${catId}/pashion/keyring`)}>키링</span>
-                                                </div>
-                                            </div>
+                                        ))}
                                         </div>
                                     </>
                                 )}
