@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconButton, Box, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 // MUI -> IconButton, AddIcon, RemoveIcon 사용
 
-export default function QuantitySelector() {
+export default function QuantitySelector({ defaultCount = 1, onChange }) {
     const [count, setCount] = useState(1);
 
     const increase = () => setCount(prev => prev + 1);
     const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
+
+    // count 바뀔 때마다 부모한테 알려줌
+    useEffect(() => {
+        onChange?.(count);
+    }, [count, onChange]);
 
     return (
         <Box sx={{ textAlign: 'center' }}>

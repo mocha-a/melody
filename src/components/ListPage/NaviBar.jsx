@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import KittyNote1 from "../icon/KittyNote1";
 import KittyNote2 from "../icon/KittyNote2";
 import MymelNote1 from "../icon/MymelNote1";
@@ -10,7 +10,7 @@ import CinnaNote2 from "../icon/CinnaNote2";
 
 function NaviBar({ main, mid, sub }) {
     const category = JSON.parse(localStorage.getItem('category'));
-    
+
     function note8Icons(){
         switch(main){
             case "헬로키티":

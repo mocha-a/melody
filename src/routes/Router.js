@@ -4,6 +4,7 @@ import CartPage from "../pages/CartPage";
 import ListPage from "../pages/ListPage";
 import ProductPage from "../pages/ProductPage";
 import LoginPage from "../pages/join/LoginPage";
+import PaymentPage from '../pages/PaymentPage';
 
 function AppRouter() {
     return (
@@ -18,6 +19,7 @@ function AppRouter() {
                 <Route path='/list/category/:main/:mid/' element={<ListPage/>}/>
                 <Route path='/list/category/:main/:mid/:sub' element={<ListPage/>}/>
                 <Route path='/product/:id' element={<ProductPage/>}/>
+                <Route path='/payment' element={<PaymentPage/>}/>
             </Routes>
         </div>
     )

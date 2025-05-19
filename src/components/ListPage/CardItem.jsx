@@ -8,7 +8,7 @@ function CardItem({ item, name }) {
     return (
         <div className={`${name}_item`}>
             <div className={`${name}_img`}>
-                <p><img src={`http://anji.dothome.co.kr/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
+                <p><img src={`http://localhost/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
                 { product !== "Product" && <div className='card_wish' onClick={(e) => e.preventDefault()}><Wish/></div> }
             </div>
             <div className={`${name}_content`}>

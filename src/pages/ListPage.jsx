@@ -8,24 +8,25 @@ import "../styles/list.scss";
 import { useLocation } from 'react-router-dom';
 
 function ListPage() {
-   const { sanrio, all, kitty, mymel, cinna, pompom } = sanrioStore();
+   const { sanrio, all, kitty, mymel, cinna, pompom, kittyMid, mymelMid, pompomMid, cinnaMid } = sanrioStore();
    const { category } = useCategory();
    const [ main, setMain ] = useState();
+   const [ allCat, setAll ] = useState();
    const [ mainCat, setMainCat ] = useState();
    const [ mid, setMid ] = useState(); 
    const [ midCat, setMidCat ] = useState();
    const [ sub, setSub ] = useState();
    const [ subCat, setSubCat ] = useState();
-
+   
    const location = useLocation();
    const mainParam = location.pathname.split("/").filter(Boolean)[2];
    const midParam = location.pathname.split("/").filter(Boolean)[3];
    const subParam = location.pathname.split("/").filter(Boolean)[4];
-   console.log(midParam);
-   
+
    useEffect(()=>{
-      axios("http://anji.dothome.co.kr/admin/api/p_category.php")
+      axios("http://localhost/admin/api/p_category.php")
       .then((res)=>{
+         setAll(res.data)
          setMain(res.data.filter(item => item.cat_level === "0"));
          setMid(res.data.filter(item => item.cat_level === "1"));
          setSub(res.data.filter(item => item.cat_level === "2"));
@@ -34,22 +35,36 @@ function ListPage() {
 
    useEffect(() => {
       const categoryData = async () => {
+         switch (category[0]) {
+            case "all":
+               await all(); break;
+            case "kitty":
+               await kitty(); break;
+            case "mymel":
+               await mymel(); break;
+            case "pompom":
+               await pompom(); break;
+            case "cinna":
+               await cinna(); break;
+            default: break;
+         }
+         
+         if(midParam) {
             switch (category[0]) {
-               case "all":
-                  await all(); break;
                case "kitty":
-                  await kitty(); break;
+                  await kittyMid(midParam); break;
                case "mymel":
-                  await mymel(); break;
+               await mymelMid(midParam); break;
                case "pompom":
-                  await pompom(); break;
+                  await pompomMid(midParam); break;
                case "cinna":
-                  await cinna(); break;
+                  await cinnaMid(midParam); break;
                default: break;
             }
+         }
       }
       categoryData();
-   }, [category, main, mid, sub]);
+   }, [category, main, mid, sub, mainCat, midCat, midCat]);
 
    useEffect(() => {
       if( main?.length && mid?.length && sub?.length ){
@@ -91,10 +106,7 @@ function ListPage() {
          })
       }
    }, [category, main, mid, sub]);
-
-   if(mainParam){
-      
-   }
+   console.log(sanrio);
    
    if(!sanrio.length) return;
    return (

@@ -68,15 +68,48 @@
         }
     }
 
-    .product_popup{
-        .product_quantity{
-            display: flex;
-            >p{
-                font-size: $regular;
+    .product_popup_bg{
+        width: 390px;
+        position: fixed;
+        bottom: 0px; left: 50%;
+        border-radius: 20px 20px 0 0;
+        background-color: $beigePink;
+        .bottomArrow_close
+        >img{
+            display: block;
+            margin: 0 auto;
+            padding: 20px 0 40px;
+        }
+        .product_popup{
+            @include publicWidth ;
+            .buy_name{font-size: $title;}
+            .product_quantity{
+                margin: 20px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                >p{
+                    font-size: $regular;
+                }
             }
+            .popup_line{ margin: 20px 0; }
+            .product_price{
+                margin: 20px 0;
+                font-size: $regular;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 15px;
+                >p:nth-of-type(1){
+                    font-size: $regular;
+                }
+                >p:nth-of-type(2){
+                    font-size: $title;
+                }
+            }
+            .product_btn{padding-bottom: 70px;}
         }
     }
-    
     .overlay {
         position: fixed;
         top: 0;
@@ -86,6 +119,26 @@
         height: 100vh;
         background: rgba(0, 0, 0, 0.4);
         z-index: 9;
+    }
+    .css-zemlrd-MuiButtonBase-root-MuiIconButton-root {
+        border: 1.5px solid $blackColor;
+    }
+    .css-pujkp6-MuiTypography-root {
+        font-size: 20px;
+    }
+    .css-1mz6ms4{
+        gap: 5px;
+    }
+    // -,+ 버튼 크기 (동그라미)
+    .MuiButtonBase-root{
+        width: 22px;
+        height: 22px;
+    }
+
+    // -,+ 버튼 크기 (선)
+    .MuiSvgIcon-root {
+        width: 16.5px;
+        height: 16.5px;
     }
 }
 
