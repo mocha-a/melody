@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //Mysql 데이터
 export const instance = axios.create({
-    baseURL : "http://anji.dothome.co.kr/admin/api",
+    baseURL : "http://localhost/admin/api/",
 });
 
 export const sanrioStore = create((set) => ({

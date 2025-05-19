@@ -259,3 +259,41 @@ input, textarea{
         color: #5b5b5b;
     }
 }
+
+// component_Footer.jsx
+
+.footer_container {
+    margin: 120px 0 30px;
+
+    .footer_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.footer_snsIcon {
+    cursor: pointer;
+    display: flex;
+    gap: 11px;
+}
+
+.footer_text_title {
+    margin: 22px 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .footer_solid {
+        width: 115px;
+    }
+
+    p {
+        @include suite_black_12;
+        text-align: center;
+        margin-bottom: 12px;
+        white-space: pre-line;
+    }
+}

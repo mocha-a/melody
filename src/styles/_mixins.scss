@@ -122,6 +122,12 @@
     color: $grayColor;
     font-weight: normal;
 }
+@mixin ganpan_font_style_3 {
+    font-family: $ganpan;
+    font-size: 23px;
+    color: $whiteColor;
+    font-weight: normal;
+}
 
 @mixin suite_black_20 {
     font-family: $suiteRegular;
@@ -135,7 +141,7 @@
 }
 @mixin suite_black_16 {
     font-family: $suiteRegular;
-    font-size: 20px;
+    font-size: 16px;
     color: $blackColor;
 }
 @mixin suite_black_14 {
@@ -144,10 +150,14 @@
     color: $blackColor;
 }
 @mixin suite_black_12 {
-    font-family: $suiteRegular;
+    font-family: $suiteLight;
     font-size: 12px;
     color: $blackColor;
+    line-height: 140%;
 }
+
+
+
 //icon
 .icon{
     display: flex;

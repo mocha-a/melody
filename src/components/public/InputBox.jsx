@@ -1,59 +1,63 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function InputBox({ label, width = '330px', height = '40px' }) {
+export default function InputBox({ label, type = "text", className, placeholder, width = '330px', height = '40px', value, onChange }) {
     return (
         <Box
+            className={className}
             component="form"
             noValidate
             autoComplete="off"
             sx={{
-                display: 'flex',             
-                justifyContent: 'center',    
-                width: '100%',               
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100%',
                 '& > :not(style)': {
-                width,                         
+                    width,
                 },
             }}
         >
+            <TextField
+                type={type}
+                label={label}
+                value={value}
+                placeholder={placeholder}
+                onChange={onChange}
+                variant="outlined"
+                fullWidth
+                sx={{
+                    '& .MuiOutlinedInput-root': {
+                    height,
+                    '& fieldset': {
+                        borderColor: '#C3C3C3',
+                    },
+                    '&:hover fieldset': {
+                        borderColor: '#7A7A7A',
+                    },
+                    '&.Mui-focused fieldset': {
+                        borderColor: '#7A7A7A',
+                    },
+                    },
+                    '& label': {
+                    fontSize: '16px',
+                    fontFamily: 'suiteLight',
+                    color: '#C3C3C3',
+                    top: '-7px', // ✅ 위로 살짝 당겨줘
+                    backgroundColor: 'white',
+                    padding: '0 4px',
+                    },
+                    '& label.Mui-focused': {
+                    color: '#3C3C3C',
+                    fontFamily: 'suiteLight',
+                    },
+                    '& .MuiInputBase-input': {
+                    fontFamily: 'suiteLight',
+                    color: '#3C3C3C',
+                    padding: '10px 14px',
+                    },
+                }}
+                />
 
-        <TextField
-            label={label}
-            variant="outlined"
-            sx={{
-                width: '330px',
-                '& .MuiOutlinedInput-root': {
-                height: '40px',
-                '& fieldset': {
-                    borderColor: '#C3C3C3',
-                },
-                '&:hover fieldset': {
-                    borderColor: '#7A7A7A',
-                },
-                '&.Mui-focused fieldset': {
-                    borderColor: '#7A7A7A',
-                },
-                },
-                '& label': {
-                fontSize: '17px',
-                fontFamily: 'suiteRegular',
-                color: '#C3C3C3',
-                top: '50%',
-                transform: 'translate(14px, -50%) scale(1)',
-                pointerEvents: 'none',
-                },
-                '& label.Mui-focused': {
-                color: '#3C3C3C',
-                transform: 'translate(14px, -28px) scale(0.75)',
-                fontFamily: 'suiteRegular',
-                },
-                '& .MuiInputBase-input': {
-                fontFamily: 'suiteRegular',
-                color: '#3C3C3C',
-                padding: '10px 14px',
-                },
-            }}
-            />
         </Box>
     );
 }

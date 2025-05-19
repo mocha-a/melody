@@ -4,6 +4,7 @@ import CartPage from "../pages/CartPage";
 import ListPage from "../pages/ListPage";
 import ProductPage from "../pages/ProductPage";
 import LoginPage from "../pages/join/LoginPage";
+import SignupPage from "../pages/join/SignupPage";
 
 function AppRouter() {
     return (
@@ -12,6 +13,7 @@ function AppRouter() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
 
                 <Route path='/list' element={<ListPage/>}/>
                 <Route path='/list/category/:main' element={<ListPage/>}/>

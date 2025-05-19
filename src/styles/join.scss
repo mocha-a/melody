@@ -1,3 +1,155 @@
 // import
 @import './variables';
 @import './mixins';
+
+// LoginPage.jsx
+.login_container {
+    min-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .login_input {
+        padding: 0 30px;
+        
+        .login_pass {
+            margin-top: 20px;
+        }
+
+
+
+    }
+
+    .login_btn_wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .login_btn_container {
+            @include publicWidth;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0 70px;
+
+            .login_btn {
+                @include suite_black_16;
+                cursor: pointer;
+                width: 100%;
+
+            }
+
+            .join_link {
+                cursor: pointer;
+                margin-top: 24px;
+                font-size: $regular;
+                color: #555;
+            }
+        }
+    }
+}
+
+
+
+
+
+// signupPage.jsx
+
+.signup_container {
+    @include publicWidth;
+}
+
+.term_container {
+    .term_top {
+        margin-bottom: 16px;
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    .term_bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        .term_item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .term_label {
+            @include suite_black_14;
+            input {
+            margin-right: 10px;
+            }
+            .required {
+            color: #FF0000;
+            margin-left: 4px;
+            }
+        }
+
+        .term_contents {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 14px;
+            @include suite_black_14;
+            line-height: 140%;
+            white-space: pre-line;
+        }
+        }
+    }
+}
+
+
+.term_btn {
+    cursor: pointer;
+}
+
+// component signup.jsx
+
+.signup_container2 {
+    width: 100%;
+
+    form {
+        .signup_login_box,
+        .signup_name_box,
+        .signup_phone_box {
+            margin: 20px 0;
+        }
+
+        .signup_pass {
+            margin-top: 10px
+        }
+
+        p {
+            @include suite_black_16;
+            margin-bottom: 11px;
+            .required {
+                color: #FF0000;
+                margin-left: 4px;
+            }
+        }
+    }
+}
+
+.signup_btn {
+    @include suite_black_16;
+    cursor: pointer;
+}
+
+.signup_birth_box {
+
+    .birth_selects {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+
+        .birth_select {
+            flex: 1;
+            &.year {
+                flex: 2;
+            }
+        }
+    }
+}
