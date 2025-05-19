@@ -15,7 +15,7 @@
             accent-color: $blackColor;
         }
         input[type="checkbox"] {
-            accent-color: #ffffff;
+            accent-color: $whiteColor;
         }
     }
 
@@ -40,6 +40,12 @@
     .payment_container{
         >*{margin: 10px 0;}
         .payment_product{
+            >div{
+                display: flex;
+                gap: 40px;
+            }
+            .payment_img>img{ width: 100px; height: 100px;}
+            .item_content>p{margin-bottom: 10px;}
             .quantity{
                 background-color: $lightPink;
             }
@@ -47,7 +53,12 @@
         .payment_address_container{
             .payment_address{
                 > * {margin: 7px 0;}
-                h2{margin: 0 0 15px;}
+                h2{
+                    margin: 0 0 15px; 
+                    font-family: $suiteRegular; 
+                    font-size: $small; 
+                    font-weight: normal;
+                }
                 .find{
                     >div{cursor: pointer;}
                     display: flex;
@@ -63,6 +74,7 @@
                     h2{margin: 20px 0 15px;}
                     .memo_inputbox{
                         position: relative;
+                        margin-bottom: 8px;
                         .memoBtn{
                             position: absolute;
                             top: 50%; right: 14px;
@@ -77,6 +89,7 @@
                         border-radius: 20px 20px 0 0;
                         border-top: 0.6px solid $blackColor;
                         background-color: $whiteColor;
+                        z-index: 99;
                         .bottomArrow_close
                         >img{
                             display: block;
@@ -99,7 +112,7 @@
                                 }
                                 li:last-of-type{
                                     border: none;
-                                    margin-bottom: 100px;
+                                    margin-bottom: 70px;
                                 }
                             }
                         }
@@ -111,8 +124,10 @@
             .total_line{width: calc(100% - 0px) !important;}
         }
         .payment_method{
-            .method_grid{
-                
+            h2{
+                font-family: $suiteRegular; 
+                font-size: $small; 
+                font-weight: normal;
             }
             .bankbook{
                 >*{margin: 8px 0;}
@@ -122,11 +137,14 @@
                 }
             }
             .payment_dachedLine{margin: 15px 0;}
-            .cashReceipt>label{margin-bottom: 20px;}
+            .cashReceipt{
+                >label{margin-bottom: 20px;}
+                .bold_label{font-family: $suiteSemi;}
+            }
         }
         .payment_agree_container{
             .payment_agree{
-                >*{margin: 10px;}
+                >*{margin: 10px 0;}
                 label:last-of-type{margin-bottom: 100px;}
             }
         }

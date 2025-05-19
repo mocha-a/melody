@@ -5,7 +5,7 @@ import Heart2 from '../icon/Heart2';
 function Wish({ className }) {
     const [wish, setWish] = useState(true);
     return (
-        <div className={className} onClick={()=>{setWish((prev) => !prev)}}>
+        <div className={className} onClick={(e)=>{setWish((prev) => !prev); e.stopPropagation()}}>
             { wish? <Heart1/> : <Heart2/> }
         </div>
     )

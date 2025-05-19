@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { sanrioStore } from '../api/sanrio';
 import QuantitySelector from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
@@ -19,6 +19,7 @@ function ProductPage() {
     const unitPrice = Number(sanrio?.p_price) ?? 0;
     const totalPrice = unitPrice * count;
 
+    const navigate = useNavigate();
     const location = useLocation();
     const id = location.pathname.split("/").filter(Boolean)[1];
 
@@ -31,8 +32,19 @@ function ProductPage() {
         setPrice(sanrio.p_price);
     }
     }, [sanrio]);
-
-
+    console.log(count);
+    
+    function buynow(){
+        navigate("/payment", { 
+            state: {
+                name: sanrio?.p_name,
+                thmb: sanrio?.p_thumb,
+                count,
+                totalPrice
+            }
+        });
+    }
+    
     return (
         <div className='product_container'>
             <div className="product_detail">
@@ -61,7 +73,7 @@ function ProductPage() {
                     <div className='product_price'>
                         <p>총 상품 금액</p><p>{totalPrice.toLocaleString()}원</p>
                     </div>
-                    <div className='product_btn'><TwoButton btn1={"장바구니"} btn2={"바로구매"}/></div>
+                    <div className='product_btn'><TwoButton btn1={"장바구니"} btn2={"바로구매"} onClick2={buynow}/></div>
                 </div>
             </PopupAction>
         </div>

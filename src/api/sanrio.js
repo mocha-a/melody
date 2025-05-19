@@ -6,52 +6,32 @@ export const instance = axios.create({
     baseURL : "http://localhost/admin/api/",
 });
 
-export const sanrioStore = create((set) => ({
+export const sanrioStore = create((set, get) => ({
+    data: [],
     sanrio: [],
 
     // 전체
-    all :async()=>{
+    loadAll: async () => {
         const res = await instance.get("/p_list.php");
         const data = res.data;
+        
+        set({ data: data, sanrio: data });
+    },
+
+    all :async()=>{
+        const { data } = get();
 
         set({ sanrio: data });
     },
-    // 헬로키티
-    kitty :async()=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const kitty = data.filter(item => item.p_name.includes("헬로키티"));
 
-        set({ sanrio: kitty });
+    // 캐릭터 (대 카테고리)
+    Character: (mainCat) => {
+        const { data } = get();
+        const filter = data.filter(item => item.p_name.includes(mainCat));
+
+        set({ sanrio: filter });
     },
 
-    // 마이멜로디
-    mymel :async()=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const mymel = data.filter(item => item.p_name.includes("마이멜로디"));
-
-        set({ sanrio: mymel });
-    },
-
-    // 시나모롤
-    cinna :async()=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const cinna = data.filter(item => item.p_name.includes("시나모롤"));
-
-        set({ sanrio: cinna });
-    },
-
-    // 폼폼푸린
-    pompom :async()=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const pom = data.filter(item => item.p_name.includes("폼폼푸린"));
-
-        set({ sanrio: pom });
-    },
-    
     // 상세
     idData :async(itemId)=>{
         const res = await instance.get("/p_list.php");
@@ -61,84 +41,42 @@ export const sanrioStore = create((set) => ({
         set({ sanrio: id });
     },
 
-    // 중 카테고리
-    kittyMid :async(midParam)=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const kitty = data.filter(item => item.p_name.includes("헬로키티"));
+    //중 카테고리
+    midData: ( mainCat, midParam ) => {
+        const { data } = get();
+        const base = data.filter(item => item.p_name.includes(mainCat));
 
-        let filter;
-        switch(midParam) {
-            case 'kitchen':
-            filter = kitty.filter(item => ['9', '13'].includes(item.cat_id)); break;
-            case 'homedeco':
-            filter = kitty.filter(item => ['21', '25'].includes(item.cat_id)); break;
-            case 'pashion':
-            filter = kitty.filter(item => ['33', '37'].includes(item.cat_id)); break;
-            default:
-            filter = kitty;
+        let cat_ids = [];
+        switch (midParam) {
+            case 'kitchen': cat_ids = ['9', '10', '11', '12', '13', '14', '15', '16']; break;
+            case 'homedeco': cat_ids = ['21', '22', '23', '24', '25', '26', '27', '28']; break;
+            case 'pashion': cat_ids = ['33', '34', '35', '36', '37', '38', '39', '40']; break;
+            default: set({ sanrio: base }); return;
         }
-        set({ sanrio: filter });
-    },
 
-    mymelMid :async(midParam)=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const mymel = data.filter(item => item.p_name.includes("마이멜로디"));
-
-        let filter;
-        switch(midParam) {
-            case 'kitchen':
-            filter = mymel.filter(item => ['10', '14'].includes(item.cat_id)); break;
-            case 'homedeco':
-            filter = mymel.filter(item => ['22', '26'].includes(item.cat_id)); break;
-            case 'pashion':
-            filter = mymel.filter(item => ['34', '38'].includes(item.cat_id)); break;
-            default:
-            filter = mymel;
-        }
-        set({ sanrio: filter });
-    },
-
-    cinnaMid :async(midParam)=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const cinna = data.filter(item => item.p_name.includes("시나모롤"));
-
-        let filter;
-        switch(midParam) {
-            case 'kitchen':
-            filter = cinna.filter(item => ['12', '16'].includes(item.cat_id)); break;
-            case 'homedeco':
-            filter = cinna.filter(item => ['24', '28'].includes(item.cat_id)); break;
-            case 'pashion':
-            filter = cinna.filter(item => ['36', '40'].includes(item.cat_id)); break;
-            default:
-            filter = cinna;
-        }
-        set({ sanrio: filter });
-    },
-
-    pompomMid :async(midParam)=>{
-        const res = await instance.get("/p_list.php");
-        const data = res.data;
-        const pompom = data.filter(item => item.p_name.includes("폼폼푸린"));
-
-        let filter;
-        switch(midParam) {
-            case 'kitchen':
-            filter = pompom.filter(item => ['11', '15'].includes(item.cat_id)); break;
-            case 'homedeco':
-            filter = pompom.filter(item => ['23', '27'].includes(item.cat_id)); break;
-            case 'pashion':
-            filter = pompom.filter(item => ['35', '39'].includes(item.cat_id)); break;
-            default:
-            filter = pompom;
-        }
+        const filter = base.filter(item => cat_ids.includes(item.cat_id));
         set({ sanrio: filter });
     },
 
     // 소 카테고리
+    subData: ( mainCat, subParam ) => {
+        const { data } = get();
+        const base = data.filter(item => item.p_name.includes(mainCat));
+
+        let cat_ids = [];
+        switch (subParam) {
+            case 'lunchbox': cat_ids = ['9', '10', '11', '12']; break;
+            case 'tumblr': cat_ids = ['13', '14', '15', '16']; break;
+            case 'cushion': cat_ids = ['21', '22', '23', '24']; break;
+            case 'blanket': cat_ids = ['25', '26', '27', '28']; break;
+            case 'wallet': cat_ids = ['33', '34', '35', '36']; break;
+            case 'keyring': cat_ids = ['37', '38', '39', '40']; break;
+            default: set({ sanrio: base }); return;
+        }
+
+        const filter = base.filter(item => cat_ids.includes(item.cat_id));
+        set({ sanrio: filter });
+    }
 }));
 
 export const useCategory = create((set) => ({

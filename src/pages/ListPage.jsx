@@ -1,14 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { sanrioStore, useCategory } from '../api/sanrio';
 import NaviBar from '../components/ListPage/NaviBar';
 import ListItem from '../components/ListPage/ListItem';
+import SanrioNote1 from '../components/icon/SanrioNote1';
+import SanrioNote2 from '../components/icon/SanrioNote2';
 
 import "../styles/list.scss";
-import { useLocation } from 'react-router-dom';
 
 function ListPage() {
-   const { sanrio, all, kitty, mymel, cinna, pompom, kittyMid, mymelMid, pompomMid, cinnaMid } = sanrioStore();
+   const { loadAll, sanrio, all, Character, midData, subData } = sanrioStore();
    const { category } = useCategory();
    const [ main, setMain ] = useState();
    const [ allCat, setAll ] = useState();
@@ -19,11 +21,15 @@ function ListPage() {
    const [ subCat, setSubCat ] = useState();
    
    const location = useLocation();
-   const mainParam = location.pathname.split("/").filter(Boolean)[2];
    const midParam = location.pathname.split("/").filter(Boolean)[3];
    const subParam = location.pathname.split("/").filter(Boolean)[4];
 
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [location])
+   
    useEffect(()=>{
+      loadAll();
       axios("http://localhost/admin/api/p_category.php")
       .then((res)=>{
          setAll(res.data)
@@ -39,38 +45,29 @@ function ListPage() {
             case "all":
                await all(); break;
             case "kitty":
-               await kitty(); break;
             case "mymel":
-               await mymel(); break;
             case "pompom":
-               await pompom(); break;
             case "cinna":
-               await cinna(); break;
+               await Character(mainCat); break;
             default: break;
          }
          
-         if(midParam) {
-            switch (category[0]) {
-               case "kitty":
-                  await kittyMid(midParam); break;
-               case "mymel":
-               await mymelMid(midParam); break;
-               case "pompom":
-                  await pompomMid(midParam); break;
-               case "cinna":
-                  await cinnaMid(midParam); break;
-               default: break;
-            }
+         if (midParam && subParam) {
+            subData(mainCat, subParam);
+         } else if (midParam) {
+            midData(mainCat, midParam);
          }
       }
       categoryData();
-   }, [category, main, mid, sub, mainCat, midCat, midCat]);
+   }, [category, midParam, subParam]);
 
    useEffect(() => {
       if( main?.length && mid?.length && sub?.length ){
          category.map(item => {
                switch (item) {
                    //대 카테고리
+                  case "all":
+                     setMainCat("산리오 친구들"); break;
                   case "kitty":
                      setMainCat(main[3]?.cat_name); break;
                   case "mymel":
@@ -106,12 +103,23 @@ function ListPage() {
          })
       }
    }, [category, main, mid, sub]);
-   console.log(sanrio);
+   console.log(mainCat);
    
    if(!sanrio.length) return;
    return (
       <>
-      <NaviBar main={mainCat} mid={midCat} sub={subCat}/>
+      { category[0] === "all" ? (
+         <div className='list_all'>
+            <div className='list_sanrio'>
+               <SanrioNote1/>
+               <p>산리오 친구들</p>
+               <SanrioNote2/>
+            </div>
+            <p className='sanrio_img'><img src="/img/list_sanriobanner_01.svg" alt="" /></p>
+         </div>
+      ) : (
+         <NaviBar main={mainCat} mid={midCat} sub={subCat}/>
+      ) }
       <ListItem item={sanrio}/>
       </>
    )

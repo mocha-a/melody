@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "../components/public/Button";
 import TagBtn from "../components/public/TagBtn"
 import InputBox from "../components/public/InputBox";
-
-import "../styles/payment.scss";
+import Total from "../components/public/Total";
+import DashedLine from "../components/public/DashedLine";
 import BottomArrow from "../components/icon/BottomArrow";
 import MemoArrow from "../components/icon/MemoArrow";
 import PopupAction from "../components/ProductPage/PopupAction";
-import Total from "../components/public/Total";
-import DashedLine from "../components/public/DashedLine";
+
+import "../styles/payment.scss";
 
 function PaymentPage() {
     const [ postCode, setPostCode ] = useState("");
@@ -19,8 +20,13 @@ function PaymentPage() {
     const [ cashReceipt, setCashReceipt ] = useState(false); //현금영수증
     const [ deductionType, setDeductionType ] = useState("소득공제용");
     const [ method, setMethod ] = useState("신용/체크카드"); // 결제 수단
-    
-    const [ select, setSelect ] = useState("소득공제용")
+
+    const location = useLocation();
+    const { name, thmb, count, totalPrice } = location.state;
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location])
 
     const openPostcode = () => {
         new window.daum.Postcode({
@@ -50,10 +56,10 @@ function PaymentPage() {
                     <div className="payment_product include">
                         <h2>주문 상품 정보</h2>
                         <div>
-                            <p><img src="" alt="" /></p>
-                            <p></p>
-                            <div>
-                                <TagBtn tagbtn={"수량"} className={"quantity"}/>
+                            <p className="payment_img"><img src={`http://localhost/admin/product/upload/${thmb}`} alt="" /></p>
+                            <div className="item_content">
+                                <p>{name}</p>
+                                <TagBtn tagbtn={"수량"} className={"quantity"}/><sapn>{count}개</sapn>
                             </div>
                         </div>
                     </div>
@@ -119,6 +125,14 @@ function PaymentPage() {
                                 />
                                 <MemoArrow className={"memoBtn"}/>
                             </div>
+                            {custom &&
+                            <InputBox
+                                width="100%"
+                                placeholder="배송 메모를 입력해주세요."
+                                bgColor = "#FFF2FA"
+                                padding = "8px 14px"
+                                height= "36px"
+                            />}
                             <PopupAction useState={memo} className={"product_popup_bg"}>
                                 <div className='popup_close' onClick={()=>{setMemo(false)}}><BottomArrow className={"bottomArrow_close"}/></div>
                                 <div className="memoSelect">
@@ -140,7 +154,7 @@ function PaymentPage() {
                 <div className="payment_order_container bg">
                     <div className="payment_order include">
                         <h2>주문 요약</h2>
-                        <Total productPrice={1234} total={"총 결제 금액"}/>
+                        <Total productPrice={totalPrice} total={"총 결제 금액"}/>
                     </div>
                 </div>
                 <div className="payment_method_container bg">
@@ -186,7 +200,7 @@ function PaymentPage() {
                             {cashReceipt && 
                             <>
                                 <div className="cashReceipt_grid grid">
-                                    <label>
+                                    <label className={deductionType === "소득공제용" ? "bold_label" : ""}>
                                         <input
                                         type="radio"
                                         name="cashReceipt"
@@ -195,7 +209,7 @@ function PaymentPage() {
                                         onChange={(e) => setDeductionType(e.target.value)
                                         }/>소득공제용
                                     </label>
-                                    <label>
+                                    <label className={deductionType === "지출증빙용" ? "bold_label" : ""}>
                                         <input
                                         type="radio"
                                         name="cashReceipt"
@@ -225,7 +239,7 @@ function PaymentPage() {
                     </div>
                 </div>
             </div>
-            <div className="paymentBtn"><Button btn={`${0}원 결제하기`}/></div>
+            <div className="paymentBtn"><Button btn={`${totalPrice.toLocaleString()}원 결제하기`}/></div>
         </div>
     )
 }

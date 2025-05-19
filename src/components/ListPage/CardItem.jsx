@@ -9,12 +9,12 @@ function CardItem({ item, name }) {
         <div className={`${name}_item`}>
             <div className={`${name}_img`}>
                 <p><img src={`http://localhost/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
-                { product !== "Product" && <div className='card_wish' onClick={(e) => e.preventDefault()}><Wish/></div> }
+                { product !== "product" && <div className='card_wish' onClick={(e) => e.preventDefault()}><Wish/></div> }
             </div>
             <div className={`${name}_content`}>
                 <b>{item?.p_name}</b>
                 <p>{Number(item?.p_price).toLocaleString()}원</p>
-                { product === "Product" && <div className={'delivery_fee'}><span>배송비 3,000원</span><span>50,000원 이상 무료</span></div> }
+                { product === "product" && <div className={'delivery_fee'}><span>배송비 3,000원</span><span>50,000원 이상 무료</span></div> }
             </div>
         </div>
     )

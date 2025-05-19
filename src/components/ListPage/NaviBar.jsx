@@ -57,17 +57,17 @@ function NaviBar({ main, mid, sub }) {
         <div className="catgory_container">
             <div className="list_catgory">
                 <div className="main catgory">
-                    <NavLink to={`/List/category/${category[0]}`}>{main}</NavLink>
+                    <NavLink to={`/list/category/${category[0]}`}>{main}</NavLink>
                 </div>
                 { note8Icons() }
 
                 <div className="mid catgory">
-                    <NavLink to={`/List/category/${category[0]}/${category[1]}`}>{mid}</NavLink>
+                    <NavLink to={`/list/category/${category[0]}/${category[1]}`}>{mid}</NavLink>
                 </div>
                 { note16Icons() }
 
                 <div className="sub catgory">
-                    <NavLink to={`/List/category/${category[0]}/${category[1]}/${category[2]}`}>{sub}</NavLink>
+                    <NavLink to={`/list/category/${category[0]}/${category[1]}/${category[2]}`}>{sub}</NavLink>
                 </div>
             </div>
             <div className='catgory_banner'>{ banner() }</div>
