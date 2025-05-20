@@ -32,7 +32,6 @@ function ProductPage() {
         setPrice(sanrio.p_price);
     }
     }, [sanrio]);
-    console.log(count);
     
     function buynow(){
         navigate("/payment", { 

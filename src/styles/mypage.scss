@@ -1,3 +1,44 @@
 // import
 @import './variables';
 @import './mixins';
+
+// MyPage.jsx
+.mypage_container{
+    .mypage_hello{
+        @include publicWidth ;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+    .css-cfd5wn-MuiListItem-root{
+        justify-content: space-between;
+        .memberbox_li{
+            color: $grayColor;
+        }
+    }
+    .memberbox_li::after{
+        content: ' : ';
+    }
+    .mypage_wishlist{
+        border: 1px solid $blackColor;
+        background-color: $whiteColor;
+    }
+}
+
+// WishPage.jsx
+.wish_haert{
+    text-align: center;
+    padding-top: 235px;
+    >p{margin-top: 15px;}
+    >div{justify-content: center;}
+}
+.wish_container{
+    .wish_img{
+        position: relative;
+        >p>img{width: 195px; height: 195px;}
+        .wish_cancel{
+            position: absolute;
+            top: 10px; right: 10px;
+        }
+    }
+}

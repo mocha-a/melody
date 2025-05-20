@@ -6,6 +6,8 @@ import ProductPage from "../pages/ProductPage";
 import LoginPage from "../pages/join/LoginPage";
 import SignupPage from "../pages/join/SignupPage";
 import PaymentPage from '../pages/PaymentPage';
+import MyPage from '../pages/MyPage';
+import WishPage from '../pages/WishPage';
 
 function AppRouter() {
     const location = useLocation();
@@ -17,6 +19,8 @@ function AppRouter() {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/mypage/:id" element={<MyPage />} />
+                <Route path="/wish/:id" element={<WishPage />} />
 
                 <Route path='/list' element={<ListPage/>}/>
                 <Route path='/list/category/:main' element={<ListPage/>}/>

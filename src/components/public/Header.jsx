@@ -185,8 +185,8 @@ function Header() {
                             {isLoggedIn ? "로그아웃" : "로그인 / 회원가입"}
                         </div>
                         <div className="right">
-                            <MyPageIcon className="mypage_icon" />
-                            <SearchIcon className="search_icon" />
+                            <div onClick={()=>{navigate('/mypage/123')}}><MyPageIcon /></div>
+                            <SearchIcon />
                         </div>
                     </div>
                 </div>
