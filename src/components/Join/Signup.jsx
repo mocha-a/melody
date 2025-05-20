@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
+import axios from 'axios';
 import InputBox from "../public/InputBox";
-import Button from "../public/Button";
+import TwoButton from "../public/TwoButton";
 
 function Signup() {
     const [id, setId] = useState("");
@@ -10,8 +12,10 @@ function Signup() {
     const [userName, setUserName] = useState("");
     const [phone, setPhone] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    
+    const navigate = useNavigate();
 
-    // birth
+    // 생년월일 처리
     const [birthYear, setBirthYear] = useState('');
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
@@ -28,6 +32,7 @@ function Signup() {
     // 에러 문구 표시
     function signUpSubmit(e) {
         e.preventDefault();
+        console.log("✅ signUpSubmit 실행됨");
 
         if (!userName && !id && !password && !phone) {
             setErrorMessage("정보를 입력하지 않았습니다.");
@@ -70,7 +75,30 @@ function Signup() {
             setTimeout(() => setErrorMessage(false), 2000);
             return;
         }
-        
+
+        const birthDate = `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`;
+
+        // FormData 생성
+        const formData = new FormData();
+        formData.append("id", id);
+        formData.append("name", userName);
+        formData.append("password", password);
+        formData.append("tel", phone);
+        formData.append("date", birthDate);
+
+        axios({
+            method: "post",
+            url: "http://localhost/admin/api/member.php",
+            data: formData
+        })
+        .then(res => {
+            console.log("서버 응답:", res.data);
+            navigate("/");
+        })
+        .catch(err => {
+            console.error("에러:", err);
+            setTimeout(() => setErrorMessage(false), 2000);
+        });
     }
 
     return (
@@ -93,7 +121,7 @@ function Signup() {
                 
                 <div className="signup_phone_box">
                     <p>전화번호<span className="required">*</span></p>
-                    <InputBox className="signup_name" placeholder="전화번호" type="tel" value={phone}
+                    <InputBox className="signup_phone" placeholder="전화번호" type="tel" value={phone}
                     onChange={(e) => {
                         if (PHONE_REGEX.test(e.target.value) || e.target.value === "")
                         setPhone(e.target.value);
@@ -158,26 +186,33 @@ function Signup() {
                         </FormControl>
 
                     </div>
-                    </div>
+                </div>
 
-                
+                <div className="signup_bottom">
+                    {/* 에러 메시지 */}
+                    <AnimatePresence>
+                        {errorMessage && (
+                        <motion.div
+                            className="error_message"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {errorMessage}
+                        </motion.div>
+                        )}
+                    </AnimatePresence>
 
-                {/* 에러 메시지 */}
-                <AnimatePresence>
-                {errorMessage && (
-                    <motion.div
-                    className="error-message"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                    >
-                    {errorMessage}
-                    </motion.div>
-                )}
-                </AnimatePresence>
-
-                <Button btn="가입하기" className="signup_btn" />
+                    <TwoButton
+                        btn1="이전"
+                        btn2="가입하기"
+                        type1="button"
+                        type2="button"
+                        onClick1={() => navigate(-1)}
+                        onClick2={signUpSubmit}
+                    />
+                </div>
             </form>
         </div>
     );

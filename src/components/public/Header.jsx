@@ -17,10 +17,27 @@ function Header() {
     const { setCategory } = useCategory();
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const main = () => navigate('/');
     const cart = () => navigate('/cart');
     const login = () => navigate('/login');
+
+    useEffect(() => {
+        const user = sessionStorage.getItem("user");
+        // 로그인 상태 저장
+        setIsLoggedIn(!!user); // boolean 처리하기
+        // 라우팅이 발생할 때 마다 바뀌기 (key는 새로 생성되니까 useEffect 실행됨)
+        // = 주소가 같아도 재 렌더링 되었다고 판단
+    }, [location.key]);
+
+    const logout = () => {
+        sessionStorage.removeItem("user");
+        sessionStorage.setItem("logout_notice", "1");
+        setMenuOpen(false);
+        navigate("/");
+    };
+
 
     // pathname이 바뀔 때마다 메뉴 닫기
     useEffect(() => {
@@ -163,10 +180,13 @@ function Header() {
                         );
                     })}
                     <div className="bottom_menu">
-                        <div className="left" onClick={login}>로그인 / 회원가입</div>
+                        {/* 현재 상태에 따라 로그인/로그아웃 변경 */}
+                        <div className="left" onClick={isLoggedIn ? logout : login}>
+                            {isLoggedIn ? "로그아웃" : "로그인 / 회원가입"}
+                        </div>
                         <div className="right">
-                            <MyPageIcon />
-                            <SearchIcon />
+                            <MyPageIcon className="mypage_icon" />
+                            <SearchIcon className="search_icon" />
                         </div>
                     </div>
                 </div>

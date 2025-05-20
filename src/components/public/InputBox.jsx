@@ -8,7 +8,7 @@ boxWidth='100%', justifyContent = "center", placeholder, bgColor, onChange, padd
     return (
         <Box
             className={className}
-            component="form"
+            component="div"
             noValidate
             autoComplete="off"
             sx={{
@@ -47,22 +47,21 @@ boxWidth='100%', justifyContent = "center", placeholder, bgColor, onChange, padd
                 },
                 },
                 '& label': {
-                fontSize: '17px',
-                fontFamily: 'suiteRegular',
+                fontSize: '16px',
+                fontFamily: 'suiteLight',
                 color: '#C3C3C3',
                 top: '-7px',
-                transform: 'translate(14px, -50%) scale(1)',
-                pointerEvents: 'none',
-                padding: '0 4px',
+                padding: '0 2px',
                 },
                 '& label.Mui-focused': {
+                marginRight: '15px',
+                fontSize: '16px',
                 color: '#3C3C3C',
-                transform: 'translate(14px, -28px) scale(0.75)',
-                fontFamily: 'suiteRegular',
+                fontFamily: 'suiteLight',
                 },
                 '& .MuiInputBase-input': {
-                fontSize: '14px',
-                fontFamily: 'suiteRegular',
+                fontSize: '16px',
+                fontFamily: 'suiteLight',
                 color: '#3C3C3C',
                 padding: padding,
                 },

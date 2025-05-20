@@ -36,6 +36,9 @@
 
 // button
 .btn{
+    font-size: $regular;
+    cursor: pointer;
+    width: 100%;
     background-color: $pink;
     border-radius: 5px;
     padding: 12px 0;
@@ -43,16 +46,42 @@
 }
 
 // twoButton
-.TwoBtn{
+.TwoBtn {
     display: flex;
     justify-content: space-between;
-    font-size: $regular;
-    .btn1, .btn2{padding: 12px 50px;}
-    .btn1{
-        border: 1px solid $blackColor;
+    align-items: center;
+    gap: 8px;
+
+    .btn1,
+    .btn2 {
+        cursor: pointer;
+        width: 48%;
+        height: 42px;
+        text-align: center;
+        font-size: $regular;
+        padding: 12px 0;
+        box-sizing: border-box;
+        border-radius: 6px;
+
+        border: none;
+        background: none;
+        outline: none;
+        font-family: inherit;
+        appearance: none;
+    }
+
+    .btn1 {
+        border: 0.6px solid $grayColor;
         background-color: $whiteColor;
+        color: $blackColor;
+    }
+
+    .btn2 {
+        background-color: $pink;
+        color: $blackColor;
     }
 }
+
 
 //tagbtn
 .tagbtn{
@@ -168,6 +197,22 @@
     line-height: 140%;
 }
 
+
+// gray style
+
+@mixin suite_gray_14 {
+    font-family: $suiteRegular;
+    font-size: 14px;
+    color: $grayColor;
+}
+
+// Light style
+
+@mixin suite_light_14 {
+    font-family: $suiteLight;
+    font-size: 14px;
+    color: $blackColor;
+}
 
 
 //icon

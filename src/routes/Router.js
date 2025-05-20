@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MainPage from "../pages/MainPage";
 import CartPage from "../pages/CartPage";
 import ListPage from "../pages/ListPage";
@@ -8,10 +8,12 @@ import SignupPage from "../pages/join/SignupPage";
 import PaymentPage from '../pages/PaymentPage';
 
 function AppRouter() {
+    const location = useLocation();
+
     return (
         <div>
             <Routes>
-                <Route path="/" element={<MainPage />} />
+                <Route path="/" element={<MainPage key={location.key} />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />

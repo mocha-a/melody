@@ -1,10 +1,9 @@
-
-function Button({className, btn, onClick}) {
+function Button({ className, btn, onClick, type = "button" }) {
     return (
-        <div className={`${className} btn`} onClick={onClick}>
-            {btn}
-        </div>
-    )
+        <button className={className} onClick={onClick} type={type}>
+        {btn}
+        </button>
+    );
 }
 
-export default Button
+export default Button;

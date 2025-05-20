@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../../components/public/Button"
+import TwoButton from "../public/TwoButton";
+import { useNavigate } from "react-router-dom";
 
 function Terms({ setSection }) {
+    const navigate = useNavigate();
     const [checkItems, setCheckItems] = useState([]);
     const [errorMessage, setErrorMessage] = useState(false);
 
@@ -60,57 +62,63 @@ function Terms({ setSection }) {
         {/* 약관 동의 목록 */}
             <div className="term_container">
                 <div className="term_top">
-                <label>
-                    <input
-                    type="checkbox"
-                    name="all-checked"
-                    onChange={(e) => allChecked(e.target.checked)}
-                    checked={checkItems.length === data.length}
-                    />
-                    이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
-                </label>
+                    <label>
+                        <input
+                        type="checkbox"
+                        name="all-checked"
+                        onChange={(e) => allChecked(e.target.checked)}
+                        checked={checkItems.length === data.length}
+                        />
+                        이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
+                    </label>
                 </div>
 
                 <form className="term_bottom">
-                {data.map((item) => (
-                <div className="term_item" key={item.id}>
-                    <label className="term_label">
-                    <input
-                        type="checkbox"
-                        name="select-checked"
-                        onChange={(e) => selectChecked(e.target.checked, item.id)}
-                        checked={checkItems.includes(item.id)}
-                    />
-                    {item.title}
-                    {item.required && item.id !== 2 && <span className="required">*</span>}
-                    </label>
+                    {data.map((item) => (
+                    <div className="term_item" key={item.id}>
+                        <label className="term_label">
+                            <input
+                                type="checkbox"
+                                name="select-checked"
+                                onChange={(e) => selectChecked(e.target.checked, item.id)}
+                                checked={checkItems.includes(item.id)}
+                            />
+                            {item.title}
+                            {item.required && item.id !== 2 && <span className="required">*</span>}
+                        </label>
 
-                    <div className="term_contents">
-                    {item.contents}
+                        <div className="term_contents">
+                        {item.contents}
+                        </div>
                     </div>
-                </div>
-                ))}
+                    ))}
 
+                    <div className="term_button_wrap">
+                    {/* error 메시지 */}
+                        <AnimatePresence>
+                            {errorMessage && (
+                            <motion.div
+                                className="error_message"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <span className="required">*</span> 모든 필수 약관에 동의해야 합니다.
+                            </motion.div>
+                            )}
+                        </AnimatePresence>
 
-                {/* 다음 버튼 */}
-                <Button onClick={next} className="term_btn" btn="다음"/>
-
+                        {/* 다음 버튼 */}
+                        <TwoButton
+                            className="term_btn"
+                            btn1="이전" type1="button"
+                            btn2="다음" type2="submit"
+                            onClick1={() => navigate(-1)}
+                            onClick2={next}
+                        />
+                    </div>
                 </form>
-
-                {/* error 메시지 */}
-                <AnimatePresence>
-                    {errorMessage && (
-                    <motion.div
-                        className="error-message"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <span className="required">*</span> 모든 필수 약관에 동의해야 합니다.
-                    </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
         </>
     )

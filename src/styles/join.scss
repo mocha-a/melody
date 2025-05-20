@@ -49,7 +49,16 @@
     }
 }
 
+.login_modal {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
 
+
+.error_message {
+    
+}
 
 
 
@@ -60,12 +69,25 @@
 }
 
 .term_container {
+    position: relative;
+    height: 82vh;
     .term_top {
+        
         margin-bottom: 16px;
         input {
             margin-right: 10px;
+            accent-color: $whiteColor;
         }
     }
+
+    .term_button_wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 70px;
+        }
+
 
     .term_bottom {
         display: flex;
@@ -80,11 +102,12 @@
         .term_label {
             @include suite_black_14;
             input {
-            margin-right: 10px;
+                accent-color: $whiteColor;
+                margin-right: 10px;
             }
             .required {
-            color: #FF0000;
-            margin-left: 4px;
+                color: #FF0000;
+                margin-left: 4px;
             }
         }
 
@@ -93,7 +116,7 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             padding: 12px 14px;
-            @include suite_black_14;
+            @include suite_gray_14;
             line-height: 140%;
             white-space: pre-line;
         }
@@ -106,12 +129,22 @@
     cursor: pointer;
 }
 
+.error_message {
+    @include suite_light_14;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #FF0000;
+}
+
 // component signup.jsx
 
 .signup_container2 {
     width: 100%;
-
     form {
+        position: relative;
+        height: 82vh;
+
         .signup_login_box,
         .signup_name_box,
         .signup_phone_box {
@@ -152,4 +185,10 @@
             }
         }
     }
+}
+
+.signup_bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 70px;
 }

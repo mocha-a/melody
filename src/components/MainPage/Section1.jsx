@@ -24,7 +24,7 @@ function Section1() {
             setItem2(data.find(p => Number(p.id) === 199));
             setItem3(data.find(p => Number(p.id) === 20));
         }
-
+        
         fetchItems();
     }, []);
 
