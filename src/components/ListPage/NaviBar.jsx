@@ -10,6 +10,7 @@ import CinnaNote2 from "../icon/CinnaNote2";
 
 function NaviBar({ main, mid, sub }) {
     const category = JSON.parse(localStorage.getItem('category'));
+console.log(main);
 
     function note8Icons(){
         switch(main){

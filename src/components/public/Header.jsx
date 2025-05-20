@@ -165,7 +165,7 @@ function Header() {
                     <div className="bottom_menu">
                         <div className="left" onClick={login}>로그인 / 회원가입</div>
                         <div className="right">
-                            <MyPageIcon />
+                            <div onClick={()=>{navigate('/mypage/123')}}><MyPageIcon /></div>
                             <SearchIcon />
                         </div>
                     </div>

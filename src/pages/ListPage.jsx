@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { sanrioStore, useCategory } from '../api/sanrio';
+import { sanrioStore, useCategory, midName, subName } from '../api/sanrio';
 import NaviBar from '../components/ListPage/NaviBar';
 import ListItem from '../components/ListPage/ListItem';
 import SanrioNote1 from '../components/icon/SanrioNote1';
@@ -10,7 +10,7 @@ import SanrioNote2 from '../components/icon/SanrioNote2';
 import "../styles/list.scss";
 
 function ListPage() {
-   const { loadAll, sanrio, all, Character, midData, subData } = sanrioStore();
+   const { loadAll, sanrio, all, categoryData, Character, midData, subData, categorypath, mid1, sub1 } = sanrioStore();
    const { category } = useCategory();
    const [ main, setMain ] = useState();
    const [ allCat, setAll ] = useState();
@@ -21,24 +21,39 @@ function ListPage() {
    const [ subCat, setSubCat ] = useState();
    
    const location = useLocation();
+   const mainParam = location.pathname.split("/").filter(Boolean)[2];
    const midParam = location.pathname.split("/").filter(Boolean)[3];
    const subParam = location.pathname.split("/").filter(Boolean)[4];
+console.log(midName);
 
    useEffect(() => {
       window.scrollTo(0, 0);
    }, [location])
-   
+   useEffect(() => {
+      const load = async () => {
+         await loadAll();
+         await categoryData();  // 이거 먼저 실행해서 category 값 세팅
+
+         Character(mainParam);          // 그리고 이때 category 콘솔 찍히게
+         categorypath(mainParam);          // 그리고 이때 category 콘솔 찍히게
+      };
+      load();
+   }, []);
+   console.log(mid1, sub1);
+
    useEffect(()=>{
-      loadAll();
+      
       axios("http://localhost/admin/api/p_category.php")
       .then((res)=>{
          setAll(res.data)
-         setMain(res.data.filter(item => item.cat_level === "0"));
-         setMid(res.data.filter(item => item.cat_level === "1"));
-         setSub(res.data.filter(item => item.cat_level === "2"));
+         setMain(mainParam);
+         setMid(mid1);
+         setSub(sub1);
       })
    },[])
 
+const korName = midName[midParam];
+   console.log(korName);
    useEffect(() => {
       const categoryData = async () => {
          switch (category[0]) {
@@ -48,14 +63,14 @@ function ListPage() {
             case "mymel":
             case "pompom":
             case "cinna":
-               await Character(mainCat); break;
+               await Character(mainParam); break;
             default: break;
          }
          
          if (midParam && subParam) {
-            subData(mainCat, subParam);
+            subData(mainParam, subParam);
          } else if (midParam) {
-            midData(mainCat, midParam);
+            midData(mainParam, midParam);
          }
       }
       categoryData();
@@ -103,7 +118,6 @@ function ListPage() {
          })
       }
    }, [category, main, mid, sub]);
-   console.log(mainCat);
    
    if(!sanrio.length) return;
    return (

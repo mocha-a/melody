@@ -25,6 +25,7 @@
 .item_container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    position: relative;
 
     .list_item{
         margin-bottom: 35px;
