@@ -2,6 +2,13 @@
 @import './variables';
 @import './mixins';
 
+.list_sanrio{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    >p{margin: 0 8px;}
+}
+.sanrio_img{margin: 20px 0;}
 .catgory_container{
     .list_catgory{
         display: flex;

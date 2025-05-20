@@ -3,7 +3,7 @@ import SolidLine from './SolidLine';
 function Total({ productPrice, total = '합계' }) {
     const Price = Number(productPrice);
     const deliveryFee = Price >= 50000 ? 0 : 3000;
-
+    
     return (
         <div className='total_grid'>
             <p className='total_title'>상품 금액</p>
