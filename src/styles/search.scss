@@ -1,3 +1,31 @@
 // import
 @import './variables';
 @import './mixins';
+
+// component SearchIcon.jsx
+
+.search_input_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+// SearchPage.jsx
+
+.search_container {
+    .no_result {
+        @include suite_black_14;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        white-space: pre-line;
+        img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+    }
+}

@@ -8,6 +8,7 @@ import SignupPage from "../pages/join/SignupPage";
 import PaymentPage from '../pages/PaymentPage';
 import MyPage from '../pages/MyPage';
 import WishPage from '../pages/WishPage';
+import SearchPage from '../pages/SearchPage';
 
 function AppRouter() {
     const location = useLocation();
@@ -19,6 +20,7 @@ function AppRouter() {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/search" element={<SearchPage />} />
                 <Route path="/mypage/:id" element={<MyPage />} />
                 <Route path="/wish/:id" element={<WishPage />} />
 

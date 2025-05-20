@@ -32,7 +32,6 @@ function Signup() {
     // 에러 문구 표시
     function signUpSubmit(e) {
         e.preventDefault();
-        console.log("✅ signUpSubmit 실행됨");
 
         if (!userName && !id && !password && !phone) {
             setErrorMessage("정보를 입력하지 않았습니다.");
@@ -88,17 +87,13 @@ function Signup() {
 
         axios({
             method: "post",
-            url: "http://localhost/admin/api/member.php",
+            url: `${process.env.REACT_APP_APIURL}/admin/api/member.php`,
             data: formData
         })
         .then(res => {
-            console.log("서버 응답:", res.data);
-            navigate("/");
+            sessionStorage.setItem("signup_notice", "1");
+            navigate("/login");
         })
-        .catch(err => {
-            console.error("에러:", err);
-            setTimeout(() => setErrorMessage(false), 2000);
-        });
     }
 
     return (

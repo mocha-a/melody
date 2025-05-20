@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //Mysql 데이터
 export const instance = axios.create({
-    baseURL : "http://localhost/admin/api/",
+    baseURL : `${process.env.REACT_APP_APIURL}/admin/api/`,
 });
 
 const sanrioName = {

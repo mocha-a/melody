@@ -9,7 +9,7 @@ function CardItem({ item, name }) {
     return (
         <div className={`${name}_item`}>
             <div className={`${name}_img`}>
-                <p><img src={`http://localhost/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
+                <p><img src={`${process.env.REACT_APP_APIURL}/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
                 { pathname !== "product" || "wish" && <div className='card_wish' onClick={(e) => e.preventDefault()}><Wish/></div> }
                 { pathname === "wish" && <div className='wish_cancel' onClick={(e) => e.preventDefault()}><Cancel/></div> }
             </div>
