@@ -2,6 +2,10 @@
 @import './variables';
 @import './mixins';
 
+.list_loading{
+    margin: 76.2% 0;
+    .css-pl8gqh-MuiStack-root{justify-content: center;}
+}
 .list_sanrio{
     display: flex;
     justify-content: center;

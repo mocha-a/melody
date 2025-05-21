@@ -1,8 +1,9 @@
 import SolidLine from './SolidLine';
 
-function Total({ productPrice, total = '합계' }) {
+function Total({ productPrice, total = '합계', finalPrice, setFinalPrice }) {
     const Price = Number(productPrice);
     const deliveryFee = Price >= 50000 ? 0 : 3000;
+    setFinalPrice((Price+deliveryFee).toLocaleString())
     
     return (
         <div className='total_grid'>
@@ -12,7 +13,7 @@ function Total({ productPrice, total = '합계' }) {
             <p>{deliveryFee.toLocaleString()}원</p>
             <SolidLine className={"total_line"}/>
             <p className='total_title'>{total}</p>
-            <p className='price_bold'>{(Price+deliveryFee).toLocaleString()}원</p>
+            <p className='price_bold'>{finalPrice}원</p>
         </div>
     )
 }

@@ -1,26 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import CardItem from "../components/ListPage/CardItem"
 import NoWish from "../components/MyPage/NoWish"
 import MenuTitle from "../components/public/MenuTitle"
-import { sanrioStore } from "../api/sanrio";
-import { Link } from "react-router-dom";
+import Footer from "../components/public/Footer";
 
 function WishPage() {
-    const { sanrio, idData } = sanrioStore();
-
+    const [ data, setData ] = useState([]);
+    const user = sessionStorage.getItem("user");
+    
     useEffect(()=>{
-        idData("284")
-    },[])
+        axios.get(`${process.env.REACT_APP_APIURL}/admin/api/wish.php`, {
+            params: { case: 'GET', type: 'all' }
+        })
+        .then(res=>{
+            const userId = res.data.filter(liked => liked.m_id === user);
+            setData(userId)
+        })
+    },[data])
 
     return (
         <>
-            <MenuTitle title={"위시리스트"}/>
+        <MenuTitle title={"위시리스트"}/>
+        {data.length === 0 ?
             <NoWish/>
-            <div className={'wish_container'}>
-                <Link to={`/product/${sanrio.id}`} key={sanrio.id}>
-                    <CardItem item={sanrio} name={"wish"}/>
-                </Link>
-            </div>
+        :(
+        <div className='wish_container'>
+            { data?.map( item =>
+            <Link to={`/product/${item.wish_id}`} key={item.id}>
+                <CardItem item={item} name={"wish"}/>
+            </Link>
+            )}
+        </div>
+        )}
         </>
     )
 }

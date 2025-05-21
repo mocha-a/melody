@@ -1,26 +1,38 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+import useWish from "../api/wish";
 import Button from "../components/public/Button";
-import TagBtn from "../components/public/TagBtn"
 import InputBox from "../components/public/InputBox";
 import Total from "../components/public/Total";
 import DashedLine from "../components/public/DashedLine";
 import BottomArrow from "../components/icon/BottomArrow";
 import MemoArrow from "../components/icon/MemoArrow";
 import PopupAction from "../components/ProductPage/PopupAction";
+import PaymentItem from "../components/paymentPage/PaymentItem";
 
 import "../styles/payment.scss";
 
 function PaymentPage() {
-    const [ postCode, setPostCode ] = useState("");
-    const [ address, setAddress ] = useState("");
+    const { user } = useWish()
+    const [ finalPrice, setFinalPrice ] = useState(0); // 총 가격
+    const [ receiver, setReceiver ] = useState(""); // 수령인
+    const [ phone, setPhone ] = useState(""); // 연락처
+    const [ postCode, setPostCode ] = useState(""); // 우편번호
+    const [ address, setAddress ] = useState(""); // 주소
+    const [ detailAddress, setDetailAddress ] = useState(""); // 상세주소
     const [ inputSelect, setInputSelect ] = useState("");
     const [ memo, setMemo ] = useState(false);
+    const [ customMemo, setCustomMemo ] = useState(""); //직접 입력
+    const [ deductionValue, setDeductionValue ] = useState(""); //직접 입력
+    const [ senderName, setSenderName ] = useState(""); //직접 입력
     const [ custom, setcustom ] = useState(false);
     const [ cashReceipt, setCashReceipt ] = useState(false); //현금영수증
     const [ deductionType, setDeductionType ] = useState("소득공제용");
     const [ method, setMethod ] = useState("신용/체크카드"); // 결제 수단
-
+    const [ agreeAll, setAgreeAll ] = useState(false);
+    const [ agreeRequired, setAgreeRequired ] = useState(false);
+    
     const location = useLocation();
     const { name, thmb, count, totalPrice } = location.state;
 
@@ -28,6 +40,49 @@ function PaymentPage() {
         window.scrollTo(0, 0);
     }, [location])
 
+    
+    const handlePayment = () => {
+        if (!agreeRequired) {
+            alert("필수 동의 항목을 체크해주세요.");
+            return;
+        }
+        const fullMemo = custom ? customMemo : inputSelect;
+
+        const formData = {
+        receiver,
+        phone,
+        postCode,
+        address,
+        detailAddress,
+        deliveryMemo: fullMemo,
+        paymentMethod: method,
+        paymentSender: method === "무통장 입금" ? (senderName || receiver) : null,
+        cashReceipt: cashReceipt
+            ? {
+                type: deductionType,
+                value: deductionValue,
+            }
+            : null,
+        cashReceipt: cashReceipt ? {
+            type: deductionType,
+            value: deductionValue
+        } : null,
+        product: [{
+            name,
+            count,
+            thmb,
+            price: totalPrice
+        }],
+        finalPrice,
+        user
+        };
+
+        console.log("결제 데이터:", formData);
+
+        axios.post(`${process.env.REACT_APP_APIURL}/admin/api/order.php`, formData)
+        .then(res=>console.log(res.data))
+    };
+    
     const openPostcode = () => {
         new window.daum.Postcode({
             oncomplete: function (data) {
@@ -47,22 +102,12 @@ function PaymentPage() {
         setInputSelect(value);
         setMemo(false); // 이 함수에서 창 닫기 처리
     };
-    console.log(custom);
     
     return (
         <div className="payment_container_bg">
             <div className="payment_container">
                 <div className="payment_product_container bg">
-                    <div className="payment_product include">
-                        <h2>주문 상품 정보</h2>
-                        <div>
-                            <p className="payment_img"><img src={`http://localhost/admin/product/upload/${thmb}`} alt="" /></p>
-                            <div className="item_content">
-                                <p>{name}</p>
-                                <TagBtn tagbtn={"수량"} className={"quantity"}/><sapn>{count}개</sapn>
-                            </div>
-                        </div>
-                    </div>
+                    <PaymentItem thmb={thmb} name={name} count={count} />
                 </div>
                 <div className="payment_address_container bg">
                     <div className="payment_address include">
@@ -73,6 +118,8 @@ function PaymentPage() {
                             bgColor = "#FFF2FA"
                             padding = "8px 14px"
                             height= "36px"
+                            value={receiver}
+                            onChange={e => setReceiver(e.target.value)}
                         />
                         <InputBox
                             width="100%"
@@ -81,6 +128,8 @@ function PaymentPage() {
                             bgColor = "#FFF2FA"
                             padding = "8px 14px"
                             height= "36px"
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
                         />
                         <div className="find">
                             <InputBox
@@ -110,6 +159,8 @@ function PaymentPage() {
                             bgColor = "#FFF2FA"
                             padding = "8px 14px"
                             height= "36px"
+                            value={detailAddress}
+                            onChange={e => setDetailAddress(e.target.value)}
                         />
                         <div className="delivery_memo" >
                             <h2>배송 메모</h2>
@@ -132,6 +183,8 @@ function PaymentPage() {
                                 bgColor = "#FFF2FA"
                                 padding = "8px 14px"
                                 height= "36px"
+                                value={customMemo} 
+                                onChange={e => setCustomMemo(e.target.value)}
                             />}
                             <PopupAction useState={memo} className={"product_popup_bg"}>
                                 <div className='popup_close' onClick={()=>{setMemo(false)}}><BottomArrow className={"bottomArrow_close"}/></div>
@@ -154,7 +207,7 @@ function PaymentPage() {
                 <div className="payment_order_container bg">
                     <div className="payment_order include">
                         <h2>주문 요약</h2>
-                        <Total productPrice={totalPrice} total={"총 결제 금액"}/>
+                        <Total productPrice={totalPrice} total={"총 결제 금액"} finalPrice={finalPrice} setFinalPrice={setFinalPrice}/>
                     </div>
                 </div>
                 <div className="payment_method_container bg">
@@ -175,6 +228,7 @@ function PaymentPage() {
                             ))}
                         </div>
                         {method === "무통장 입금" && (
+                        <>
                         <div className="bankbook">
                             <InputBox
                                 width="100%"
@@ -190,14 +244,15 @@ function PaymentPage() {
                                 bgColor = "#FFF2FA"
                                 padding = "8px 14px"
                                 height= "36px"
+                                value={senderName}
+                                onChange={(e) => setSenderName(e.target.value)}
                             />
                             <p>주문 후 48시간 동안 미입금시 자동 취소됩니다.</p>
                         </div>
-                        )}
                         <div className="payment_dachedLine"><DashedLine/></div>
                         <div className="cashReceipt">
-                            <label><input type="checkbox" onChange={(e)=>{setCashReceipt(e.target.checked)}}/>현금영수증 신청</label>
-                            {cashReceipt && 
+                            <label><input type="checkbox" checked={cashReceipt} onChange={(e)=>{setCashReceipt(e.target.checked)}}/>현금영수증 신청</label>
+                            {cashReceipt &&
                             <>
                                 <div className="cashReceipt_grid grid">
                                     <label className={deductionType === "소득공제용" ? "bold_label" : ""}>
@@ -217,7 +272,7 @@ function PaymentPage() {
                                         checked={deductionType === "지출증빙용"}
                                         onChange={(e) => setDeductionType(e.target.value)
                                         }/>지출증빙용
-                                        </label>
+                                    </label>
                                 </div>
                                 <InputBox
                                     width="100%"
@@ -226,20 +281,24 @@ function PaymentPage() {
                                     bgColor = "#FFF2FA"
                                     padding = "8px 14px"
                                     height= "36px"
+                                    value={deductionValue}
+                                    onChange={e => setDeductionValue(e.target.value)}
                                 />
                             </>
                             }
                         </div>
+                        </>
+                        )}
                     </div>
                 </div>
                 <div className="payment_agree_container bg">
                     <div className="payment_agree include">
-                        <label><input type="checkbox"/>주문내용 확인 및 결제 동의</label>
-                        <label><input type="checkbox"/>(필수) 구매조건 확인 및 결제진행 동의</label>
+                        <label><input type="checkbox" checked={agreeAll} onChange={e => setAgreeAll(e.target.checked)} />주문내용 확인 및 결제 동의</label>
+                        <label><input type="checkbox" checked={agreeRequired} onChange={e => setAgreeRequired(e.target.checked)}/>(필수) 구매조건 확인 및 결제진행 동의</label>
                     </div>
                 </div>
             </div>
-            <div className="paymentBtn"><Button btn={`${totalPrice.toLocaleString()}원 결제하기`}/></div>
+            <div className="paymentBtn" onClick={()=>{handlePayment()}}><Button btn={`${finalPrice.toLocaleString()}원 결제하기`}/></div>
         </div>
     )
 }

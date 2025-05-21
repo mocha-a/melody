@@ -4,9 +4,10 @@ import { sanrioStore } from '../api/sanrio';
 import QuantitySelector from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import TwoButton from '../components/public/TwoButton';
-import Wish from '../components/public/Wish';
+import Footer from '../components/public/Footer';
 import BottomArrow from '../components/icon/BottomArrow';
 import PopupAction from '../components/ProductPage/PopupAction';
+import WishButton from '../components/ListPage/WishButton';
 import CardItem from '../components/ListPage/CardItem';
 
 import "../styles/product.scss";
@@ -24,8 +25,9 @@ function ProductPage() {
     const id = location.pathname.split("/").filter(Boolean)[1];
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
         idData(id)
-    },[])
+    },[location])
 
     useEffect(() => {
     if (sanrio?.p_price) {
@@ -55,7 +57,7 @@ function ProductPage() {
             
             <div className='product_buynow' onClick={()=>{setBuy(true)}}>
                 <div className='Product_absolute'>
-                    <Wish className={"product_wish"}/>
+                    <div className='product_wish'><WishButton item={sanrio}/></div>
                     <p>구매하기</p>
                 </div>
             </div>
@@ -75,6 +77,7 @@ function ProductPage() {
                     <div className='product_btn'><TwoButton btn1={"장바구니"} btn2={"바로구매"} onClick2={buynow}/></div>
                 </div>
             </PopupAction>
+            <div className='prodect_footer'><Footer/></div>
         </div>
     )
 }
