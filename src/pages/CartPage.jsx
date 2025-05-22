@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CheckText from '../components/CartPage/CheckText';
 import CartIcon2 from '../components/icon/CartIcon2';
 import RemoveBtn from '../components/CartPage/RemoveBtn';
@@ -12,10 +13,60 @@ function CartPage() {
     const [cartItems, setCartItems] = useState([]);
     const [allChecked, setAllChecked] = useState(false);
 
+    const navigate = useNavigate();
+
+    const selectedItems = cartItems.filter(item => item.checked); // 선택된 항목 아이템
+    const isAllSelected = selectedItems.length === cartItems.length && cartItems.length > 0;
+    const isNoneSelected = selectedItems.length === 0;
+
+    // 선택 결과에 따른 버튼 텍스트 변경
+    const buttonText = isNoneSelected || isAllSelected
+        ? '전체 상품 결제하기'
+        : '선택 상품 결제하기';
+
+    // 선택된 상품이 1개 이상일 때:selectedItems 0개일 때 : cartItems 계산하시오!
+    const total = (selectedItems.length > 0 ? selectedItems : cartItems)
+        .reduce((sum, item) =>
+            // 1.total_price가 있다면 값으로 사용.
+            sum + (Number(item.total_price) ||
+            // 2.없으면(||연산자) 물건가격*개수 계산한 값으로 사용
+            (Number(item.p_price) || 0) * item.quantity), 0
+        );
+
+        
+    const freeDelivery = total >= 50000 ? 0 : 3000; // 배송비
+    const totalAmount = total + freeDelivery; // 전체 합계+배송비
+
+    // 상품 선택 후 결제
+    const goPaymentPage = () => {
+        const rawItems = selectedItems.length > 0 ? selectedItems : cartItems;
+
+        const itemsToPay = (selectedItems.length > 0 ? selectedItems : cartItems).map(item => ({
+            ...item,
+            name: item.name || item.p_name,
+            image: item.image || item.p_thumb,
+        }));
+
+        const totalPrice = itemsToPay.reduce((sum, item) =>
+            sum + (Number(item.total_price) || Number(item.p_price) * item.quantity), 0
+        );
+
+        navigate("/cartpayment", {
+            state: {
+                items: itemsToPay,
+                totalPrice
+            }
+        });
+    };
+
+
+
+    // 장바구니 전체 선택/해제
     const toggleAll = () => {
         const newCheck = !allChecked;
         setAllChecked(newCheck);
 
+        // checked 상태를 newCheck(선택O)으로 변경
         setCartItems(prev =>
             prev.map(item => ({
                 ...item,
@@ -56,9 +107,9 @@ function CartPage() {
             });
     }, []);
 
+    // 상품 삭제시키기 (db연동)
     const removeItem = (id) => {
         const user_id = sessionStorage.getItem("user");
-
         fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/delete.php`, {
             method: "POST",
             headers: {
@@ -74,6 +125,7 @@ function CartPage() {
             });
     };
 
+    // 상품 *선택 삭제시키기 (db연동)
     const removeSelectedItem = () => {
         const user_id = sessionStorage.getItem("user");
         const selectedIds = cartItems.filter(item => item.checked).map(item => item.id);
@@ -91,6 +143,7 @@ function CartPage() {
         setCartItems(prev => prev.filter(item => !item.checked));
     };
 
+    // 상품 수량 변경 (db연동)
     const changeCountValue = (id, newQuantity) => {
         setCartItems(prev =>
             prev.map(item => {
@@ -121,19 +174,14 @@ function CartPage() {
         );
     };
 
-    // 전체 상품 금액 계산
-    const total = cartItems.reduce((sum, item) => {
-        return sum + (Number(item.total_price) || (Number(item.p_price) || 0) * item.quantity);
-    }, 0);
-
     return (
         cartItems.length === 0 ? (
             <div className="empty_cart_box">
                 <div className="empty_cart_icon" />
-                    <CartIcon2 className="cart_icon" />
-                    <p className="empty_text">장바구니가{"\n"}비어있습니다.</p>
+                <CartIcon2 className="cart_icon" />
+                <p className="empty_text">장바구니가{"\n"}비어있습니다.</p>
                 <div className="continue_btn">
-                    <DashedLine className="dashed_line"/>
+                    <DashedLine className="dashed_line" />
                     <p onClick={() => window.location.href = '/'}>계속 쇼핑하기</p>
                 </div>
             </div>
@@ -146,7 +194,6 @@ function CartPage() {
                             label="전체 선택"
                             checked={allChecked}
                             onChange={toggleAll}
-                            sx={{ color: 'white' }}
                         />
                         <RemoveBtn className="remove_btn" onClick={removeSelectedItem} />
                     </div>
@@ -169,23 +216,27 @@ function CartPage() {
                     </div>
                 </div>
 
-                {cartItems.length > 0 && (
-                    <div className="cart_total_box">
-                        <div className="cart_total_content">
-                            <div className="total_price">
-                                <p>총 상품 금액 :</p><p>{total.toLocaleString()}원</p>
-                            </div>
-                            <div className="total_deliver">
-                                <p>배송비 :</p><p>+ 3,000원</p>
-                            </div>
-                            <div className="total_amount">
-                                <p>합계 :</p>
-                                <p>{(total + 3000).toLocaleString()}원</p>
-                            </div>
-                            <Button btn="결제하기" className="pay_button" />
+                <div className="cart_total_box">
+                    <div className="cart_total_content">
+                        <div className="total_price">
+                            <p>총 상품 금액 :</p>
+                            <p>{total.toLocaleString()}원</p>
                         </div>
+                        <div className="total_deliver">
+                            <p>배송비 :</p>
+                            <p>+ {freeDelivery.toLocaleString()}원</p>
+                        </div>
+                        <div className="total_amount">
+                            <p>합계 :</p>
+                            <p>{totalAmount.toLocaleString()}원</p>
+                        </div>
+                        <Button
+                            btn={buttonText}
+                            className="pay_button"
+                            onClick={goPaymentPage}
+                        />
                     </div>
-                )}
+                </div>
             </>
         )
     );

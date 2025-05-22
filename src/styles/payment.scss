@@ -40,6 +40,7 @@
     .payment_container{
         >*{margin: 10px 0;}
         .payment_product{
+            margin-bottom: 10px;
             >div{
                 display: flex;
                 gap: 30px;
@@ -158,4 +159,12 @@
         background-color: $whiteColor;
         >div{width: 330px; margin: 0 auto;}
     }
+}
+
+.pay_title {
+    margin-left: 30px;
+}
+
+.cart_items_group {
+    margin-bottom: 10px;
 }

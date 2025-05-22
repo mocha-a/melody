@@ -11,6 +11,7 @@ import WishPage from '../pages/WishPage';
 import SearchPage from '../pages/SearchPage';
 import OrderPage from '../pages/OrderPage';
 import OrderDetailPage from '../pages/OrderDetailPage';
+import CartPaymentPage from '../pages/CartPaymentPage';
 
 function AppRouter() {
     const location = useLocation();
@@ -32,6 +33,7 @@ function AppRouter() {
                 <Route path='/list/category/:main/:mid/:sub' element={<ListPage/>}/>
                 <Route path='/product/:id' element={<ProductPage/>}/>
                 <Route path='/payment' element={<PaymentPage/>}/>
+                <Route path='/cartpayment' element={<CartPaymentPage/>}/>
                 <Route path="/order/:id" element={<OrderPage />} />
                 <Route path="/order/:id/detail/:id" element={<OrderDetailPage />} />
             </Routes>

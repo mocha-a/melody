@@ -8,7 +8,7 @@ function ProductItem({ item, changeCount, onRemove, onToggle }) {
 
             <div className="cart_content">
                 <img src={`${process.env.REACT_APP_APIURL}/admin/Product/upload/${item.p_thumb}`}/>
-
+                
                 <div className="info">
                     <div className="cart_cont_top">
                         <div className="name">{item.name}</div>
