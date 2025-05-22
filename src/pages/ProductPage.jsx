@@ -10,12 +10,16 @@ import WishButton from '../components/ListPage/WishButton';
 import CardItem from '../components/ListPage/CardItem';
 
 import "../styles/product.scss";
+import KeywordItem from '../components/ProductPage/KeywordItem';
+import Footer from '../components/public/Footer';
+import CircularColor from '../components/Join/Loading';
 
 
 
 function ProductPage() {
     const { sanrio, idData } = sanrioStore();
     const [ buy, setBuy ] = useState(false); 
+    const [ show, setShow ] = useState(true);
     const [ price, setPrice ] = useState(0);
     const [ count, setCount ] = useState(1);
     const unitPrice = Number(sanrio?.p_price) ?? 0;
@@ -36,10 +40,19 @@ function ProductPage() {
     },[location])
 
     useEffect(() => {
-    if (sanrio?.p_price) {
-        setPrice(sanrio.p_price);
-    }
+        const timer = setTimeout(() => {
+            setShow(false); // 0.2초 뒤에 숨기기
+        }, 200);
+
+        return () => clearTimeout(timer); // 컴포넌트 언마운트 시 클린업
+    }, []);
+
+    useEffect(() => {
+        if (sanrio?.p_price) {
+            setPrice(sanrio.p_price);
+        }
     }, [sanrio]);
+    
     
     function buynow(){
         if (!user_id) {
@@ -96,54 +109,59 @@ function ProductPage() {
     
     return (
         <>
-            <div className='product_container'>
-                <div className="product_detail">
-                    <CardItem item={sanrio} name={"product"}/>
-                    <div className="product_line"><DashedLine/></div>
-                    <h3>상세보기</h3>
-                    <div className="detail" dangerouslySetInnerHTML={{ __html: sanrio.p_content }} />
+        {show ? (
+        <div className='list_loading'><CircularColor/></div>
+        ):(
+        <>
+        <div className='product_container'>
+            <div className="product_detail">
+                <CardItem item={sanrio} name={"product"}/>
+                <KeywordItem item={sanrio}/>
+                <div className="product_line"><DashedLine/></div>
+                <h3>상세보기</h3>
+                <div className="detail" dangerouslySetInnerHTML={{ __html: sanrio.p_content }} />
+            </div>
+        
+            <div className='product_buynow' onClick={()=>{setBuy(true)}}>
+                <div className='Product_absolute'>
+                    <div className="product_wish"><WishButton item={sanrio}/></div>
+                    <p>구매하기</p>
                 </div>
-                
-                <div className='product_buynow' onClick={()=>{setBuy(true)}}>
-                    <div className='Product_absolute'>
-                        <div className="product_wish"><WishButton item={sanrio}/></div>
-                        <p>구매하기</p>
+            </div>
+        
+            <PopupAction useState={buy} className={"product_popup_bg"}>
+                    <div className='popup_close' onClick={()=>{setBuy(false)}}><BottomArrow className={"bottomArrow_close"}/></div>
+                <div className='product_popup'>
+                    <p className='buy_name'>{sanrio.p_name}</p>
+                    <div className="product_quantity">
+                        <p>수량</p>
+                        <CountingBtn defaultCount={count} onChange={(newCount) => setCount(newCount)}/>
+                    </div>
+                    <div className='popup_line'><DashedLine/></div>
+                    <div className='product_price'>
+                        <p>총 상품 금액</p><p>{totalPrice.toLocaleString()}원</p>
+                    </div>
+                    <div className='product_btn'>
+                        <TwoButton btn1={"장바구니"} btn2={"바로구매"}
+                        onClick1={addToCart} onClick2={buynow} />
                     </div>
                 </div>
-                
-                <PopupAction useState={buy} className={"product_popup_bg"}>
-                        <div className='popup_close' onClick={()=>{setBuy(false)}}><BottomArrow className={"bottomArrow_close"}/></div> 
-                    <div className='product_popup'>
-                        <p className='buy_name'>{sanrio.p_name}</p>
-                        <div className="product_quantity">
-                            <p>수량</p>
-                            <CountingBtn defaultCount={count} onChange={(newCount) => setCount(newCount)}/>
-
-                        </div>
-                        <div className='popup_line'><DashedLine/></div>
-                        <div className='product_price'>
-                            <p>총 상품 금액</p><p>{totalPrice.toLocaleString()}원</p>
-                        </div>
-                        <div className='product_btn'>
-                            <TwoButton btn1={"장바구니"} btn2={"바로구매"}
-                            onClick1={addToCart} onClick2={buynow} />
-                        </div>
-                    </div>
-                </PopupAction>
-            </div>
-
-            {/* 모달창 */}
-            {cartModal && (
-            <div className="modal">
-                <div className="alert_box">장바구니에 담겼습니다.</div>
-            </div>
-            )}
-
-            {alreadyModal && (
-            <div className="modal">
-                <div className="alert_box">이미 담겨있는 상품입니다.</div>
-            </div>
-            )}
+            </PopupAction>
+            <Footer/>
+        </div>
+        {/* 모달창 */}
+        {cartModal && (
+        <div className="modal">
+            <div className="alert_box">장바구니에 담겼습니다.</div>
+        </div>
+        )}
+        {alreadyModal && (
+        <div className="modal">
+            <div className="alert_box">이미 담겨있는 상품입니다.</div>
+        </div>
+        )}
+        </>
+        )}
         </>
     )
 }

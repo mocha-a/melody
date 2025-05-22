@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import SolidLine from './SolidLine';
 
-function Total({ productPrice, total = '합계', finalPrice, setFinalPrice, method }) {
+function Total({ productPrice, total = '합계', finalPrice, setFinalPrice }) {
     const Price = Number(productPrice);
     const deliveryFee = Price >= 50000 ? 0 : 3000;
 
@@ -17,7 +17,7 @@ function Total({ productPrice, total = '합계', finalPrice, setFinalPrice, meth
             <p>{deliveryFee.toLocaleString()}원</p>
             <SolidLine className={"total_line"}/>
             <p className='total_title'>{total}</p>
-            <p className='price_bold'>{method} <span className='total_price'>{finalPrice}원</span></p>
+            <p className='price_bold total_price'>{finalPrice}원</p>
         </div>
     )
 }

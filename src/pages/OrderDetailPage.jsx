@@ -12,7 +12,7 @@ function OrderDetailPage() {
     const [ items, setItems ] = useState([]);
 
     const location = useLocation();
-    const order_id = location.pathname.split("/").filter(Boolean)[3];
+    const order_id = location.pathname.split("/").filter(Boolean)[2];
     
     useEffect(()=>{
         async function orderDetail() {
@@ -20,13 +20,15 @@ function OrderDetailPage() {
                 params: { user: user, order_id: order_id }
             });
             
-            setOrders(res.data.orders);
+            // res.data.orders 중 order_id의 값과 같은것을 찾음
+            const orderData = res.data.orders.filter(order => order.order_id === order_id);
+            setOrders(orderData);
             setItems(res.data.order_items);
         }
 
         orderDetail();
     },[]) 
-
+    
     // 데이터 병합
     const orderData = orders.map(order => {
     const relatedItems = items.filter(item => item.order_id === order.order_id);
@@ -36,7 +38,7 @@ function OrderDetailPage() {
         };
     });
 
-    // 날짜포멧
+    // 날짜포맷
     function formatDate(input) {
         const date = new Date(input);
         const year = date.getFullYear();
@@ -49,11 +51,12 @@ function OrderDetailPage() {
         return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
     }
 
-    // 휴대번호 포멧
+    // 휴대번호 포맷
     function PhoneNumber(phone) {
         if (!phone) return '';
         return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
     }
+console.log(orderData);
 
     // orderData에 데이터가 없을때 리턴
     if(!orderData.length){return}
@@ -62,7 +65,7 @@ function OrderDetailPage() {
             {orderData?.map(item=>
             <div className="detail_container_bg">
                 <div className="detail_state_bg bg">
-                    <div className="datail_state">
+                    <div className="detail_state">
                         <p>{formatDate(item.order_date)}</p>
                         <p>주문번호 {item.order_id}</p>
                     </div>
@@ -76,20 +79,19 @@ function OrderDetailPage() {
                     )}
                     </div>
                 </div>
-                <div className="datail_address_bg bg">
-                    <div className="datail_address">
+                <div className="detail_address_bg bg">
+                    <div className="detail_address">
                         <h2>배송지</h2>
                         <ul>
-                            <li className="datail_name">{item.receiver}</li>
+                            <li className="detail_name">{item.receiver}</li>
                             <li>{PhoneNumber(item.phone)}</li>
-                            <li>{`${item.address}, ${item.detail_address}`}</li>
-                            <li>({item.post_code})</li>
+                            <li>{`${item.address}, ${item.detail_address} (${item.post_code})`}</li>
                             <li>{item.delivery_memo}</li>
                         </ul>
                     </div>
                 </div>
-                <div className="datail_method_bg bg">
-                    <div className="datail_method">
+                <div className="detail_method_bg bg">
+                    <div className="detail_method">
                         <h2>결제정보</h2>
                         {item.items?.map(order=>
                         <Total 
@@ -101,6 +103,7 @@ function OrderDetailPage() {
                         method={<span className="order_method">{item.payment_method}</span>}
                         />
                         )}
+                        <p className="detail_payment_method">{item.payment_method}</p>
                     </div>
                 </div>
             </div>

@@ -51,6 +51,7 @@ function LoginPage() {
     formData.append("pw", pw);
     const res = await axios.post(`${process.env.REACT_APP_APIURL}/api/member_login.php`, formData);
     const { status, message } = res.data;
+    console.log(res.data)
 
     // 로그인 성공 시 & 실패 시
     if (status === "success") {

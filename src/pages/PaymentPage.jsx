@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useWish from "../api/wish";
 import Button from "../components/public/Button";
@@ -31,6 +31,7 @@ function PaymentPage() {
     const [ agreeRequired, setAgreeRequired ] = useState(false);       // 결제 동의
     const [ finalPrice, setFinalPrice ] = useState(0);                 // 총 가격
     
+    const navigate = useNavigate();
     const location = useLocation();
     const { name, thumb, count, item_id, totalPrice } = location.state;
 
@@ -70,10 +71,16 @@ function PaymentPage() {
         user
         };
 
-        console.log("결제 데이터:", formData);
-
         axios.post(`${process.env.REACT_APP_APIURL}/api/order.php`, formData)
-        .then(res=>console.log(res.data))
+        .then(()=>{
+            alert("주문이 완료되었습니다 !");
+            navigate(`/order/${user}`)
+
+        })
+        .catch(err => {
+            console.error(err);
+            alert("결제 중 오류가 발생했습니다. 다시 시도해주세요.");
+        });
     };
     
     return (

@@ -5,6 +5,9 @@
 // OrderPage.jsx
 .order_container{
     @include publicWidth ;
+    .order_itmeBox{
+        margin-bottom: 15px;
+    }
     .order_box{
         border: 1px solid $lineColor;
         border-radius: 8px;
@@ -63,7 +66,7 @@
         background-color: #F9F9F9;
         padding: 20px 0;
     }
-    .datail_state{
+    .detail_state{
         @include publicWidth ; 
         >p:nth-of-type(1){margin-bottom: 7px} 
     }
@@ -86,16 +89,20 @@
             }
         }
     }
-    .datail_address{
+    .detail_address{
         @include publicWidth ;
-        .datail_name{
+        .detail_name{
             font-size: $subTitle;
             font-family: $suiteSemi;
         }
         li{margin: 7px 0}
+        li:last-of-type{
+            color: $grayColor;
+            margin-top: 10px
+        }
 
     }
-    .datail_method{
+    .detail_method{
         @include publicWidth ; 
         .price_bold{
             font-family: $suiteRegular;
@@ -112,5 +119,23 @@
             font-family: $suiteBold;
             font-size: $subTitle;
         }
+        .detail_payment_method{
+            text-align: right;
+            margin-top: 5px;
+        }
+    }
+}
+
+.orderlist_comeon{
+    margin-top: 55%;
+    text-align: center;
+    >img{
+        width: 100px; height: 100px;
+        margin-bottom: 10px;
+    }
+    >p{
+        font-family: $suiteRegular; 
+        font-size: $small; 
+        color: $grayColor;
     }
 }
