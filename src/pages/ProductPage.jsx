@@ -98,7 +98,7 @@ function ProductPage() {
                 
                 <div className='product_buynow' onClick={()=>{setBuy(true)}}>
                     <div className='Product_absolute'>
-                        <Wish className={"product_wish"}/>
+                        <div className="product_wish"><WishButton item={sanrio}/></div>
                         <p>구매하기</p>
                     </div>
                 </div>

@@ -19,9 +19,12 @@ function SearchPage() {
     };
 
     // 검색 결과
-    const filteredProduct = sanrio.filter(item =>
+    const filteredProduct = (sanrio || []).filter(item =>
         item.p_name?.toLowerCase().includes(searchKeyword.toLowerCase())
     );
+
+    
+    if(!sanrio.length) return;
     
     return (
         <div className='search_container'>
