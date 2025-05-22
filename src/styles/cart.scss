@@ -176,6 +176,15 @@
             @include suite_bold_18;
             border-top: 1px solid #ddd;
             padding: 10px 0 80px;
+            p {
+                color: $blackColor;
+
+                &:nth-child(2) {
+                    color: #F339B2;
+                }
+            }
+
+            
         }
 
         .pay_button {

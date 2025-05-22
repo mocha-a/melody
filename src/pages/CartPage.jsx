@@ -179,7 +179,8 @@ function CartPage() {
                                 <p>배송비 :</p><p>+ 3,000원</p>
                             </div>
                             <div className="total_amount">
-                                <p>합계 :</p><p>= {(total + 3000).toLocaleString()}원</p>
+                                <p>합계 :</p>
+                                <p>{(total + 3000).toLocaleString()}원</p>
                             </div>
                             <Button btn="결제하기" className="pay_button" />
                         </div>
