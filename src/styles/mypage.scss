@@ -20,13 +20,14 @@
     .memberbox_li::after{
         content: ' : ';
     }
+    .mypage_onclick{margin-bottom: 10px;}
     .mypage_wishlist{
         height: 47.2px;
         .mypagewish_icon{
             font-family: $suiteRegular;
             display: block;
         }
-        .mypagewish_btn{
+        .mypage_btn{
             font-family: $suiteRegular;
             display: flex;
             justify-content: center;

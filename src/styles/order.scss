@@ -1,0 +1,116 @@
+// import
+@import './variables';
+@import './mixins';
+
+// OrderPage.jsx
+.order_container{
+    @include publicWidth ;
+    .order_box{
+        border: 1px solid $lineColor;
+        border-radius: 8px;
+        background-color: #FFF2FA;
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+        >p>img{width: 90px; height: 90px;}
+
+        .order_item{
+            width: 100%;
+            position: relative;
+            h3, p, button{margin-bottom: 3px}
+            >h3{
+                font-size: $small;
+                font-weight: normal;
+            }
+            >p{
+                font-family: $suiteBold;
+            }
+            >button::after{
+                content: ' > ';
+                padding-left: 5px;
+                font-size: $footer;
+            }
+            .order_delete{
+                position: absolute;
+                top: 0; right: 0;
+                >img{width: 10px; height: 10px;}
+            }
+            .order_date{
+                color: $grayColor;
+                font-size: $footer;
+                margin-bottom: 10px;
+            }
+            .order_flex{
+                display: flex;
+                justify-content: space-between;
+            }
+            
+        }
+    }
+}
+
+// OrderDetail.jsx
+.detail_container_bg{
+    width: 100%;
+    background-color: #e2e2e2;
+    >*{margin: 10px 0;}
+    h2{
+        font-size: 16px;
+        font-family: "suiteBold";
+        margin-bottom: 15px;
+    }
+    .bg{
+        background-color: #F9F9F9;
+        padding: 20px 0;
+    }
+    .datail_state{
+        @include publicWidth ; 
+        >p:nth-of-type(1){margin-bottom: 7px} 
+    }
+    .detail_product{
+        @include publicWidth ;
+        h2{
+            font-size: $regular;
+            font-family: $suiteBold;
+            margin-bottom: 15px;
+        }
+        .payment_product{
+            >div{
+                display: flex;
+                gap: 30px;
+            }
+            .payment_img>img{ width: 100px; height: 100px;}
+            .item_content>p{margin-bottom: 10px;}
+            .quantity{
+                background-color: $lightPink;
+            }
+        }
+    }
+    .datail_address{
+        @include publicWidth ;
+        .datail_name{
+            font-size: $subTitle;
+            font-family: $suiteSemi;
+        }
+        li{margin: 7px 0}
+
+    }
+    .datail_method{
+        @include publicWidth ; 
+        .price_bold{
+            font-family: $suiteRegular;
+        }
+        .total_grid p:nth-of-type(6)::before {
+            content: "";
+        }
+        .order_method{
+            font-size: $small;
+            margin-right: 5px;
+        }
+        .total_price{
+            color: #f339b2;
+            font-family: $suiteBold;
+            font-size: $subTitle;
+        }
+    }
+}

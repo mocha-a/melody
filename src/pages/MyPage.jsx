@@ -8,6 +8,7 @@ import MenuTitle from "../components/public/MenuTitle"
 
 import "../styles/mypage.scss";
 import Footer from "../components/public/Footer";
+import MypageOrder from "../components/icon/MypageOrder";
 
 function MyPage() {
     const [ userData, setUserData ] = useState([]);
@@ -37,11 +38,20 @@ function MyPage() {
                 <p>회원님의 로그인 정보</p>
             </div>
             <ListDividers user={userData[0]}/>
-            <div onClick={()=>{navigate(`/wish/${user}`)}}>
+            <div className="mypage_onclick" onClick={()=>{navigate(`/wish/${user}`)}}>
                 <Button
                     btn={
-                    <span className="mypagewish_btn">
+                    <span className="mypage_btn">
                         <MypageWish className={"mypagewish_icon"}/>위시리스트 보기
+                    </span>}
+                    className={"mypage_wishlist"}
+                />
+            </div>
+            <div className="mypage_onclick" onClick={()=>{navigate(`/order/${user}`)}}>
+                <Button
+                    btn={
+                    <span className="mypage_btn">
+                        <MypageOrder className={"mypageorder_icon"}/>주문내역 보기
                     </span>}
                     className={"mypage_wishlist"}
                 />

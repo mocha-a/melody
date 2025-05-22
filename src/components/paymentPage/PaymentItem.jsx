@@ -8,7 +8,7 @@ function PaymentItem({ thmb, name, count }) {
                 <p className="payment_img"><img src={`${process.env.REACT_APP_APIURL}/admin/product/upload/${thmb}`} alt="" /></p>
                 <div className="item_content">
                     <p>{name}</p>
-                    <TagBtn tagbtn={"수량"} className={"quantity"}/><sapn>{count}개</sapn>
+                    <TagBtn tagbtn={"수량"} className={"quantity"}/><span>{count}개</span>
                 </div>
             </div>
         </div>
