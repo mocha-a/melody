@@ -1,10 +1,14 @@
+import { useEffect } from 'react';
 import SolidLine from './SolidLine';
 
-function Total({ productPrice, total = '합계', finalPrice, setFinalPrice }) {
+function Total({ productPrice, total = '합계', finalPrice, setFinalPrice, method }) {
     const Price = Number(productPrice);
     const deliveryFee = Price >= 50000 ? 0 : 3000;
-    setFinalPrice((Price+deliveryFee).toLocaleString())
-    
+
+    useEffect(() => {
+        setFinalPrice((Price + deliveryFee).toLocaleString());
+    }, [Price, deliveryFee, setFinalPrice]);
+
     return (
         <div className='total_grid'>
             <p className='total_title'>상품 금액</p>
@@ -13,7 +17,7 @@ function Total({ productPrice, total = '합계', finalPrice, setFinalPrice }) {
             <p>{deliveryFee.toLocaleString()}원</p>
             <SolidLine className={"total_line"}/>
             <p className='total_title'>{total}</p>
-            <p className='price_bold'>{finalPrice}원</p>
+            <p className='price_bold'>{method} <span className='total_price'>{finalPrice}원</span></p>
         </div>
     )
 }
