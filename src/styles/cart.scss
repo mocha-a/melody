@@ -3,3 +3,241 @@
 @import './mixins';
 
 // component
+.cart_container_top {
+    padding-top: 20px;
+    @include publicWidth;
+
+    .cart_top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .all_select_btn {
+            @include suite_bold_16;
+
+            .MuiCheckbox-root input[type="checkbox"] {
+                accent-color: white; // 또는 $whiteColor
+            }
+        }
+
+        .remove_btn {
+            @include suite_black_14;
+            height: 30px;
+            background-color: $lightPink;
+            cursor: pointer;
+            border: solid .6px $blackColor;
+            border-radius: $radius1;
+            padding: 2px 13px;
+        }
+    }
+}
+
+.cart_line {
+    margin: 15px 0 20px;
+}
+
+.cart_background_bg {
+    .cart_bg_2 {
+        background-color: $lineColor;
+        height: 100%;
+
+        .cart_content_box {
+            background-color: $whiteColor;
+            height: 70%;
+        }
+    }
+
+}
+
+// 컴포넌트 ProductItem.jsx 
+
+.cart_item {
+    @include publicWidth;
+    display: flex;
+    align-items: start;
+
+    input {
+        margin-right: 10px;
+    }
+
+    input[type="checkbox"] {
+        accent-color: $whiteColor;
+    }
+
+    .cart_content {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: $beigePink;
+        border-radius: $radius1;
+        border: solid 0.6px $lineColor;
+
+        img {
+            width: 100px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+
+            .cart_cont_top {
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+
+                .cart_remove_btn {
+                    cursor: pointer;
+                    margin: 3px 3px;
+
+                    img {
+                        width: 10px;
+                        height: 10px;
+                    }
+                }
+            }
+
+            .cart_cont_bottom {
+                .cart_count {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .css-zemlrd-MuiButtonBase-root-MuiIconButton-root {
+                        border: .6px solid $blackColor;
+                    }
+
+                    .css-pujkp6-MuiTypography-root {
+                        font-size: 14px;
+                    }
+
+                    .css-1mz6ms4 {
+                        gap: 5px;
+                    }
+
+                    // -,+ 버튼 크기 (동그라미)
+                    .MuiButtonBase-root {
+                        width: 16px;
+                        height: 16px;
+                    }
+
+                    // -,+ 버튼 크기 (선)
+                    .MuiSvgIcon-root {
+                        width: 13px;
+                        height: 13px;
+                    }
+                }
+
+                .cart_price {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 6px 0;
+
+                    .item_price {
+                        @include suite_bold_16;
+                    }
+                }
+
+                .cart_text {
+                    color: $grayColor;
+                }
+            }
+
+        }
+    }
+}
+
+.cart_total_box {
+    background-color: #EEEEEE;
+    padding: 10px 0 0;
+    display: flex;
+    justify-content: center;
+
+    .cart_total_content {
+        background-color: $whiteColor;
+        padding: 20px 0;
+        width: 100%;
+
+        .total_price,
+        .total_deliver,
+        .total_amount {
+            @include publicWidth;
+            @include suite_black_16;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total_amount {
+            @include suite_bold_18;
+            border-top: 1px solid #ddd;
+            padding: 10px 0 80px;
+        }
+
+        .pay_button {
+            @include suite_black_16;
+            position: fixed;
+            width: 330px;
+            left: 50%;
+            bottom: 40px;
+            transform: translate(-50%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.empty_cart_box {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .empty_cart_icon {
+        width: 60px;
+        height: 60px;
+        background-size: contain;
+        margin-bottom: 16px;
+    }
+
+    .empty_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: pre-line;
+        font-size: 18px;
+        color: #777;
+        margin-bottom: 24px;
+    }
+
+    .continue_btn {
+        position: absolute;
+        bottom: 0;
+        @include publicWidth;
+        text-align: center;
+        p {
+            @include suite_bold_16;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all .2s ease;
+
+            &:hover {
+                color: $grayColor;
+            }
+        }
+
+        .dashed_line {
+            width: 100%;
+        }
+    }
+}

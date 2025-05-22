@@ -337,3 +337,12 @@ input, textarea{
         white-space: pre-line;
     }
 }
+
+// component cart
+
+.cart {
+    img {
+        filter: opacity(60%);
+        margin-bottom: 10px;
+    }
+}

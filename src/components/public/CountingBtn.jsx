@@ -5,16 +5,25 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 // MUI -> IconButton, AddIcon, RemoveIcon 사용
 
-export default function QuantitySelector({ defaultCount = 1, onChange }) {
-    const [count, setCount] = useState(1);
+export default function CountingBtn({ defaultCount = 1, onChange }) {
+    const [count, setCount] = useState(defaultCount);
 
-    const increase = () => setCount(prev => prev + 1);
-    const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
-
-    // count 바뀔 때마다 부모한테 알려줌
+    // 기존 개수
     useEffect(() => {
-        onChange?.(count);
-    }, [count, onChange]);
+        setCount(defaultCount);
+    }, [defaultCount]);
+    
+    const increase = () => {
+        const newCount = count + 1;
+        setCount(newCount);
+        onChange?.(newCount);
+    };
+
+    const decrease = () => {
+        const newCount = count > 1 ? count - 1 : 1;
+        setCount(newCount);
+        onChange?.(newCount);
+    };
 
     return (
         <Box sx={{ textAlign: 'center' }}>
@@ -24,14 +33,19 @@ export default function QuantitySelector({ defaultCount = 1, onChange }) {
             sx={{
                 border: '1px solid #343434',
                 width: 32, height: 32,
-                borderRadius: '50%',
+                borderRadius: '50%'
             }}
             >
             <RemoveIcon fontSize="small" sx={{ color: '#343434' }} />
             </IconButton>
 
             {/* 개수 */}
-            <Typography sx={{ minWidth: 20, textAlign: 'center', fontFamily: 'suiteRegular' }}>
+            <Typography
+                sx={{
+                    minWidth: 20,
+                    textAlign: 'center',
+                    fontFamily: 'suiteRegular'
+                }}>
             {count}
             </Typography>
 

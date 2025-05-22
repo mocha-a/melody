@@ -14,7 +14,7 @@
 
 .search_container {
     .no_result {
-        @include suite_black_14;
+        @include suite_gray_14;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -29,3 +29,4 @@
         }
     }
 }
+

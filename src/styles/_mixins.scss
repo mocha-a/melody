@@ -214,6 +214,19 @@
     color: $blackColor;
 }
 
+// Bold style
+
+@mixin suite_bold_16 {
+    font-family: $suiteSemi;
+    font-size: 16px;
+    color: $blackColor;
+}
+@mixin suite_bold_18 {
+    font-family: $suiteSemi;
+    font-size: 18px;
+    color: $blackColor;
+}
+
 
 //icon
 .icon{

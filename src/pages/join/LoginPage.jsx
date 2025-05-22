@@ -54,7 +54,6 @@ function LoginPage() {
 
     // 로그인 성공 시 & 실패 시
     if (status === "success") {
-      console.log(status);
       sessionStorage.setItem("user", id);
       sessionStorage.setItem("login_success", "1");
       navigate("/");
