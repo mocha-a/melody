@@ -4,11 +4,12 @@
 
 // MyPage.jsx
 .mypage_container{
+    @include publicWidth ;
     .mypage_hello{
-        @include publicWidth ;
         display: flex;
         justify-content: space-between;
         align-items: end;
+        >h2, p{font-weight: normal;}
     }
     .css-cfd5wn-MuiListItem-root{
         justify-content: space-between;
@@ -20,8 +21,25 @@
         content: ' : ';
     }
     .mypage_wishlist{
+        height: 47.2px;
+        .mypagewish_icon{
+            font-family: $suiteRegular;
+            display: block;
+        }
+        .mypagewish_btn{
+            font-family: $suiteRegular;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
         border: 1px solid $blackColor;
         background-color: $whiteColor;
+    }
+    .mypage_logout{
+        display: block;
+        margin-bottom: 70px;
+        width: 330px;
     }
 }
 
@@ -33,12 +51,28 @@
     >div{justify-content: center;}
 }
 .wish_container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    .wish_item{
+        margin-bottom: 35px;
+    }
     .wish_img{
         position: relative;
         >p>img{width: 195px; height: 195px;}
         .wish_cancel{
             position: absolute;
             top: 10px; right: 10px;
+        }
+    }
+    .wish_content{
+        @include publicWidth ;
+        margin: 0 auto;
+        text-align: center;
+        >b{ 
+            font-weight: normal;
+            display: block;
+            margin: 20px 0 14px;
         }
     }
 }

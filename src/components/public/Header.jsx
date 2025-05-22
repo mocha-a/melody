@@ -18,13 +18,13 @@ function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    
+    const user = sessionStorage.getItem("user");
     const main = () => navigate('/');
     const cart = () => navigate('/cart');
     const login = () => navigate('/login');
 
     useEffect(() => {
-        const user = sessionStorage.getItem("user");
         // 로그인 상태 저장
         setIsLoggedIn(!!user); // boolean 처리하기
         // 라우팅이 발생할 때 마다 바뀌기 (key는 새로 생성되니까 useEffect 실행됨)
@@ -37,7 +37,6 @@ function Header() {
         setMenuOpen(false);
         navigate("/");
     };
-
 
     // pathname이 바뀔 때마다 메뉴 닫기
     useEffect(() => {
@@ -185,8 +184,9 @@ function Header() {
                             {isLoggedIn ? "로그아웃" : "로그인 / 회원가입"}
                         </div>
                         <div className="right">
-                            <div onClick={()=>{navigate('/mypage/123')}}><MyPageIcon className="mypage_icon" /></div>
+                            <div onClick={()=>{navigate(`/mypage/${user}`)}}><MyPageIcon /></div>
                             <div onClick={()=>{navigate('/search')}}><SearchIcon className="search_icon" /></div>
+                            <SearchIcon />
                         </div>
                     </div>
                 </div>

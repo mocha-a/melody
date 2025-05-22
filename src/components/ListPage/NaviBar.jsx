@@ -7,9 +7,10 @@ import PomNote1 from "../icon/PomNote1";
 import PomNote2 from "../icon/PomNote2";
 import CinnaNote1 from "../icon/CinnaNote1";
 import CinnaNote2 from "../icon/CinnaNote2";
+import { useCategory } from '../../api/sanrio';
 
 function NaviBar({ main, mid, sub }) {
-    const category = JSON.parse(localStorage.getItem('category'));
+    const { category } = useCategory();
 
     function note8Icons(){
         switch(main){

@@ -4,9 +4,10 @@ import { sanrioStore } from '../api/sanrio';
 import CountingBtn from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import TwoButton from '../components/public/TwoButton';
-import Wish from '../components/public/Wish';
+import Footer from '../components/public/Footer';
 import BottomArrow from '../components/icon/BottomArrow';
 import PopupAction from '../components/ProductPage/PopupAction';
+import WishButton from '../components/ListPage/WishButton';
 import CardItem from '../components/ListPage/CardItem';
 
 import "../styles/product.scss";
@@ -29,8 +30,9 @@ function ProductPage() {
     const [alreadyModal, setAlreadyModal] = useState(false);
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
         idData(id)
-    },[])
+    },[location])
 
     useEffect(() => {
     if (sanrio?.p_price) {
