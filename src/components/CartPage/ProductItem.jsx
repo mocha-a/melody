@@ -7,7 +7,7 @@ function ProductItem({ item, changeCount, onRemove, onToggle }) {
             <input type="checkbox" checked={item.checked} onChange={() => onToggle(item.id)} />
 
             <div className="cart_content">
-                <img src={`${process.env.REACT_APP_APIURL}/admin/Product/upload/${item.p_thumb}`}/>
+                <img src={`${process.env.REACT_APP_APIURL_IMG}/${item.p_thumb}`}/>
 
                 <div className="info">
                     <div className="cart_cont_top">

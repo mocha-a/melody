@@ -4,7 +4,6 @@ import { sanrioStore } from '../api/sanrio';
 import CountingBtn from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import TwoButton from '../components/public/TwoButton';
-import Footer from '../components/public/Footer';
 import BottomArrow from '../components/icon/BottomArrow';
 import PopupAction from '../components/ProductPage/PopupAction';
 import WishButton from '../components/ListPage/WishButton';
@@ -29,6 +28,8 @@ function ProductPage() {
     const [cartModal, setCartModal] = useState(false);
     const [alreadyModal, setAlreadyModal] = useState(false);
 
+    const user_id = sessionStorage.getItem("user");
+
     useEffect(()=>{
         window.scrollTo(0, 0);
         idData(id)
@@ -41,10 +42,18 @@ function ProductPage() {
     }, [sanrio]);
     
     function buynow(){
+        if (!user_id) {
+            const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
+            if (result) {
+                navigate("/login");
+            }
+            return;
+        }
         navigate("/payment", { 
             state: {
                 name: sanrio?.p_name,
-                thmb: sanrio?.p_thumb,
+                thumb: sanrio?.p_thumb,
+                item_id: sanrio?.id,
                 count,
                 totalPrice
             }
@@ -52,7 +61,6 @@ function ProductPage() {
     }
 
     function addToCart() {
-        const user_id = sessionStorage.getItem("user");
         // 비 로그인 상태
         if (!user_id) {
             const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
@@ -62,7 +70,7 @@ function ProductPage() {
             return;
         }
         // 로그인 상태
-        fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/add.php`, {
+        fetch(`${process.env.REACT_APP_APIURL}/api/cart/add.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -118,7 +126,7 @@ function ProductPage() {
                         </div>
                         <div className='product_btn'>
                             <TwoButton btn1={"장바구니"} btn2={"바로구매"}
-                            onClick1={addToCart} onClick2={buynow}/>
+                            onClick1={addToCart} onClick2={buynow} />
                         </div>
                     </div>
                 </PopupAction>

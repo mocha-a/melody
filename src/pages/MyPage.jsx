@@ -2,13 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MypageWish from "../components/icon/MypageWish";
+import MypageOrder from "../components/icon/MypageOrder";
 import ListDividers from "../components/MyPage/MemberBox";
 import Button from "../components/public/Button";
 import MenuTitle from "../components/public/MenuTitle"
 
 import "../styles/mypage.scss";
-import Footer from "../components/public/Footer";
-import MypageOrder from "../components/icon/MypageOrder";
 
 function MyPage() {
     const [ userData, setUserData ] = useState([]);
@@ -16,10 +15,20 @@ function MyPage() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_APIURL}/admin/api/member.php`, user)
-        .then(res=>
+        if(!user){
+            const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
+            if (result) {
+                navigate("/login");
+            }
+            return;
+        }
+        
+        axios.get(`${process.env.REACT_APP_APIURL}/api/member.php`,{
+            params: { user: user }
+        })
+        .then(res=>{
             setUserData(res.data)
-        )
+        })
     },[user])
 
     const logout = () => {
@@ -56,7 +65,6 @@ function MyPage() {
                     className={"mypage_wishlist"}
                 />
             </div>
-            <Footer/> 
             <Button btn={"로그아웃"} onClick={()=>{logout()}} className="mypage_logout"/>
         </div>
     </>

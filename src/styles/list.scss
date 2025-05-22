@@ -36,6 +36,16 @@
     }
     .list_img{
         position: relative;
+        >p>img{
+            cursor: pointer;
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+        >p>img:hover{
+            filter: brightness(0.92);
+        }
         >p{
             width: 195px; height: 195px;
             img{width: 100%; height: 100%;}

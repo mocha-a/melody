@@ -39,7 +39,7 @@ function CartPage() {
         const user_id = sessionStorage.getItem("user");
         if (!user_id) return;
 
-        fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/list.php?user_id=${user_id}`)
+        fetch(`${process.env.REACT_APP_APIURL}/api/cart/list.php?user_id=${user_id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -59,7 +59,7 @@ function CartPage() {
     const removeItem = (id) => {
         const user_id = sessionStorage.getItem("user");
 
-        fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/delete.php`, {
+        fetch(`${process.env.REACT_APP_APIURL}/api/cart/delete.php`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,7 +79,7 @@ function CartPage() {
         const selectedIds = cartItems.filter(item => item.checked).map(item => item.id);
 
         selectedIds.forEach(id => {
-            fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/delete.php`, {
+            fetch(`${process.env.REACT_APP_APIURL}/api/cart/delete.php`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -98,7 +98,7 @@ function CartPage() {
                     const onePrice = Number(item.p_price) || 0;
                     const newTotalPrice = onePrice * newQuantity;
 
-                    fetch(`${process.env.REACT_APP_APIURL}/admin/api/cart/update_count.php`, {
+                    fetch(`${process.env.REACT_APP_APIURL}/api/cart/update_count.php`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

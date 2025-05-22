@@ -11,7 +11,7 @@ function WishPage() {
     const user = sessionStorage.getItem("user");
     
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_APIURL}/admin/api/wish.php`, {
+        axios.get(`${process.env.REACT_APP_APIURL}/api/wish.php`, {
             params: { case: 'GET', type: 'all' }
         })
         .then(res=>{

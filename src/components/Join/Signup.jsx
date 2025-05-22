@@ -87,7 +87,7 @@ function Signup() {
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_APIURL}/admin/api/member.php`,
+            url: `${process.env.REACT_APP_APIURL}/api/member.php`,
             data: formData
         })
         .then(res => {

@@ -26,7 +26,7 @@ export default function useWish() {
     // 실제 서버로 전송하는 함수
     const sendToServer = () => {
         if (buffer.length === 0) return;
-        axios.post(`${process.env.REACT_APP_APIURL}/admin/api/wish.php`, buffer)
+        axios.post(`${process.env.REACT_APP_APIURL}/api/wish.php`, buffer)
             .then(() => {
                 buffer = [];
                 localStorage.removeItem('wish');
