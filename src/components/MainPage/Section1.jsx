@@ -18,7 +18,7 @@ function Section1() {
 
     useEffect(() => {
         async function fetchItems() {
-            const res = await axios.get('http://nsa10050.dothome.co.kr/admin/api/p_list.php');
+            const res = await axios.get('/admin/api/p_list.php');
             const data = res.data;
 
             console.log(data);
