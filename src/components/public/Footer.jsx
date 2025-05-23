@@ -9,9 +9,9 @@ function Footer() {
         <div className='footer_container'>
             <div className='footer_content'>
                 <div className="footer_snsIcon">
-                    <Insta/>
-                    <Facebook/>
-                    <Twitter/>
+                    <img src="../public/img/public_insta_01.svg" />
+                    <img src="../public/img/public_facebook_01.svg" />
+                    <img src="../public/img/public_twitter_01.svg" />
                 </div>
 
                 <div className="footer_text">
