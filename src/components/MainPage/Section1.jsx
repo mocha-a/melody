@@ -18,6 +18,7 @@ function Section1() {
 
     useEffect(() => {
         async function fetchItems() {
+            try{
             const res = await axios.get('/admin/api/p_list.php');
             const data = res.data;
 
@@ -27,6 +28,9 @@ function Section1() {
             setItem1(data.find(p => Number(p.id) === 274));
             setItem2(data.find(p => Number(p.id) === 199));
             setItem3(data.find(p => Number(p.id) === 20));
+            }catch{
+                console.log('실패')
+            }
         }
         
         fetchItems();
