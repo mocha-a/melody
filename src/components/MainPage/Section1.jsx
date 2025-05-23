@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { instance } from '../../api/sanrio';
 import '../../styles/main.scss';
-import axios from 'axios';
 
 function Section1() {
     const BASE_URL = `${process.env.REACT_APP_APIURL_IMG}/`;
@@ -18,19 +17,12 @@ function Section1() {
 
     useEffect(() => {
         async function fetchItems() {
-            try{
-            const res = await axios.get('/admin/api/p_list.php');
+            const res = await instance.get('/p_list.php');
             const data = res.data;
-
-            console.log(data);
-            
 
             setItem1(data.find(p => Number(p.id) === 274));
             setItem2(data.find(p => Number(p.id) === 199));
             setItem3(data.find(p => Number(p.id) === 20));
-            }catch{
-                console.log('실패')
-            }
         }
         
         fetchItems();
@@ -38,7 +30,6 @@ function Section1() {
 
     return (
         <div className="section1_container">
-            <img src="/upload/111.jpg" alt="" />
             <div className="top">
                 <div className="half" onClick={() => productClick(item1?.id)}>
                     <img src={`${BASE_URL}${item1?.p_thumb}`} alt="" />
