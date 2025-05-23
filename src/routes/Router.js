@@ -12,6 +12,7 @@ import SearchPage from '../pages/SearchPage';
 import OrderPage from '../pages/OrderPage';
 import OrderDetailPage from '../pages/OrderDetailPage';
 import CartPaymentPage from '../pages/CartPaymentPage';
+import TwoOrderDetail from '../pages/TwoOrderDetail';
 
 function AppRouter() {
     const location = useLocation();
@@ -36,6 +37,7 @@ function AppRouter() {
                 <Route path='/cartpayment' element={<CartPaymentPage/>}/>
                 <Route path="/order/:id" element={<OrderPage />} />
                 <Route path="/order/detail/:id" element={<OrderDetailPage />} />
+                <Route path="/order/details/:id" element={<TwoOrderDetail />} />
             </Routes>
         </div>
     )

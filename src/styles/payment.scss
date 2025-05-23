@@ -168,3 +168,47 @@
 .cart_items_group {
     margin-bottom: 10px;
 }
+
+.cart_total_content {
+    background-color: $whiteColor;
+    padding: 20px 0;
+    width: 100%;
+
+    .total_price,
+    .total_deliver,
+    .total_amount {
+        @include publicWidth;
+        @include suite_black_16;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .total_amount {
+        @include suite_bold_18;
+        border-top: 1px solid #ddd;
+        padding: 10px 0 80px;
+        p {
+            color: $blackColor;
+
+            &:nth-child(2) {
+                color: #F339B2;
+            }
+        }
+
+        
+    }
+
+    .pay_button {
+        @include suite_black_16;
+        position: fixed;
+        width: 330px;
+        left: 50%;
+        bottom: 40px;
+        transform: translate(-50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -17,7 +17,7 @@ function CartPage() {
 
     const selectedItems = cartItems.filter(item => item.checked); // 선택된 항목 아이템
     const isAllSelected = selectedItems.length === cartItems.length && cartItems.length > 0;
-    const isNoneSelected = selectedItems.length === 0;
+    const isNoneSelected = selectedItems.length === 0; // 선택 x
 
     // 선택 결과에 따른 버튼 텍스트 변경
     const buttonText = isNoneSelected || isAllSelected
@@ -74,19 +74,24 @@ function CartPage() {
         );
     };
 
+    // 체크박스 토글
     const toggleItemCheck = (id) => {
         setCartItems(prev => {
+            // item의 id가 일치하는 것만 checked 값 반전시키기
             const updated = prev.map(item =>
                 item.id === id ? { ...item, checked: !item.checked } : item
             );
+            // 모든 아이템의 checked가 true인지 확인하기
             const allNowChecked = updated.every(item => item.checked);
             setAllChecked(allNowChecked);
             return updated;
         });
     };
 
+    // 장바구니 데이터(cart)를 db에서 불러오기
     useEffect(() => {
         const user_id = sessionStorage.getItem("user");
+        // 비 로그인 시 돌려보내기
         if (!user_id) return;
 
         fetch(`${process.env.REACT_APP_APIURL}/api/cart/list.php?user_id=${user_id}`)
@@ -99,7 +104,7 @@ function CartPage() {
                         image: item.p_thumb,
                         quantity: item.quantity,
                         p_price: item.p_price,
-                        checked: false
+                        checked: false // checkbox 꺼진 상태로 전달
                     }));
                     setCartItems(formatted);
                 }

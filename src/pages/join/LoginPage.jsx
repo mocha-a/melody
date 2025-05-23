@@ -1,22 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import "../../styles/join.scss";
-
 import MenuTitle from "../../components/public/MenuTitle";
 import InputBox from "../../components/public/InputBox";
 import Button from "../../components/public/Button";
+import "../../styles/join.scss";
 
 function LoginPage() {
   const navigate = useNavigate();
   
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+
+  // 모달 팝업
   const [signupModal, setSignupModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-
+  // 
   useEffect(() => {
     if (sessionStorage.getItem("signup_notice")) {
       setSignupModal(true);

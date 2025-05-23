@@ -15,12 +15,15 @@
         padding: 10px;
         display: flex;
         gap: 10px;
+        transition: all .2s ease;
+
         >p>img{width: 90px; height: 90px;}
 
         .order_item{
             width: 100%;
             position: relative;
             h3, p, button{margin-bottom: 3px}
+
             >h3{
                 font-size: $small;
                 font-weight: normal;
@@ -47,7 +50,10 @@
                 display: flex;
                 justify-content: space-between;
             }
-            
+
+            button {
+                cursor: pointer;
+            }
         }
     }
 }
@@ -138,4 +144,8 @@
         font-size: $small; 
         color: $grayColor;
     }
+}
+
+.payment_product {
+    margin-bottom: 10px;
 }

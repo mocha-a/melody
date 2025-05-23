@@ -1,6 +1,6 @@
 import TagBtn from "../public/TagBtn";
 
-function CartPayItem({ image, name, quantity }) {
+function CartPayItem({ image, name, quantity, className }) {
     return (
         <div className="payment_product include">
             <div>

@@ -99,6 +99,8 @@
             position: relative;
             background-color: $beigePink;
             padding: 27px 0 39px;
+            cursor: pointer;
+
             .product_wish{
                 position: absolute;
                 top: 43%; left: 30px;
@@ -118,12 +120,15 @@
         bottom: 0px; left: 50%;
         border-radius: 20px 20px 0 0;
         background-color: $beigePink;
-        .bottomArrow_close
-        >img{
-            display: block;
-            margin: 0 auto;
-            padding: 20px 0 40px;
+        .bottomArrow_close {
+            >img{
+                cursor: pointer;
+                display: block;
+                margin: 0 auto;
+                padding: 20px 0 40px;
+            }
         }
+        
         .product_popup{
             @include publicWidth ;
             .buy_name{font-size: $title;}

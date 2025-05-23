@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import useWish from "../api/wish";
 import Button from "../components/public/Button";
@@ -34,8 +34,7 @@ function CartPaymentPage() {
     const location = useLocation();
     const { items = [], totalPrice = 0 } = location.state || {};
 
-    console.log(items);
-    
+    const navigate = useNavigate();    
     
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -74,7 +73,15 @@ function CartPaymentPage() {
         };
 
         axios.post(`${process.env.REACT_APP_APIURL}/api/order.php`, formData)
-        .then(res=>console.log(res.data))
+        .then(()=>{
+            alert("주문이 완료되었습니다 !");
+            navigate(`/order/${user}`)
+
+        })
+        .catch(err => {
+            console.error(err);
+            alert("결제 중 오류가 발생했습니다. 다시 시도해주세요.");
+        });
     };
     
     return (

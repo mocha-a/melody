@@ -85,11 +85,13 @@ function Signup() {
         formData.append("tel", phone);
         formData.append("date", birthDate);
 
+        // 가입한 회원 정보를 서버에 전송
         axios({
             method: "post",
             url: `${process.env.REACT_APP_APIURL}/api/member.php`,
             data: formData
         })
+        // 성공 후 세션에 팝업창+로그인 창으로 이동
         .then(res => {
             sessionStorage.setItem("signup_notice", "1");
             navigate("/login");

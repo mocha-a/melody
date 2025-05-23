@@ -22,8 +22,9 @@ function SearchPage() {
     const filteredProduct = Array.isArray(sanrio) ? sanrio.filter(item =>
         item.p_name?.toLowerCase().includes(searchKeyword.toLowerCase()))
     : [];
-
     
+    // 데이터 안전성 검사 (데이터 있을때만 렌더링해!!)
+    // sanrio가 배열이 아니면 true, 빈 배열일 시도 true
     if (!Array.isArray(sanrio) || sanrio.length === 0) return;
     
     return (

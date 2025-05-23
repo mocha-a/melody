@@ -20,7 +20,14 @@
     .memberbox_li::after{
         content: ' : ';
     }
-    .mypage_onclick{margin-bottom: 10px;}
+    .mypage_onclick{
+        margin-bottom: 10px;
+        transition: all .2s ease;
+        
+        &:hover {
+            filter: brightness(97%);
+        }
+    }
     .mypage_wishlist{
         height: 47.2px;
         .mypagewish_icon{
