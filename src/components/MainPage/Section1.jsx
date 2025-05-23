@@ -19,6 +19,8 @@ function Section1() {
         async function fetchItems() {
             const res = await instance.get('/p_list.php');
             const data = res.data;
+            console.log(data);
+            
 
             setItem1(data.find(p => Number(p.id) === 274));
             setItem2(data.find(p => Number(p.id) === 199));
