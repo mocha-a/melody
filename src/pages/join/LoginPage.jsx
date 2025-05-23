@@ -49,7 +49,7 @@ function LoginPage() {
     const formData = new FormData();
     formData.append("id", id);
     formData.append("pw", pw);
-    const res = await axios.post(`${process.env.REACT_APP_APIURL}/admin/api/member_login.php`, formData);
+    const res = await axios.post(`${process.env.REACT_APP_APIURL}/api/member_login.php`, formData);
     const { status, message } = res.data;
 
     // 로그인 성공 시 & 실패 시

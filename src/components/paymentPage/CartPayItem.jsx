@@ -6,8 +6,7 @@ function CartPayItem({ image, name, quantity }) {
             <div>
                 <p className="payment_img">
                     <img
-                        src={`${process.env.REACT_APP_APIURL}/admin/product/upload/${image}`}
-                        alt=""
+                        src={`${process.env.REACT_APP_APIURL_IMG}/${image}`}
                     />
                 </p>
                 <div className="item_content">

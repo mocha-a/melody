@@ -4,7 +4,6 @@ import DashedLine from "../public/DashedLine";
 import "../../styles/product.scss";
 
 function ProductItem({ item }) {
-    console.log(item);
     
   return (
     <>

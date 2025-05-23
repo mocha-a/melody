@@ -2,9 +2,53 @@
 @import './variables';
 @import './mixins';
 
+//KeywordCard.jsx
+.keyword_container{
+    @include publicWidth;
+    >h3{
+        font-family: $suiteSemi;
+        margin: 20px auto !important;
+    }
+    >h3::after{
+        content: ' 💗 ';
+    }
+    .swiper{
+        z-index: 0;
+        .swiper-slide{
+            width:100px !important;
+        }
+    }
+    .keyWord_item{
+        width: 100%;
+        .keyWord_item_img{
+            position: relative;
+            >p>img{ height: 100px;}
+            .card_wish{
+                position: absolute;
+                bottom: 5px; right: 5px;
+            }
+        }
+        .keyWord_content{
+            >b{
+                font-size: $footer;
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: normal;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            >p{
+                font-size: $small;
+                font-family: $suiteSemi;
+            }
+        }
+    }
+}
 .product_container{
     .product_detail{
         margin-bottom: 86px;
+        .detail{text-align: center;}
         .product_item{
             margin-bottom: 35px;
         }
@@ -141,5 +185,6 @@
         height: 16.5px;
     }
     .prodect_footer{margin-bottom: 86px;}
+    .footer_container{margin-bottom: 156px;}
 }
 

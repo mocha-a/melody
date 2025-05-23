@@ -147,7 +147,10 @@
         content: ' = ';
     }
     .total_line{ grid-column: span 2; }
-    .price_bold{ font-family: $suiteBold;}
+    .price_bold{
+        .total_price{ color: #f339b2;}
+        font-family: $suiteBold;
+    }
 }
 
 // font_style

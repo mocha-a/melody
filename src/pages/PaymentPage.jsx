@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useWish from "../api/wish";
 import Button from "../components/public/Button";
@@ -25,14 +25,15 @@ function PaymentPage() {
     const [ memo, setMemo ] = useState(false);                         // 배송메모 슬라이드
     const [ custom, setCustom ] = useState(false);                     // 배송메모 input 박스
     const [ cashReceipt, setCashReceipt ] = useState(false);           // 현금영수증 신청
-    const [ deductionType, setDeductionType ] = useState("소득공제용"); // 현금영수증 타입
-    const [ method, setMethod ] = useState("신용/체크카드");            // 결제 수단
+    const [ deductionType, setDeductionType ] = useState("소득공제용");  // 현금영수증 타입
+    const [ method, setMethod ] = useState("신용/체크카드");             // 결제 수단
     const [ agreeAll, setAgreeAll ] = useState(false);                 // 결제 동의
     const [ agreeRequired, setAgreeRequired ] = useState(false);       // 결제 동의
     const [ finalPrice, setFinalPrice ] = useState(0);                 // 총 가격
     
+    const navigate = useNavigate();
     const location = useLocation();
-    const { name, thmb, count, totalPrice } = location.state;
+    const { name, thumb, count, item_id, totalPrice } = location.state;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -62,24 +63,31 @@ function PaymentPage() {
         product: [{
             name,
             count,
-            thmb,
+            thumb,
+            item_id,
             price: totalPrice
         }],
         finalPrice,
         user
         };
 
-        console.log("결제 데이터:", formData);
+        axios.post(`${process.env.REACT_APP_APIURL}/api/order.php`, formData)
+        .then(()=>{
+            alert("주문이 완료되었습니다 !");
+            navigate(`/order/${user}`)
 
-        axios.post(`${process.env.REACT_APP_APIURL}/admin/api/order.php`, formData)
-        .then(res=>console.log(res.data))
+        })
+        .catch(err => {
+            console.error(err);
+            alert("결제 중 오류가 발생했습니다. 다시 시도해주세요.");
+        });
     };
     
     return (
         <div className="payment_container_bg">
             <div className="payment_container">
                 <div className="payment_product_container bg">
-                    <PaymentItem thmb={thmb} name={name} count={count} />
+                    <PaymentItem thumb={thumb} name={name} count={count} />
                 </div>
                 <Address
                     receiver={receiver}                 // 주문자명

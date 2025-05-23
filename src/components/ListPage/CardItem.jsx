@@ -10,7 +10,7 @@ function CardItem({ item, name }) {
         <>
         <div className={`${name}_item`}>
             <div className={`${name}_img`}>
-                <p><img src={`${process.env.REACT_APP_APIURL}/admin/product/upload/${item?.p_thumb}`} alt="" /></p>
+                <p><img src={`${process.env.REACT_APP_APIURL_IMG}/${item?.p_thumb}`} alt="" /></p>
                 { !(pathname === "product" || pathname === "wish") && <WishButton item={item}/>}
                 { pathname === "wish" && <CancelButton item={item}/> }
             </div>

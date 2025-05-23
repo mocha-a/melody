@@ -6,10 +6,9 @@ import useWish from "../../api/wish";
 function WishButton({ item }) {
     const { wishList, bufferServerSync, user } = useWish();
     const [ wish, setWish ] = useState(false);
-    const wished = wishList.some((x) => x.id === item.id || x.wish_id === item.id);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_APIURL}/admin/api/wish.php`)
+        axios.get(`${process.env.REACT_APP_APIURL}/api/wish.php`)
         .then((res)=>{
             if(user){
                 const userId = res.data.filter(liked => liked.m_id === user);
@@ -23,7 +22,7 @@ function WishButton({ item }) {
 
     const toggleWish = (item) => {
         let updated;
-        if (wished) {
+        if (wish) {
             updated = wishList.filter(x => x.id === item.id || x.wish_id === item.id);
             bufferServerSync(item, 'remove');
             
@@ -33,11 +32,11 @@ function WishButton({ item }) {
         }
 
         localStorage.setItem('wish', JSON.stringify(updated));
-        setWish(!wished);
+        setWish(!wish);
     };
 
     return (
-        <div className='card_wish'>
+        <div className='card_wish' onClick={(e)=>{e.stopPropagation();}}>
             <Wish wish={wish} onToggle={()=>{toggleWish(item)}}/>
         </div>
     )

@@ -35,7 +35,7 @@ function AppRouter() {
                 <Route path='/payment' element={<PaymentPage/>}/>
                 <Route path='/cartpayment' element={<CartPaymentPage/>}/>
                 <Route path="/order/:id" element={<OrderPage />} />
-                <Route path="/order/:id/detail/:id" element={<OrderDetailPage />} />
+                <Route path="/order/detail/:id" element={<OrderDetailPage />} />
             </Routes>
         </div>
     )

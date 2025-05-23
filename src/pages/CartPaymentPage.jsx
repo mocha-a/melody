@@ -69,9 +69,7 @@ function CartPaymentPage() {
         user
         };
 
-        console.log("결제 데이터:", formData);
-
-        axios.post(`${process.env.REACT_APP_APIURL}/admin/api/order.php`, formData)
+        axios.post(`${process.env.REACT_APP_APIURL}/api/order.php`, formData)
         .then(res=>console.log(res.data))
     };
     

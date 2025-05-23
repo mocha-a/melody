@@ -4,7 +4,7 @@ import { instance } from '../../api/sanrio';
 import '../../styles/main.scss';
 
 function Section2() {
-    const BASE_URL = `${process.env.REACT_APP_APIURL}/admin/product/upload/`;
+    const BASE_URL = `${process.env.REACT_APP_APIURL_IMG}/`;
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
 
