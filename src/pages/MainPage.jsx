@@ -5,6 +5,7 @@ import Section2 from '../components/MainPage/Section2';
 import Marquee1 from '../components/MainPage/Marquee1';
 import Marquee2 from '../components/MainPage/Marquee2';
 import Footer from '../components/public/Footer';
+import CircularColor from '../components/Join/Loading';
 
 function MainPage() {
   const [logoutModal, setLogoutModal] = useState(false);
