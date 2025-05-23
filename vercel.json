@@ -1,7 +1,7 @@
 {
     "rewrites": [
         {
-        "source": "/admin/api/:match*",
+        "source": "/api/:match*",
         "destination": "http://nsa10050.dothome.co.kr/admin/api/:match*"
         },
         {
