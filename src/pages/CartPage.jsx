@@ -39,7 +39,6 @@ function CartPage() {
 
     // 상품 선택 후 결제
     const goPaymentPage = () => {
-        const rawItems = selectedItems.length > 0 ? selectedItems : cartItems;
 
         const itemsToPay = (selectedItems.length > 0 ? selectedItems : cartItems).map(item => ({
             ...item,

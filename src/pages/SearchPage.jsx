@@ -19,12 +19,12 @@ function SearchPage() {
     };
 
     // 검색 결과
-    const filteredProduct = (sanrio || []).filter(item =>
-        item.p_name?.toLowerCase().includes(searchKeyword.toLowerCase())
-    );
+    const filteredProduct = Array.isArray(sanrio) ? sanrio.filter(item =>
+        item.p_name?.toLowerCase().includes(searchKeyword.toLowerCase()))
+    : [];
 
     
-    if(!sanrio.length) return;
+    if (!Array.isArray(sanrio) || sanrio.length === 0) return;
     
     return (
         <div className='search_container'>

@@ -33,6 +33,9 @@ function CartPaymentPage() {
     
     const location = useLocation();
     const { items = [], totalPrice = 0 } = location.state || {};
+
+    console.log(items);
+    
     
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -61,8 +64,9 @@ function CartPaymentPage() {
         } : null,
         product: items.map(item => ({
             name: item.name,
-            thmb: item.image,
+            thumb: item.image,
             count: item.quantity,
+            item_id: item.product_id,
             price: item.total_price || Number(item.p_price) * item.quantity
         })),
         finalPrice,
