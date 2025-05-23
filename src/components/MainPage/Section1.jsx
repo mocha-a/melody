@@ -30,6 +30,7 @@ function Section1() {
 
     return (
         <div className="section1_container">
+            <img src="/111.jpg" alt="" />
             <div className="top">
                 <div className="half" onClick={() => productClick(item1?.id)}>
                     <img src={`${BASE_URL}${item1?.p_thumb}`} alt="" />
