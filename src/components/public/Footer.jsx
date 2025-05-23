@@ -1,7 +1,3 @@
-import Insta from '../icon/Insta';
-import Twitter from '../icon/Twitter';
-import Facebook from '../icon/Facebook';
-
 import SolidLine from '../public/SolidLine';
 
 function Footer() {
@@ -9,9 +5,9 @@ function Footer() {
         <div className='footer_container'>
             <div className='footer_content'>
                 <div className="footer_snsIcon">
-                    <img src="../public/img/public_insta_01.svg" />
-                    <img src="../public/img/public_facebook_01.svg" />
-                    <img src="../public/img/public_twitter_01.svg" />
+                    <img src="./img/public_insta_01.svg" />
+                    <img src="./img/public_facebook_01.svg" />
+                    <img src="./img/public_twitter_01.svg" />
                 </div>
 
                 <div className="footer_text">
