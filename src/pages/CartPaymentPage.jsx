@@ -42,10 +42,16 @@ function CartPaymentPage() {
 
     
     const handlePayment = () => {
+        if (!receiver && !phone && !postCode && !deductionValue) {
+            alert("상품 배송 정보를 작성해주세요.");
+            return;
+        }
+
         if (!agreeRequired) {
             alert("필수 동의 항목을 체크해주세요.");
             return;
         }
+
         const fullMemo = custom ? customMemo : inputSelect;
 
         const formData = {

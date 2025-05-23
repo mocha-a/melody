@@ -4,6 +4,7 @@ import { instance } from "../api/sanrio";
 import useWish from "../api/wish";
 import PaymentItem from "../components/paymentPage/PaymentItem"
 import Total from "../components/public/Total";
+import MenuTitle from "../components/public/MenuTitle";
 
 function OrderDetailPage() {
     const { user } = useWish();
@@ -61,9 +62,10 @@ function OrderDetailPage() {
     if(!orderData.length){return}
     return (
         <div>
+            <MenuTitle title="상세 주문 내역"/>
             {orderData?.map(item=>
             <div className="detail_container_bg">
-                <div className="detail_state_bg bg">
+                <div className="detail_state_bg">
                     <div className="detail_state">
                         <p>{formatDate(item.order_date)}</p>
                         <p>주문번호 {item.order_id}</p>

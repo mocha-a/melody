@@ -235,11 +235,13 @@ function CartPage() {
                             <p>합계 :</p>
                             <p>{totalAmount.toLocaleString()}원</p>
                         </div>
-                        <Button
-                            btn={buttonText}
-                            className="pay_button"
-                            onClick={goPaymentPage}
-                        />
+                        <div className="total_btn">
+                            <Button
+                                btn={buttonText}
+                                className="pay_button"
+                                onClick={goPaymentPage}
+                            />
+                        </div>
                     </div>
                 </div>
             </>

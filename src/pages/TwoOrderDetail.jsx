@@ -4,6 +4,7 @@ import { instance } from "../api/sanrio";
 import useWish from "../api/wish";
 import Total from "../components/public/Total";
 import CartPayItem from "../components/paymentPage/CartPayItem";
+import MenuTitle from "../components/public/MenuTitle";
 
 function TwoOrderDetail() {
     const { user } = useWish();
@@ -62,6 +63,7 @@ function TwoOrderDetail() {
 
     return (
         <div>
+            <MenuTitle title="상세 주문 내역"/>
             {orderData.map((item) => {
                 // 전체 가격 계산
                 const totalPrice = item.items.reduce(
@@ -69,7 +71,7 @@ function TwoOrderDetail() {
                 );
                 return (
                     <div className="detail_container_bg" key={item.order_id}>
-                        <div className="detail_state_bg bg">
+                        <div className="detail_state_bg">
                             <div className="detail_state">
                                 <p>{formatDate(item.order_date)}</p>
                                 <p>주문번호 {item.order_id}</p>

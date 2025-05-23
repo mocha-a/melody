@@ -157,7 +157,7 @@
         bottom: 0px; left: 50%;
         transform: translateX(-50%);
         background-color: $whiteColor;
-        >div{width: 330px; margin: 0 auto;}
+        >button{ display: block; width: 330px; margin: 0 auto;}
     }
 }
 

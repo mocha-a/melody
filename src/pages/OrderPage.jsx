@@ -38,6 +38,7 @@ function OrderPage() {
         order_item();
     },[refresh])
 
+    
     async function deleteOrder(item){
         const confirmDelete = window.confirm("주문내역을 삭제하시겠습니까?");
         if (!confirmDelete) return;
@@ -53,7 +54,6 @@ function OrderPage() {
             setRefresh(prev => prev + 1);
         } 
     }
-
     return (
         <div>
             <MenuTitle title="주문 내역"/>

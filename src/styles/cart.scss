@@ -183,18 +183,25 @@
 
             
         }
-
-        .pay_button {
-            @include suite_black_16;
+        .total_btn{
+            width: 390px;
+            height: 70px;
             position: fixed;
-            width: 330px;
+            bottom: 0px;
             left: 50%;
-            bottom: 40px;
-            transform: translate(-50%);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            transform: translateX(-50%);
+            background-color: #F9F9F9;
+            .pay_button {
+                @include suite_black_16;
+                display: block;
+                margin: 0 auto;
+                cursor: pointer;
+                width: 330px;
+                background-color: $pink;
+                border-radius: 5px;
+                padding: 12px 0;
+                text-align: center;
+            }
         }
     }
 }
