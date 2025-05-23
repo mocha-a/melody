@@ -10,8 +10,8 @@ function Footer() {
             <div className='footer_content'>
                 <div className="footer_snsIcon">
                     <Insta/>
-                    <Twitter/>
                     <Facebook/>
+                    <Twitter/>
                 </div>
 
                 <div className="footer_text">
