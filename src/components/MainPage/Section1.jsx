@@ -17,7 +17,7 @@ function Section1() {
 
     useEffect(() => {
         async function fetchItems() {
-            const res = await instance.get('/p_list.php');
+            const res = await axios.get('/api/p_list.php');
             const data = res.data;
 
             setItem1(data.find(p => Number(p.id) === 274));
