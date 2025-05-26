@@ -225,10 +225,11 @@ span {
 
 .overlay_loading {
     position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%);
     width: 390px;
+    height: 100vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
     background-color: $whiteColor;
     display: flex;
     justify-content: center;
