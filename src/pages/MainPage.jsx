@@ -18,10 +18,10 @@ function MainPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShow(false); // 0.2초 뒤에 로딩 숨기기
-    }, 200);
+      setShow(false);
+    }, 1000);
 
-    return () => clearTimeout(timer); // 언마운트 시 타이머 클리어
+    return () => clearTimeout(timer);
   }, []);
 
 

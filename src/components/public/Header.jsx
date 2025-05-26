@@ -120,73 +120,76 @@ function Header() {
 
             {menuOpen && (
                 <div className="accordion_menu">
-                    <div className="category" onClick={() => goToCategory('all')}>
-                        <div className="title_row">
-                            <h3>전체 상품</h3>
-                            <div className="eng_title">
-                                <GrayNote1 className="note_icon" />
-                                <span>ALL</span>
-                            </div>
-                        </div>
-                    </div>
-                    {['kitty', 'mymel', 'pompom', 'cinna'].map((catId) => {
-                        const kor = {
-                            kitty: '헬로키티',
-                            mymel: '마이멜로디',
-                            pompom: '폼폼푸린',
-                            cinna: '시나모롤',
-                        }[catId];
-                        const eng = {
-                            kitty: 'Hello Kitty',
-                            mymel: 'My Melody',
-                            pompom: 'Pompompurin',
-                            cinna: 'Cinnamoroll',
-                        }[catId];
-                        return (
-                            <div className={`category ${catId} ${activeCategory === catId ? 'active' : ''}`}
-                                key={catId} >
-
-                                <div className="title_row" onClick={() => toggleCategory(catId)}>
-                                    <h3>{kor}</h3>
-                                    <div className="eng_title">
-                                        {activeCategory === catId && <GrayNote2 className="note_icon" />}
-                                        <span>{eng}</span>
-                                    </div>
+                    <div className="accordion_inner">
+                        <div className="category" onClick={() => goToCategory('all')}>
+                            <div className="title_row">
+                                <h3>전체 상품</h3>
+                                <div className="eng_title">
+                                    <GrayNote1 className="note_icon" />
+                                    <span>ALL</span>
                                 </div>
-                                {activeCategory === catId && (
-                                    <>
-                                        <DashedLine />
-                                        <div className="subcategory_block pink">
-                                        {subcategories.map(({ label, category, items }) => (
-                                            <div className="subcategory_row" key={category}>
-                                            <div className="sub_middle">{label}</div>
-                                            <div className="sub_items">
-                                                {items.map(({ name, sub }) => (
-                                                <span
-                                                    key={sub}
-                                                    onClick={() => goToCategory([catId, category, sub])}
-                                                >
-                                                    {name}
-                                                </span>
-                                                ))}
-                                            </div>
-                                            </div>
-                                        ))}
-                                        </div>
-                                    </>
-                                )}
                             </div>
-                        );
-                    })}
-                    <div className="bottom_menu">
-                        {/* 현재 상태에 따라 로그인/로그아웃 변경 */}
-                        <div className="left" onClick={isLoggedIn ? logout : login}>
-                            {isLoggedIn ? "로그아웃" : "로그인 / 회원가입"}
                         </div>
-                        <div className="right">
-                            <div onClick={()=>{navigate(`/mypage/${user}`)}}><MyPageIcon className="mypage_icon" /></div>
-                            <div onClick={()=>{navigate('/search')}}><SearchIcon className="search_icon" /></div>
+                        {['kitty', 'mymel', 'pompom', 'cinna'].map((catId) => {
+                            const kor = {
+                                kitty: '헬로키티',
+                                mymel: '마이멜로디',
+                                pompom: '폼폼푸린',
+                                cinna: '시나모롤',
+                            }[catId];
+                            const eng = {
+                                kitty: 'Hello Kitty',
+                                mymel: 'My Melody',
+                                pompom: 'Pompompurin',
+                                cinna: 'Cinnamoroll',
+                            }[catId];
+                            return (
+                                <div className={`category ${catId} ${activeCategory === catId ? 'active' : ''}`}
+                                    key={catId} >
+
+                                    <div className="title_row" onClick={() => toggleCategory(catId)}>
+                                        <h3>{kor}</h3>
+                                        <div className="eng_title">
+                                            {activeCategory === catId && <GrayNote2 className="note_icon" />}
+                                            <span>{eng}</span>
+                                        </div>
+                                    </div>
+                                    {activeCategory === catId && (
+                                        <>
+                                            <DashedLine />
+                                            <div className="subcategory_block pink">
+                                            {subcategories.map(({ label, category, items }) => (
+                                                <div className="subcategory_row" key={category}>
+                                                <div className="sub_middle">{label}</div>
+                                                <div className="sub_items">
+                                                    {items.map(({ name, sub }) => (
+                                                    <span
+                                                        key={sub}
+                                                        onClick={() => goToCategory([catId, category, sub])}
+                                                    >
+                                                        {name}
+                                                    </span>
+                                                    ))}
+                                                </div>
+                                                </div>
+                                            ))}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
+                        <div className="bottom_menu">
+                            {/* 현재 상태에 따라 로그인/로그아웃 변경 */}
+                            <div className="left" onClick={isLoggedIn ? logout : login}>
+                                {isLoggedIn ? "로그아웃" : "로그인 / 회원가입"}
+                            </div>
+                            <div className="right">
+                                <div onClick={()=>{navigate(`/mypage/${user}`)}}><MyPageIcon className="mypage_icon" /></div>
+                                <div onClick={()=>{navigate('/search')}}><SearchIcon className="search_icon" /></div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             )}
