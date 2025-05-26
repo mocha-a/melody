@@ -2,7 +2,7 @@
 function Twitter({ className }) {
     return (
         <div className={`icon ${className}`}>
-            <img src="/img/public_Twitter_01.svg" alt="" />
+            <img src="/img/public_aas_01.svg" alt="" />
         </div>
     )
 }
