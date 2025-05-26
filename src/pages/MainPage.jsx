@@ -8,33 +8,17 @@ import CircularColor from '../components/Join/Loading';
 import Footer from '../components/public/Footer';
 
 function MainPage() {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
   const [logoutModal, setLogoutModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
 
-
   useEffect(() => {
-    const imgs = document.querySelectorAll('img');
-    let loadedCount = 0;
+    const timer = setTimeout(() => {
+      setShowLoading(false);
+    }, 1500);
 
-    imgs.forEach((img) => {
-      if (img.complete) {
-        loadedCount++;
-      } else {
-        img.onload = () => {
-          loadedCount++;
-          if (loadedCount === imgs.length) {
-            setImagesLoaded(true);
-          }
-        };
-      }
-    });
-
-    if (imgs.length === 0) {
-      setImagesLoaded(true);
-    }
+    return () => clearTimeout(timer);
   }, []);
-
 
   useEffect(() => {
     if (sessionStorage.getItem("logout_notice")) {
@@ -56,7 +40,13 @@ function MainPage() {
 
   return (
     <div className="main_container">
-      {/* 로그인/로그아웃 모달창 */}
+      {showLoading && (
+        <div className="overlay_loading">
+          <CircularColor />
+        </div>
+      )}
+
+      {/* 로그인/로그아웃 모달 */}
       {logoutModal && (
         <div className="modal">
           <div className="alert_box">로그아웃 되었습니다.</div>
@@ -68,21 +58,14 @@ function MainPage() {
         </div>
       )}
 
-      {!imagesLoaded ? (
-        <div className="list_loading">
-          <CircularColor />
-        </div>
-      ) : (
-        <>
-          <section>
-            <Section1 />
-            <Marquee1 />
-            <Section2 />
-            <Marquee2 />
-          </section>
-          <Footer />
-        </>
-      )}
+      <section>
+        <Section1 />
+        <Marquee1 />
+        <Section2 />
+        <Marquee2 />
+      </section>
+
+      <Footer />
     </div>
   );
 }

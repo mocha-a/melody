@@ -223,13 +223,13 @@ span {
     }
 }
 
-
-.list_loading {
+.overlay_loading {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    background-color: $whiteColor;
     display: flex;
     justify-content: center;
     align-items: center;
