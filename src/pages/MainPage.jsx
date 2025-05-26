@@ -11,17 +11,19 @@ import Insta from '../components/icon/Insta';
 import Twitter from '../components/icon/Twitter';
 
 function MainPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [logoutModal, setLogoutModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  const [show, setShow] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShow(false);
+      setIsLoading(false);
     }, 1000);
+
     return () => clearTimeout(timer);
   }, []);
 
+  // 로그인/로그아웃 모달 표시
   useEffect(() => {
     if (sessionStorage.getItem("logout_notice")) {
       setLogoutModal(true);
@@ -40,7 +42,7 @@ function MainPage() {
     }
   }, []);
 
-  if (show) {
+  if (isLoading) {
     return (
       <div className="list_loading">
         <CircularColor />
