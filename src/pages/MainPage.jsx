@@ -8,14 +8,33 @@ import CircularColor from '../components/Join/Loading';
 import Footer from '../components/public/Footer';
 
 function MainPage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
 
+
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
+    const imgs = document.querySelectorAll('img');
+    let loadedCount = 0;
+
+    imgs.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === imgs.length) {
+            setImagesLoaded(true);
+          }
+        };
+      }
+    });
+
+    if (imgs.length === 0) {
+      setImagesLoaded(true);
+    }
   }, []);
+
 
   useEffect(() => {
     if (sessionStorage.getItem("logout_notice")) {
@@ -49,7 +68,7 @@ function MainPage() {
         </div>
       )}
 
-      {isLoading ? (
+      {!imagesLoaded ? (
         <div className="list_loading">
           <CircularColor />
         </div>
