@@ -9,10 +9,13 @@ import PopupAction from '../components/ProductPage/PopupAction';
 import WishButton from '../components/ListPage/WishButton';
 import CardItem from '../components/ListPage/CardItem';
 import KeywordItem from '../components/ProductPage/KeywordItem';
-import Footer from '../components/public/Footer';
 import CircularColor from '../components/Join/Loading';
 
 import "../styles/product.scss";
+import Facebook from '../components/icon/Facebook';
+import Twitter from '../components/icon/Twitter';
+import Insta from '../components/icon/Insta';
+import SolidLine from '../components/public/SolidLine';
 
 
 function ProductPage() {
@@ -146,7 +149,33 @@ function ProductPage() {
                     </div>
                 </div>
             </PopupAction>
-            <Footer/>
+                <div className='footer_container'>
+                <div className='footer_content'>
+                    <div className="footer_snsIcon">
+                        <Facebook />
+                        <Twitter />
+                        <Insta />
+                    </div>
+
+                    <div className="footer_text">
+                        <div className='footer_text_title'>
+                            <p>멜로디</p>
+                            <SolidLine className="footer_solid"/>
+                        </div>
+
+                        <div className='footer_text_title'>
+                            <p>
+                                대표 : 안지현, 김도연{"\n"}
+                                서울특별시 강남구 강남대로98길 16{"\n"}
+                                오전 09시 ~ 오후 18시 (주말, 공휴일 제외){"\n"}
+                                melody0123@gmail.com
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         {/* 모달창 */}
         {cartModal && (

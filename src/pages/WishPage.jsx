@@ -4,7 +4,6 @@ import axios from "axios";
 import CardItem from "../components/ListPage/CardItem"
 import NoWish from "../components/MyPage/NoWish"
 import MenuTitle from "../components/public/MenuTitle"
-import Footer from "../components/public/Footer";
 
 function WishPage() {
     const [ data, setData ] = useState([]);

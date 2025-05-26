@@ -4,8 +4,12 @@ import Section1 from '../components/MainPage/Section1';
 import Section2 from '../components/MainPage/Section2';
 import Marquee1 from '../components/MainPage/Marquee1';
 import Marquee2 from '../components/MainPage/Marquee2';
-import Footer from '../components/public/Footer';
 import CircularColor from '../components/Join/Loading';
+import SolidLine from '../components/public/SolidLine';
+import Facebook from '../components/icon/Facebook';
+import Insta from '../components/icon/Insta';
+import Twitter from '../components/icon/Twitter';
+
 
 function MainPage() {
   const [logoutModal, setLogoutModal] = useState(false);
@@ -68,7 +72,32 @@ return (
             <Marquee2 />
           </section>
 
-          <Footer />
+            <div className='footer_container'>
+              <div className='footer_content'>
+                  <div className="footer_snsIcon">
+                      <Facebook />
+                      <Twitter />
+                      <Insta />
+                  </div>
+
+                  <div className="footer_text">
+                      <div className='footer_text_title'>
+                          <p>멜로디</p>
+                          <SolidLine className="footer_solid"/>
+                      </div>
+
+                      <div className='footer_text_title'>
+                          <p>
+                              대표 : 안지현, 김도연{"\n"}
+                              서울특별시 강남구 강남대로98길 16{"\n"}
+                              오전 09시 ~ 오후 18시 (주말, 공휴일 제외){"\n"}
+                              melody0123@gmail.com
+                          </p>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
         </div>
       )}
     </>
