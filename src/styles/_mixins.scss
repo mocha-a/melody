@@ -128,6 +128,10 @@
     grid-template-columns: 1fr 1fr;
     font-size: $regular;
 
+    .total_title{
+        >span>span{color: #fa6ee3;}
+    }
+
     p:nth-of-type(2n) {
         text-align: right;
     }
@@ -145,12 +149,24 @@
     }
     p:nth-of-type(6)::before {
         content: ' = ';
+        color: $blackColor;
     }
     .total_line{ grid-column: span 2; }
     .price_bold{
-        .total_price{ color: #f339b2;}
         font-family: $suiteBold;
     }
+    .total_price{ color: #fa6ee3;}
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 390px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9;
 }
 
 // font_style

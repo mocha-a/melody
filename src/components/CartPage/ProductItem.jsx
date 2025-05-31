@@ -3,7 +3,7 @@ import Cancel from '../icon/Cancel';
 
 function ProductItem({ item, changeCount, onRemove, onToggle }) {
     return (
-        <div className="cart_item">
+        <label className="cart_item">
             <input type="checkbox" checked={item.checked} onChange={() => onToggle(item.id)} />
 
             <div className="cart_content">
@@ -17,7 +17,6 @@ function ProductItem({ item, changeCount, onRemove, onToggle }) {
                             onClick={() => onRemove(item.id)}
                         />
                     </div>
-
                     <div className="cart_cont_bottom">
                         <div className="cart_count">
                             <p className="cart_text">수량:</p>
@@ -40,7 +39,7 @@ function ProductItem({ item, changeCount, onRemove, onToggle }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </label>
     );
 }
 

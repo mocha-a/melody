@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { instance } from "../api/sanrio";
+import useWish from "../api/wish";
 import CardItem from "../components/ListPage/CardItem"
 import NoWish from "../components/MyPage/NoWish"
 import MenuTitle from "../components/public/MenuTitle"
 
 function WishPage() {
     const [ data, setData ] = useState([]);
-    const user = sessionStorage.getItem("user");
-    
+    const { user } = useWish();
+
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_APIURL}/api/wish.php`, {
-            params: { case: 'GET', type: 'all' }
+        instance.get('wish.php',{
+            params: { case: 'GET', type: 'all', user: user }
         })
         .then(res=>{
-            const userId = res.data.filter(liked => liked.m_id === user);
-            setData(userId)
+            setData(res.data)
         })
     },[data])
 

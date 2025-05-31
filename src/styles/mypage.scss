@@ -10,6 +10,7 @@
         justify-content: space-between;
         align-items: end;
         >h2, p{font-weight: normal;}
+        >h2>b{color: #fa6ee3; font-family: $suiteSemi;}
     }
     .css-cfd5wn-MuiListItem-root{
         justify-content: space-between;
@@ -84,6 +85,49 @@
             font-weight: normal;
             display: block;
             margin: 20px 0 14px;
+        }
+    }
+}
+
+.recent_container{
+    margin: 20px auto 30px;
+    >h3{
+        font-family: $suiteSemi;
+        margin: 20px auto !important;
+    }
+    >h3::after{
+        content: ' 👀 ';
+    }
+    .swiper{
+        z-index: 0;
+        .swiper-slide{
+            width:100px !important;
+        }
+    }
+    .keyWord_item{
+        width: 100%;
+        .keyWord_item_img{
+            position: relative;
+            >p>img{ width: 100px; height: 100px;}
+            .card_wish{
+                position: absolute;
+                bottom: 5px; right: 5px;
+            }
+        }
+        .keyWord_content{
+            >b{
+                font-size: $footer;
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: normal;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            >p{
+                font-size: $small;
+                font-family: $suiteSemi;
+            }
         }
     }
 }

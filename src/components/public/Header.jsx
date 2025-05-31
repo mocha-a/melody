@@ -121,7 +121,7 @@ function Header() {
             {menuOpen && (
                 <div className="accordion_menu">
                     <div className="accordion_inner">
-                        <div className="category" onClick={() => goToCategory('all')}>
+                        <div className="category all" onClick={() => goToCategory('all')}>
                             <div className="title_row">
                                 <h3>전체 상품</h3>
                                 <div className="eng_title">

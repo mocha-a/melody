@@ -6,12 +6,14 @@ import RemoveBtn from '../components/CartPage/RemoveBtn';
 import ProductItem from '../components/CartPage/ProductItem';
 import SolidLine from '../components/public/SolidLine';
 import DashedLine from '../components/public/DashedLine';
-import "../styles/cart.scss";
 import Button from "../components/public/Button";
+import Total from "../components/public/Total";
+import "../styles/cart.scss";
 
 function CartPage() {
     const [cartItems, setCartItems] = useState([]);
     const [allChecked, setAllChecked] = useState(false);
+    const [ finalPrice, setFinalPrice ] = useState(0);
 
     const navigate = useNavigate();
 
@@ -24,18 +26,9 @@ function CartPage() {
         ? '전체 상품 결제하기'
         : '선택 상품 결제하기';
 
-    // 선택된 상품이 1개 이상일 때:selectedItems 0개일 때 : cartItems 계산하시오!
-    const total = (selectedItems.length > 0 ? selectedItems : cartItems)
-        .reduce((sum, item) =>
-            // 1.total_price가 있다면 값으로 사용.
-            sum + (Number(item.total_price) ||
-            // 2.없으면(||연산자) 물건가격*개수 계산한 값으로 사용
-            (Number(item.p_price) || 0) * item.quantity), 0
-        );
-
-        
-    const freeDelivery = total >= 50000 ? 0 : 3000; // 배송비
-    const totalAmount = total + freeDelivery; // 전체 합계+배송비
+    const total = selectedItems.reduce((sum, item) =>
+        sum + (Number(item.total_price) || (Number(item.p_price) || 0) * item.quantity), 0
+    );
 
     // 상품 선택 후 결제
     const goPaymentPage = () => {
@@ -57,8 +50,6 @@ function CartPage() {
             }
         });
     };
-
-
 
     // 장바구니 전체 선택/해제
     const toggleAll = () => {
@@ -191,7 +182,7 @@ function CartPage() {
                 </div>
             </div>
         ) : (
-            <>
+            <div className="cart_containar">
                 <div className="cart_container_top">
                     <div className='cart_top'>
                         <CheckText
@@ -205,8 +196,8 @@ function CartPage() {
                 </div>
                 <SolidLine className="cart_line" />
 
-                <div className="cart_background_bg">
-                    <div className="cart_bg_2">
+                <div className="cart_product_container_bg">
+                    <div className="cart_content_container bg">
                         <div className="cart_content_box">
                             {cartItems.map(item => (
                                 <ProductItem
@@ -219,32 +210,30 @@ function CartPage() {
                             ))}
                         </div>
                     </div>
-                </div>
 
-                <div className="cart_total_box">
-                    <div className="cart_total_content">
-                        <div className="total_price">
-                            <p>총 상품 금액 :</p>
-                            <p>{total.toLocaleString()}원</p>
-                        </div>
-                        <div className="total_deliver">
-                            <p>배송비 :</p>
-                            <p>+ {freeDelivery.toLocaleString()}원</p>
-                        </div>
-                        <div className="total_amount">
-                            <p>합계 :</p>
-                            <p>{totalAmount.toLocaleString()}원</p>
-                        </div>
-                        <div className="total_btn">
-                            <Button
-                                btn={buttonText}
-                                className="pay_button"
-                                onClick={goPaymentPage}
+                    <div className="cart_order_container bg">
+                        <div className="cart_total_box">
+                            <h2>결제 예상 금액</h2>
+                            <Total
+                            productTitle="총 상품 금액"
+                            length={selectedItems.length}
+                            productPrice={total}
+                            finalPrice={finalPrice}
+                            setFinalPrice={setFinalPrice}
+                            total="합계"
                             />
                         </div>
                     </div>
                 </div>
-            </>
+
+                <div className="total_btn">
+                    <Button
+                        btn={buttonText}
+                        className="pay_button"
+                        onClick={goPaymentPage}
+                    />
+                </div>
+            </div>
         )
     );
 }

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import '../styles/main.scss';
 import Section1 from '../components/MainPage/Section1';
 import Section2 from '../components/MainPage/Section2';
 import Marquee1 from '../components/MainPage/Marquee1';
 import Marquee2 from '../components/MainPage/Marquee2';
 import CircularColor from '../components/Join/Loading';
 import Footer from '../components/public/Footer';
+
+import '../styles/main.scss';
 
 function MainPage() {
   const [showLoading, setShowLoading] = useState(true);

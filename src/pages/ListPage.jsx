@@ -6,9 +6,10 @@ import NaviBar from '../components/ListPage/NaviBar';
 import ListItem from '../components/ListPage/ListItem';
 import SanrioNote1 from '../components/icon/SanrioNote1';
 import SanrioNote2 from '../components/icon/SanrioNote2';
+import TopButton from '../components/public/TopButton';
+import CircularColor from '../components/Join/Loading';
 
 import "../styles/list.scss";
-import CircularColor from '../components/Join/Loading';
 
 function ListPage() {
    const { loadAll, sanrio, categoryData, Character, midData, subData, categorypath, mid1, sub1 } = sanrioStore();
@@ -97,7 +98,8 @@ function ListPage() {
             <NaviBar main={KRcategory[0]} mid={mid} sub={sub} />
          )}
 
-         <ListItem item={sanrio} />
+         <ListItem item={sanrio} mainParam={mainParam}/>
+         <div><TopButton/></div>
       </>
       )}
       </>

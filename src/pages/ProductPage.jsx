@@ -4,6 +4,7 @@ import { sanrioStore } from '../api/sanrio';
 import CountingBtn from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import TwoButton from '../components/public/TwoButton';
+import TopButton from '../components/public/TopButton';
 import BottomArrow from '../components/icon/BottomArrow';
 import PopupAction from '../components/ProductPage/PopupAction';
 import WishButton from '../components/ListPage/WishButton';
@@ -12,7 +13,7 @@ import KeywordItem from '../components/ProductPage/KeywordItem';
 import CircularColor from '../components/Join/Loading';
 
 import "../styles/product.scss";
-
+import SnackBar from '../components/public/SnackBar';
 
 function ProductPage() {
     const { sanrio, idData } = sanrioStore();
@@ -94,8 +95,9 @@ function ProductPage() {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
+                setBuy(false)
                 setCartModal(true);
-                setTimeout(() => setCartModal(false), 1000);
+                setTimeout(() => setCartModal(false), 2000);
             } else if (data.reason === "already_exists") {
                 setAlreadyModal(true);
                 setTimeout(() => setAlreadyModal(false), 1000);
@@ -103,8 +105,6 @@ function ProductPage() {
         })
     }
 
-
-    
     return (
         <>
         {show ? (
@@ -121,12 +121,13 @@ function ProductPage() {
             </div>
         
             <div className='product_buynow' onClick={()=>{setBuy(true)}}>
-                <div className='Product_absolute'>
+                <div className='product_absolute'>
                     <div className="product_wish"><WishButton item={sanrio}/></div>
                     <p>구매하기</p>
                 </div>
             </div>
-        
+            
+            {buy && <div className="overlay" onClick={()=>{setBuy(false)}}/>}
             <PopupAction useState={buy} className={"product_popup_bg"}>
                     <div className='popup_close' onClick={()=>{setBuy(false)}}><BottomArrow className={"bottomArrow_close"}/></div>
                 <div className='product_popup'>
@@ -147,11 +148,11 @@ function ProductPage() {
             </PopupAction>
 
         </div>
+        
+         <TopButton/>
         {/* 모달창 */}
         {cartModal && (
-        <div className="modal">
-            <div className="alert_box">장바구니에 담겼습니다.</div>
-        </div>
+            <SnackBar modal="🛒 장바구니로 쏘옥 - !"/>
         )}
         {alreadyModal && (
         <div className="modal">

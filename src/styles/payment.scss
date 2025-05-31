@@ -4,7 +4,7 @@
 
 .payment_container_bg{
     width: 100%;
-    background-color: #e2e2e2;
+    background-color: #eee;
     
     label{
         display: flex;
@@ -65,7 +65,7 @@
                     display: flex;
                     justify-content: space-between;
                     .findBtn{
-                        width: 129px; height: 36.13px;
+                        width: 129px; height: 39px;
                         padding: 8px 0;
                         background-color: $whiteColor;
                         border: 1px solid $lineColor;

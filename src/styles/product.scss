@@ -22,7 +22,7 @@
         width: 100%;
         .keyWord_item_img{
             position: relative;
-            >p>img{ height: 100px;}
+            >p>img{ width: 100px; height: 100px;}
             .card_wish{
                 position: absolute;
                 bottom: 5px; right: 5px;
@@ -50,7 +50,7 @@
         margin-bottom: 86px;
         .detail{text-align: center;}
         .product_item{
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
         .product_img{
             >p{
@@ -62,7 +62,7 @@
         .product_content{
             @include publicWidth;
             margin-top: 30px;
-            p{margin: 15px 0 10px;}
+            p{margin: 10px 0 15px;}
             b, p{
                 font-size: $title;
                 font-weight: normal;
@@ -70,6 +70,9 @@
             }
             .delivery_fee{
                 color: $grayColor;
+            }
+            .delivery_fee>span:nth-of-type(1)::before{
+                content: ' 🚚 ';
             }
             .delivery_fee>span:nth-of-type(1)::after{
                 content: ' | ';
@@ -95,15 +98,15 @@
         position: fixed;
         bottom: 0px; left: 50%;
         transform: translateX(-50%);
-        .Product_absolute{
+        .product_absolute{
             position: relative;
             background-color: $beigePink;
-            padding: 27px 0 39px;
+            padding: 30px 0 30px;
             cursor: pointer;
 
             .product_wish{
                 position: absolute;
-                top: 43%; left: 30px;
+                top: 50%; left: 30px;
                 transform: translateY(-50%);
                 img{width: 20px;}
             }
@@ -120,6 +123,7 @@
         bottom: 0px; left: 50%;
         border-radius: 20px 20px 0 0;
         background-color: $beigePink;
+        z-index: 99;
         .bottomArrow_close {
             >img{
                 cursor: pointer;
@@ -156,19 +160,10 @@
                     font-size: $title;
                 }
             }
-            .product_btn{padding-bottom: 70px;}
+            .product_btn{padding-bottom: 30px;}
         }
     }
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 390px;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 9;
-    }
+
     .css-zemlrd-MuiButtonBase-root-MuiIconButton-root {
         border: 1.5px solid $blackColor;
     }

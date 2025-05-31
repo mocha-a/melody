@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MenuTitle from "../../components/public/MenuTitle";
 import InputBox from "../../components/public/InputBox";
 import Button from "../../components/public/Button";
+
 import "../../styles/join.scss";
 
 function LoginPage() {

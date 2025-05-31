@@ -107,6 +107,8 @@ function Address({ receiver, setReceiver, phone, setPhone, postCode, setPostCode
                     value={customMemo}
                     onChange={e => setCustomMemo(e.target.value)}
                 />}
+
+                {memo && <div className="overlay" onClick={()=>{setMemo(false)}}/>}
                 <PopupAction useState={memo} className={"product_popup_bg"}>
                     <div className='popup_close' onClick={() => setMemo(false)}><BottomArrow className={"bottomArrow_close"} /></div>
                     <div className="memoSelect">

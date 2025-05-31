@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { instance } from "../api/sanrio";
 import MypageWish from "../components/icon/MypageWish";
 import MypageOrder from "../components/icon/MypageOrder";
 import ListDividers from "../components/MyPage/MemberBox";
+import RecentView from "../components/MyPage/RecentView";
 import Button from "../components/public/Button";
 import MenuTitle from "../components/public/MenuTitle"
 
@@ -23,7 +24,7 @@ function MyPage() {
             return;
         }
         
-        axios.get(`${process.env.REACT_APP_APIURL}/api/member.php`,{
+        instance.get('member.php',{
             params: { user: user }
         })
         .then(res=>{
@@ -47,6 +48,7 @@ function MyPage() {
                 <p>회원님의 로그인 정보</p>
             </div>
             <ListDividers user={userData[0]}/>
+            <RecentView/>
             <div className="mypage_onclick" onClick={()=>{navigate(`/wish/${user}`)}}>
                 <Button
                     btn={

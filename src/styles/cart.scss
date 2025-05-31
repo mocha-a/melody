@@ -3,6 +3,8 @@
 @import './mixins';
 
 // component
+
+.cart_containar{margin-bottom: 100px;}
 .cart_container_top {
     padding-top: 20px;
     @include publicWidth;
@@ -37,7 +39,14 @@
     margin: 15px 0 20px;
 }
 
-.cart_background_bg {
+.bg{
+    background-color: $whiteColor;
+    padding: 20px 0;
+    margin: 10px 0;
+}
+
+.cart_product_container_bg {
+    background-color: #eee;
     .cart_bg_2 {
         background-color: $lineColor;
         height: 100%;
@@ -48,6 +57,15 @@
         }
     }
 
+    .cart_total_box {
+    @include publicWidth ;
+    >h2{
+        font-size: $regular;
+        font-family: $suiteBold;
+        margin-bottom: 15px;
+    }
+}
+
 }
 
 // 컴포넌트 ProductItem.jsx 
@@ -56,6 +74,11 @@
     @include publicWidth;
     display: flex;
     align-items: start;
+
+    input:checked + .cart_content{
+        background-color: $beigePink;
+        color: $blackColor
+    }
 
     input[type="checkbox"] {
         accent-color: $whiteColor;
@@ -69,12 +92,12 @@
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
-        background-color: $beigePink;
+        background-color: $whiteColor;
         border-radius: $radius1;
         border: solid 0.6px $lineColor;
 
         img {
-            width: 100px;
+            width: 100px; height: 100px;
         }
 
         .info {
@@ -148,61 +171,19 @@
     }
 }
 
-.cart_total_box {
-    background-color: #EEEEEE;
+.total_btn{
+    width: 390px;
+    height: 70px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFFFFF;
     padding: 10px 0 0;
-    display: flex;
-    justify-content: center;
-
-    .cart_total_content {
-        background-color: $whiteColor;
-        padding: 20px 0;
-        width: 100%;
-
-        .total_price,
-        .total_deliver,
-        .total_amount {
-            @include publicWidth;
-            @include suite_black_16;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .total_amount {
-            @include suite_bold_18;
-            border-top: 1px solid #ddd;
-            padding: 10px 0 80px;
-            p {
-                color: $blackColor;
-
-                &:nth-child(2) {
-                    color: #F339B2;
-                }
-            }
-
-            
-        }
-        .total_btn{
-            width: 390px;
-            height: 70px;
-            position: fixed;
-            bottom: 0px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #F9F9F9;
-            .pay_button {
-                @include suite_black_16;
-                display: block;
-                margin: 0 auto;
-                cursor: pointer;
-                width: 330px;
-                background-color: $pink;
-                border-radius: 5px;
-                padding: 12px 0;
-                text-align: center;
-            }
-        }
+    .pay_button{
+        display: block;
+        margin: 0 auto;
+        width: 330px;
     }
 }
 

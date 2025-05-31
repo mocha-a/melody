@@ -4,7 +4,7 @@
 
 
 body {
-    background-color: white;
+    background-color: #f7ecf3;
     font-family: $suiteRegular;
     font-size: 14px;
     color: $blackColor;
@@ -138,7 +138,6 @@ input, textarea{
         }
     }
 }
-
 
 .category {
     margin: 0 auto;
@@ -363,5 +362,127 @@ input, textarea{
     img {
         filter: opacity(60%);
         margin-bottom: 10px;
+    }
+}
+
+.top_button_fixed{
+    bottom: 110px;
+    cursor: pointer;
+    position: fixed;
+    right: calc(50vw - 170px);
+
+    .button {
+        background-color: $lightPink;
+        line-height: 1;
+        text-decoration: none;
+        display: inline-flex;
+        border: none;
+        cursor: pointer;
+        align-items: center;
+        gap: 0.75rem;
+        background-color: var(--clr);
+        color: #fff;
+        border-radius: 10rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background-color 0.3s;
+    }
+    
+    .button__icon-wrapper {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        color: var(--clr);
+        background-color: $lightPink;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+    }
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    transition: 100ms;
+    >input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .checkmark {
+        top: 0;
+        left: 0;
+        height: 2em;
+        width: 2em;
+        transition: 100ms;
+        animation: dislike_effect 400ms ease;
+    }
+
+    input:checked ~ .checkmark path {
+        fill: #FF5353;
+        stroke-width: 0;
+    }
+
+    input:checked ~ .checkmark {
+        animation: like_effect 400ms ease;
+    }
+
+    @keyframes like_effect {
+        0% {
+        transform: scale(0);
+        }
+    
+        50% {
+        transform: scale(1.2);
+        }
+    
+        100% {
+        transform: scale(1);
+        }
+    }
+    
+    @keyframes dislike_effect {
+        0% {
+        transform: scale(0);
+        }
+    
+        50% {
+        transform: scale(1.2);
+        }
+    
+        100% {
+        transform: scale(1);
+        }
+    }
+}
+
+.snack_bar_container{
+    width: 390px;
+    position: fixed;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-45%);
+    z-index: 1;
+    .snack_bar_item{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        border-radius: 8px;
+        background-color: $whiteColor;
+        box-shadow: 0 6px 12px rgba(255, 214, 239, 0.9);
+        >a{
+            border-bottom: 1px solid $pink;
+            color: $pink;
+        }
     }
 }

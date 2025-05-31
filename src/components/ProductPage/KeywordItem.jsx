@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from 'swiper/modules';
+import { useRecentViewed } from "../../useRecentViewed";
 import { instance } from "../../api/sanrio";
-import KeywordCard from "./KeywordCard";
-import "swiper/css";
-import DashedLine from "../public/DashedLine";
 import { Link } from "react-router-dom";
+import KeywordCard from "./KeywordCard";
+import DashedLine from "../public/DashedLine";
 
+import "swiper/css";
 
 function KeywordItem({ item }) {
-    const [ keyword, setKeyword ] = useState([]); 
+    const [ keyword, setKeyword ] = useState([]);
+    const { saveProduct } = useRecentViewed();
 
     useEffect(() => {
         if (!item?.p_name) return;
@@ -41,7 +43,7 @@ function KeywordItem({ item }) {
             >
             {keyword.map(item=>
                 <SwiperSlide key={item.id}>
-                    <Link to={`/product/${item.id}`}>
+                    <Link to={`/product/${item.id}`} onClick={()=>{saveProduct(item)}}>
                         <KeywordCard item={item}/>
                     </Link>
                 </SwiperSlide>

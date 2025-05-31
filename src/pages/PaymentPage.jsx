@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { instance } from "../api/sanrio";
 import axios from "axios";
 import useWish from "../api/wish";
 import Button from "../components/public/Button";
@@ -39,7 +40,16 @@ function PaymentPage() {
         window.scrollTo(0, 0);
     }, [location])
 
-    
+    useEffect(()=>{
+        instance.get('member.php',{
+            params: { user: user }
+        })
+        .then(res=>{
+            setReceiver(res.data[0]?.m_name);
+            setPhone(res.data[0]?.m_tel);
+        })
+    },[])
+
     const handlePayment = () => {
         if (!receiver && !phone && !postCode && !deductionValue) {
             alert("상품 배송 정보를 작성해주세요.");
@@ -97,7 +107,7 @@ function PaymentPage() {
                     <PaymentItem thumb={thumb} name={name} count={count} />
                 </div>
                 <Address
-                    receiver={receiver}                 // 주문자명
+                    receiver={receiver}                 //주문자명
                     setReceiver={setReceiver}
                     phone={phone}                       //전화번호
                     setPhone={setPhone}
@@ -124,15 +134,15 @@ function PaymentPage() {
                 </div>
                 <div className="payment_method_container bg">
                     <Method
-                        method={method}                          // 결제 수단
+                        method={method}                          //결제 수단
                         setMethod={setMethod}
-                        senderName={senderName}                  // 무통장입금 입금자명
+                        senderName={senderName}                  //무통장입금 입금자명
                         setSenderName={setSenderName}
-                        cashReceipt={cashReceipt}                // 현금영수증 신청
+                        cashReceipt={cashReceipt}                //현금영수증 신청
                         setCashReceipt={setCashReceipt}
-                        deductionType={deductionType}            // 현금영수증 타입
+                        deductionType={deductionType}            //현금영수증 타입
                         setDeductionType={setDeductionType}
-                        deductionValue={deductionValue}          // 현금영수증 번호
+                        deductionValue={deductionValue}          //현금영수증 번호
                         setDeductionValue={setDeductionValue}
                     />
                 </div>

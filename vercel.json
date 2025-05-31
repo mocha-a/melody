@@ -2,11 +2,11 @@
     "rewrites": [
         {
         "source": "/admin/api/:match*",
-        "destination": "http://nsa10050.dothome.co.kr/admin/api/:match*"
+        "destination": "http://anji.dothome.co.kr/admin/api/:match*"
         },
         {
         "source": "/upload/:match*",
-        "destination": "http://nsa10050.dothome.co.kr/admin/product/upload/:match*"
+        "destination": "http://anji.dothome.co.kr/admin/product/upload/:match*"
         }
     ]
 }

@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     margin: 20px 0;
-    >p{margin: 0 8px;}
+    >p{margin: 0 8px; font-size: 15px;}
 }
 .sanrio_img{margin: 20px 0;}
 .catgory_container{
@@ -20,13 +20,33 @@
         align-items: center;
         margin: 20px 0;
         .catgory{
-            margin: 0 8px;
+            margin: 0 8px;  font-size: 15px;
         }
     }
     .catgory_banner{margin-bottom: 20px;}
 }
+.list_length{
+    @include publicWidth ;
+    margin: 20px auto;
+    font-size: $subTitle;
 
+    $theme-colors: (
+        all: #A4A6D2,
+        kitty: $kitty,
+        mymel: $melody,
+        pompom: $pompom,
+        cinna: $cinna,
+        undefined: $pink
+    );
+
+    @each $name, $color in $theme-colors {
+        .color_#{$name} {
+            color: $color;
+        }
+    }
+}
 .item_container{
+    margin-bottom: 70px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     position: relative;

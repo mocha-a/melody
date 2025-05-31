@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Wish from "../public/Wish";
+import { instance } from "../../api/sanrio";
 import useWish from "../../api/wish";
+import Wish from "../public/Wish";
 
 function WishButton({ item }) {
     const { wishList, bufferServerSync, user } = useWish();
     const [ wish, setWish ] = useState(false);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_APIURL}/api/wish.php`)
-        .then((res)=>{
-            if(user){
-                const userId = res.data.filter(liked => liked.m_id === user);
-                const somewish = userId.some(liked => liked.wish_id === item.id);
-
-                localStorage.setItem('wish', JSON.stringify(res.data));
-                setWish(somewish);
-            }
-        })
+        async function userWish(){
+            await instance.get('wish.php',{
+                params: { case: 'GET', user: user }
+            })
+            .then((res)=>{
+                if(user){
+                    const somewish = res?.data?.some(liked => liked.wish_id === item.id);
+                    
+                    localStorage.setItem('wish', JSON.stringify(res.data));
+                    setWish(somewish);
+                }
+            })
+        }
+        userWish()
     }, [user, item.id]);
 
     const toggleWish = (item) => {
