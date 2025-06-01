@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { instance } from '../api/sanrio';
-import useWish from "../api/wish";
-import MenuTitle from "../components/public/MenuTitle";
+import { instance } from '../../api/sanrio';
+import useWish from "../../api/wish";
+import MenuTitle from "../../components/public/MenuTitle";
+import NoOrder from "../../components/MyPage/NoOrder";
+import OrderItem from "../../components/MyPage/OrderItem";
 
-import "../styles/order.scss";
-import NoOrder from "../components/MyPage/NoOrder";
-import OrderItem from "../components/MyPage/OrderItem";
+import "../../styles/order.scss";
 
 function OrderPage() {
     const { user } = useWish();

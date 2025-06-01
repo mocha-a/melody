@@ -17,7 +17,7 @@ function MyPage() {
 
     useEffect(()=>{
         if(!user){
-            const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
+            const result = window.confirm("로그인이 필요합니다. \n로그인하시겠습니까?");
             if (result) {
                 navigate("/login");
             }
@@ -41,34 +41,34 @@ function MyPage() {
     if(!userData.length) return;
     return (
     <>
-        <MenuTitle title={"마이페이지"}/>
-        <div className="mypage_container">
-            <div className="mypage_hello">
-                <h2>안녕하세요.<br/><b>{userData[0]?.m_name}</b> 님!</h2>
-                <p>회원님의 로그인 정보</p>
-            </div>
-            <ListDividers user={userData[0]}/>
-            <RecentView/>
-            <div className="mypage_onclick" onClick={()=>{navigate(`/wish/${user}`)}}>
-                <Button
-                    btn={
-                    <span className="mypage_btn">
-                        <MypageWish className={"mypagewish_icon"}/>위시리스트 보기
-                    </span>}
-                    className={"mypage_wishlist"}
-                />
-            </div>
-            <div className="mypage_onclick" onClick={()=>{navigate(`/order/${user}`)}}>
-                <Button
-                    btn={
-                    <span className="mypage_btn">
-                        <MypageOrder className={"mypageorder_icon"}/>주문내역 보기
-                    </span>}
-                    className={"mypage_wishlist"}
-                />
-            </div>
-            <Button btn={"로그아웃"} onClick={()=>{logout()}} className="mypage_logout"/>
+    <MenuTitle title={"마이페이지"}/>
+    <div className="mypage_container">
+        <div className="mypage_hello">
+            <h2>안녕하세요.<br/><b>{userData[0]?.m_name}</b> 님!</h2>
+            <p>회원님의 로그인 정보</p>
         </div>
+        <ListDividers user={userData[0]}/>
+        <RecentView/>
+        <div className="mypage_onclick" onClick={()=>{navigate(`/wish/${user}`)}}>
+            <Button
+                btn={
+                <span className="mypage_btn">
+                    <MypageWish className={"mypagewish_icon"}/>위시리스트 보기
+                </span>}
+                className={"mypage_wishlist"}
+            />
+        </div>
+        <div className="mypage_onclick" onClick={()=>{navigate(`/order/${user}`)}}>
+            <Button
+                btn={
+                <span className="mypage_btn">
+                    <MypageOrder className={"mypageorder_icon"}/>주문내역 보기
+                </span>}
+                className={"mypage_wishlist"}
+            />
+        </div>
+        <Button btn={"로그아웃"} onClick={()=>{logout()}} className="mypage_logout"/>
+    </div>
     </>
     )
 }

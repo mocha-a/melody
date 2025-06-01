@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MainPage from "../pages/MainPage";
-import CartPage from "../pages/CartPage";
+import CartPage from "../pages/cart/CartPage";
 import ListPage from "../pages/ListPage";
 import ProductPage from "../pages/ProductPage";
 import LoginPage from "../pages/join/LoginPage";
@@ -9,9 +9,9 @@ import PaymentPage from '../pages/PaymentPage';
 import MyPage from '../pages/MyPage';
 import WishPage from '../pages/WishPage';
 import SearchPage from '../pages/SearchPage';
-import OrderPage from '../pages/OrderPage';
-import OrderDetailPage from '../pages/OrderDetailPage';
-import CartPaymentPage from '../pages/CartPaymentPage';
+import OrderPage from '../pages/order/OrderPage';
+import OrderDetailPage from '../pages/order/OrderDetailPage';
+import CartPaymentPage from '../pages/cart/CartPaymentPage';
 import TwoOrderDetail from '../pages/TwoOrderDetail';
 
 function AppRouter() {

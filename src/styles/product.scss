@@ -70,9 +70,7 @@
             }
             .delivery_fee{
                 color: $grayColor;
-            }
-            .delivery_fee>span:nth-of-type(1)::before{
-                content: ' 🚚 ';
+                .produck_truck{display: inline-block; >img{width: 80%; vertical-align: bottom;}}
             }
             .delivery_fee>span:nth-of-type(1)::after{
                 content: ' | ';

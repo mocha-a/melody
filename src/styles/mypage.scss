@@ -5,6 +5,7 @@
 // MyPage.jsx
 .mypage_container{
     @include publicWidth ;
+    margin-bottom: 100px;
     .mypage_hello{
         display: flex;
         justify-content: space-between;
@@ -48,7 +49,7 @@
     .mypage_logout{
         width: 330px;
         position: fixed;
-        bottom: 70px;
+        bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
     }

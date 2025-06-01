@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import WishButton from './WishButton';
 import CancelButton from '../MyPage/CancelButton';
+import Truck from '../icon/Truck';
 
 function CardItem({ item, name }) {
     const location = useLocation();
@@ -17,7 +18,7 @@ function CardItem({ item, name }) {
             <div className={`${name}_content`}>
                 <b>{item?.p_name}</b>
                 <p>{Number(item?.p_price).toLocaleString()}원</p>
-                { pathname === "product" && <div className={'delivery_fee'}><span>배송비 3,000원</span><span>50,000원 이상 무료</span></div> }
+                { pathname === "product" && <div className={'delivery_fee'}><Truck className={"produck_truck"}/><span>배송비 3,000원</span><span>50,000원 이상 무료</span></div> }
             </div>
         </div>
         </>

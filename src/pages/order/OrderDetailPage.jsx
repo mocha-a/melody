@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { instance } from "../api/sanrio";
-import useWish from "../api/wish";
-import PaymentItem from "../components/paymentPage/PaymentItem"
-import Total from "../components/public/Total";
-import MenuTitle from "../components/public/MenuTitle";
+import { instance } from "../../api/sanrio";
+import useWish from "../../api/wish";
+import PaymentItem from "../../components/paymentPage/PaymentItem"
+import MenuTitle from "../../components/public/MenuTitle";
+import Total from "../../components/public/Total";
 
 function OrderDetailPage() {
     const { user } = useWish();

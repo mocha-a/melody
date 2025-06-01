@@ -5,6 +5,7 @@ import CountingBtn from '../components/public/CountingBtn';
 import DashedLine from '../components/public/DashedLine';
 import TwoButton from '../components/public/TwoButton';
 import TopButton from '../components/public/TopButton';
+import SnackBar from '../components/public/SnackBar';
 import BottomArrow from '../components/icon/BottomArrow';
 import PopupAction from '../components/ProductPage/PopupAction';
 import WishButton from '../components/ListPage/WishButton';
@@ -13,7 +14,6 @@ import KeywordItem from '../components/ProductPage/KeywordItem';
 import CircularColor from '../components/Join/Loading';
 
 import "../styles/product.scss";
-import SnackBar from '../components/public/SnackBar';
 
 function ProductPage() {
     const { sanrio, idData } = sanrioStore();
@@ -55,7 +55,7 @@ function ProductPage() {
     
     function buynow(){
         if (!user_id) {
-            const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
+            const result = window.confirm("로그인이 필요합니다. \n로그인하시겠습니까?");
             if (result) {
                 navigate("/login");
             }
@@ -75,7 +75,7 @@ function ProductPage() {
     function addToCart() {
         // 비 로그인 상태
         if (!user_id) {
-            const result = window.confirm("로그인이 필요합니다. 로그인하시겠습니까?");
+            const result = window.confirm("로그인이 필요합니다. \n로그인하시겠습니까?");
             if (result) {
                 navigate("/login");
             }

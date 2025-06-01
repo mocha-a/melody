@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import useWish from "../api/wish";
-import Button from "../components/public/Button";
-import Total from "../components/public/Total";
-import Address from "../components/paymentPage/Address";
-import Method from "../components/paymentPage/Method";
-import CartPayItem from "../components/paymentPage/CartPayItem";
+import useWish from "../../api/wish";
+import Button from "../../components/public/Button";
+import Total from "../../components/public/Total";
+import Address from "../../components/paymentPage/Address";
+import Method from "../../components/paymentPage/Method";
+import CartPayItem from "../../components/paymentPage/CartPayItem";
 
-import "../styles/payment.scss";
+import "../../styles/payment.scss";
 
 function CartPaymentPage() {
     const { user } = useWish()

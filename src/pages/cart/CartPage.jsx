@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CheckText from '../components/CartPage/CheckText';
-import CartIcon2 from '../components/icon/CartIcon2';
-import RemoveBtn from '../components/CartPage/RemoveBtn';
-import ProductItem from '../components/CartPage/ProductItem';
-import SolidLine from '../components/public/SolidLine';
-import DashedLine from '../components/public/DashedLine';
-import Button from "../components/public/Button";
-import Total from "../components/public/Total";
-import "../styles/cart.scss";
+import CheckText from '../../components/CartPage/CheckText';
+import CartIcon2 from '../../components/icon/CartIcon2';
+import RemoveBtn from '../../components/CartPage/RemoveBtn';
+import ProductItem from '../../components/CartPage/ProductItem';
+import SolidLine from '../../components/public/SolidLine';
+import DashedLine from '../../components/public/DashedLine';
+import Button from "../../components/public/Button";
+import Total from "../../components/public/Total";
+
+import "../../styles/cart.scss";
 
 function CartPage() {
     const [cartItems, setCartItems] = useState([]);

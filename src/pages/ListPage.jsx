@@ -95,9 +95,9 @@ function ListPage() {
             <p className='sanrio_img'><img src="/img/list_sanriobanner_01.svg" alt="" /></p>
             </div>
          ) : (
+            
             <NaviBar main={KRcategory[0]} mid={mid} sub={sub} />
          )}
-
          <ListItem item={sanrio} mainParam={mainParam}/>
          <div><TopButton/></div>
       </>
