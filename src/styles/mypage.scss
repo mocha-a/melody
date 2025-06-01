@@ -46,12 +46,19 @@
         border: 1px solid $lineColor;
         background-color: $whiteColor;
     }
-    .mypage_logout{
-        width: 330px;
+    .mypageBtn{
+        width: 390px;
+        height: 70px;
         position: fixed;
-        bottom: 30px;
+        bottom: 0px;
         left: 50%;
         transform: translateX(-50%);
+        background-color: $whiteColor;
+        .mypage_logout{
+            display: block;
+            width: 330px;
+            margin: 0 auto;
+        }
     }
 }
 

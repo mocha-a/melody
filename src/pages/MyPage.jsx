@@ -67,7 +67,9 @@ function MyPage() {
                 className={"mypage_wishlist"}
             />
         </div>
-        <Button btn={"로그아웃"} onClick={()=>{logout()}} className="mypage_logout"/>
+        <div className="mypageBtn">
+            <Button btn={"로그아웃"} onClick={()=>{logout()}} className="mypage_logout"/>
+        </div>
     </div>
     </>
     )
